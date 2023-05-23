@@ -73,8 +73,8 @@ if (Input::exists()) {
                 <ul class="navbar">
 					<li><a href="#home">Home</a></li>
                     <li><a href="#poslednje">Poslednje dodato</a></li>
-                    <li><a href="#registracija">Registracija</a></li>
-                    <li><a href="#prijava">Prijava</a></li>
+                    <li><a href="registracija.php">Registracija</a></li>
+                    <li><a href="prijava.php">Prijava</a></li>
                     <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
                 <i class='bx bx-search' id="search-icon" onclick="showDiv('search-box')""></i>
@@ -103,8 +103,8 @@ if (Input::exists()) {
             <div class="col-1"><h3>Korisni linkovi</h3>
                 <a href="#home">Home</a>
                 <a href="#poslednje">Popularno</a>
-                <a href="#registracija">Registracija</a>
-                <a href="#prijava">Prijava</a>
+                <a href="registracija.php">Registracija</a>
+                <a href="prijava.php">Prijava</a>
                 <a href="#Kontakt">Kontakt</a>
             </div>
             <div class="col-2"><h3>NEWSLETTER</h3>
