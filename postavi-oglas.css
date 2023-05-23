@@ -1,0 +1,101 @@
+
+/* komponente */
+.text-input {
+  width: 300px;
+  height: 45px;
+  border-radius: 40px;
+  padding-left: 10px;
+  /* margin-top: 20px; */
+  /* margin-bottom: 40px; */
+  background-color: black;
+  color: rgb(255, 191, 202);
+  border: 3px solid rgb(255, 191, 202);
+  border-radius: 50px;
+}
+
+.text-area {
+  width: 800px;
+  height: 300px;
+  border-radius: 40px;
+  padding-left: 10px;
+  /* margin-top: 20px; */
+  /* margin-bottom: 40px; */
+  background-color: black;
+  color: rgb(255, 191, 202);
+  border: 3px solid rgb(255, 191, 202);
+  border-radius: 50px;
+}
+
+.select {
+  background-color: #000;
+  color: rgb(255, 191, 202);
+  border: 3px solid rgb(255, 191, 202);
+  width: 200px;
+  height: 40px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  margin-top: 30px;
+  margin-left: 60px;
+  margin-bottom: 30px;
+  margin-right: 20px;
+}
+
+.checkbox-group {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+}
+
+/* ========== */
+
+/* elementi */
+
+.oglas-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  margin: 0 120px;
+}
+
+.file-upload-container {
+  margin-bottom: 25px;
+}
+
+.file-upload-label {
+  background-color: black;
+  color: rgb(255, 191, 202);
+  font-size: 20px;
+  border: 3px solid rgb(255, 191, 202);
+  border-radius: 50px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+#file-chosen{
+  display: block;
+  margin-top: 15px;
+  font-family: sans-serif;
+}
+
+.section-label {
+  font-size: 26px;
+  font-weight: bold;
+  color:rgb(255, 191, 202);
+  margin-top: 20px;
+}
+
+.dodatne-informacije .text-input {
+  margin: 15px 10px;
+}
+
+.submit-container {
+  margin-top: 50px;
+  margin-left: 228px;
+  margin-bottom: 50px;
+}

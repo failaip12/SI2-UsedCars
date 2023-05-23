@@ -1,0 +1,163 @@
+/* overwrites */
+.home {
+  display: block;
+}
+
+/* ui */
+.text-input {
+  width: 300px;
+  height: 45px;
+  border-radius: 40px;
+  padding-left: 10px;
+  background-color: black;
+  color: rgb(255, 191, 202);
+  border: 3px solid rgb(255, 191, 202);
+  border-radius: 50px;
+}
+
+.button {
+  background-color: black;
+  color: rgb(255, 191, 202);
+  font-size: 16px;
+  text-align: center;
+  border: 3px solid rgb(255, 191, 202);
+  border-radius: 50px;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  position: relative;
+}
+.button:hover {
+  background: rgb(255, 191, 202);
+  color: #000;
+  box-shadow: 0 0 50px rgb(255, 191, 202), 0 0 21px rgb(255, 191, 202);
+}
+
+.bell-icon:before {
+  content: "\f0f3";
+}
+
+
+/* elements */
+.oglas-container {
+  display: flex;
+  margin: 30px 160px;
+}
+
+.content {
+  width: 100%;
+}
+
+.navigation {
+  height: 700px;
+  min-width: 200px;
+  padding: 15px 0;
+  border-radius: 5px;
+  background-color: #cacacae6;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.navigation-container {
+  padding-top: 35px;
+  width: 100%;
+  text-align: right; 
+  padding-left: 20px;
+}
+
+.navigation-button {
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: right;
+  border: 0;
+  padding: 6px 10px;
+  background-color: #a6a6a6;
+  cursor: pointer;
+}
+
+.navigation-button:hover {
+  opacity: 0.75;
+}
+
+.navigation-button.active-nav {
+  font-weight: 600;
+  color: var(--main-color);
+}
+
+.tab {
+  display: none;
+  margin: 0 40px;
+}
+
+.active-tab {
+  display: block;
+}
+
+.tab-title {
+  color: var(--main-color);
+  margin-bottom: 15px;
+}
+
+.tab-subtitle {
+  color: var(--main-color);
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+/* profile-tab */
+.profile-inputs-container {
+  display: flex;
+}
+
+.profile-inputs {
+  width: 350px;
+}
+
+.profile-inputs input {
+  margin-bottom: 8px;
+}
+
+.submit-container {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* sacuvane-pretrage-tab */
+.pretraga {
+  background-color: #cacacae6;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.pretraga-sadrzaj {
+  flex-grow: 1;
+}
+
+.pretraga-akcije {
+  display: flex;
+  align-items: center;
+}
+
+.pretraga-akcije .akcija:hover {
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+.pretraga-ime {
+  font-size: 20px;
+  display: block;
+  color: inherit;
+  margin-bottom: 8px;
+  width: fit-content;
+}
+
+.pretraga-ime:hover {
+  color: var(--main-color);
+}
+
+.pretraga-opis {
+  font-size: 14px;
+}
