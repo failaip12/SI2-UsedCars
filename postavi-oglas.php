@@ -1,9 +1,8 @@
 <?php
 require_once 'core/init.php';
-var_dump($_POST);
-if (count($_POST) > 0) {
-    die();
-} 
+//echo '<pre>';
+//var_dump($_POST);
+//echo '</pre>';
 $user = new User();
 if (!$user->isLoggedIn()) {
     Redirect::to('index.php');
@@ -18,11 +17,7 @@ if (Input::exists()) {
                 'required' => true,
                 'max' => 45
             ),
-            'tip' => array(
-                'required' => true,
-                'max' => 45
-            ),
-            'godina' => array(
+            'godiste' => array(
                 'required' => true,
                 'numeric' => true
             ),
@@ -41,6 +36,46 @@ if (Input::exists()) {
             'menjac' => array(
                 'required' => true,
                 'max' => 45
+            ),
+            'karoserija' => array(
+                'required' => true,
+                'max' => 45
+            ),
+            'gorivo' => array(
+                'required' => true,
+                'max' => 45
+            ),
+            'kubikaza' => array(
+                'required' => true,
+                'numeric' => true
+            ),
+            'snaga' => array(
+                'required' => true,
+                'numeric' => true
+            ),
+            'emisionaKlasa' => array(
+                'required' => true,
+                'max' => 45
+            ),
+            'broj_vrata' => array(
+                'required' => true,
+                'max' => 45
+            ),
+            'broj_sedista' => array(
+                'required' => true,
+                'max' => 45
+            ),
+            'volan' => array(
+                'required' => true,
+                'max' => 45
+            ),
+            'klima' => array(
+                'required' => true,
+                'max' => 45
+            ),
+            'opis' => array(
+                'required' => true,
+                'max' => 1000
             )
             )
         );
@@ -51,6 +86,9 @@ if (Input::exists()) {
                 $db = DB::getInstance();
                 $fileNames = array_filter($_FILES['fileToUpload']['name']);
                 $target_dir = "slike/";
+                echo '<pre>';
+                var_dump($_FILES);
+                echo '</pre>';
                 if (!empty($fileNames)) {
                     foreach ($_FILES['fileToUpload']['name'] as $key => $val) {
                         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"][$key]);
@@ -95,12 +133,21 @@ if (Input::exists()) {
                 $db->insert(
                     'oglasi', array(
                         'marka' => Input::get('marka'),
-                        'tip' => Input::get('tip'),
-                        'godina' => Input::get('godina'),
+                        'godiste' => Input::get('godiste'),
                         'kilometraza' => Input::get('kilometraza'),
                         'cena' => Input::get('cena'),
                         'pogon' => Input::get('pogon'),
                         'menjac' => Input::get('menjac'),
+                        'karoserija' => Input::get('karoserija'),
+                        'gorivo' => Input::get('gorivo'),
+                        'kubikaza' => Input::get('kubikaza'),
+                        'snaga' => Input::get('snaga'),
+                        'emisiona_klasa' => Input::get('emisionaKlasa'),
+                        'broj_vrata' => Input::get('broj_vrata'),
+                        'broj_sedista' => Input::get('broj_sedista'),
+                        'klima' => Input::get('klima'),
+                        'volan' => Input::get('volan'),
+                        'opis_oglasa' => Input::get('opis'),
                         'korisnik_id' => $user->data()->korisnik_id
                     )
                 );
@@ -197,7 +244,6 @@ if (Input::exists()) {
                 <input class="form-control" type="file" id="fileToUpload" name="fileToUpload[]" style='border:1px solid black;max-width:40%;border-left:0' hidden multiple onchange="handleFileSelection(event)">
                 <label for="fileToUpload" class="file-upload-label">Izaberi slike</label>
                 <span id="file-chosen"></span>
-                <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
             </div>
 
                 <div>
@@ -286,7 +332,7 @@ if (Input::exists()) {
                 </div>
                 <div>
                     <div class="section-label">Osnovne informacije</div>
-                    <input class="text-input" type="text" placeholder="Godiste" required>
+                    <input class="text-input" type="text" placeholder="Godiste" name="godiste" required>
                     <select class="select" id="karoserija" name="karoserija" placeholder="Karoserija">
                         <option value="" disabled selected hidden>Karoserija</option>
                         <option value="Limuzina">Limuzina</option>
@@ -312,11 +358,10 @@ if (Input::exists()) {
                 <div>
                     <div class="section-label">Dodatne informacije</div>
                     <div class="dodatne-informacije">
-                        <input class="text-input" type="text" placeholder="Kubikaža (cm3)" required>
-                        <input class="text-input" type="text" placeholder="Snaga (kW)" required>
+                        <input class="text-input" type="text" placeholder="Kubikaža (cm3)" name="kubikaza" required>
+                        <input class="text-input" type="text" placeholder="Snaga (kW)"  name="snaga"required>
                         <br>
-                        <input class="text-input" type="text" placeholder="Snaga (KS) *" required>
-                        <input class="text-input" type="text" placeholder="Kilometraža *" required>
+                        <input class="text-input" type="text" placeholder="Kilometraža *" name="kilometraza"required>
                         <br>
 
                         <select class="select" id="emisionaKlasa" name="emisionaKlasa" placeholder="Emisiona klasa">
@@ -327,13 +372,6 @@ if (Input::exists()) {
                             <option value="Euro 4">Euro 4</option>
                             <option value="Euro 5">Euro 5</option>
                             <option value="Euro 6">Euro 6</option>
-                        </select>
-
-                        <select class="select" id="plivajuciZamajac" name="plivajuciZamajac"
-                            placeholder="Plivajuci zamajac">
-                            <option value="" disabled selected hidden>Plivajuci zamajac</option>
-                            <option value="Sa plivajućim zamajcem">Sa plivajućim zamajcem</option>
-                            <option value="Bez plivajućeg zamajca">Bez plivajućeg zamajca</option>
                         </select>
 
                         <br>
@@ -357,15 +395,15 @@ if (Input::exists()) {
 
                         <br>
 
-                        <select class="select" id="karoserija" name="karoserija" placeholder="Karoserija">
-                            <option value="" disabled selected hidden>Model</option>
+                        <select class="select" id="broj_vrata" name="broj_vrata" placeholder="Broj vrata">
+                            <option value="" disabled selected hidden>Broj vrata</option>
                             <option value="2/3 vrata">2/3 vrata</option>
                             <option value="4/5 vrata">4/5 vrata</option>
                         </select>
 
 
-                        <select class="select" id="karoserija" name="karoserija" placeholder="Karoserija">
-                            <option value="" disabled selected hidden>Model</option>
+                        <select class="select" id="broj_sedista" name="broj_sedista" placeholder="Broj sedista">
+                            <option value="" disabled selected hidden>Broj sedista</option>
                             <option value="2 sedišta">2 sedišta</option>
                             <option value="3 sedišta">3 sedišta</option>
                             <option value="4 sedišta">4 sedišta</option>
@@ -378,15 +416,15 @@ if (Input::exists()) {
 
                         <br>
 
-                        <select class="select" id="karoserija" name="karoserija" placeholder="Karoserija">
-                            <option value="" disabled selected hidden>Model</option>
+                        <select class="select" id="volan" name="volan" placeholder="Volan">
+                            <option value="" disabled selected hidden>Volan</option>
                             <option value="Levi volan">Levi volan</option>
                             <option value="Desni volan">Desni volan</option>
                         </select>
 
 
-                        <select class="select" id="karoserija" name="karoserija" placeholder="Karoserija">
-                            <option value="" disabled selected hidden>Model</option>
+                        <select class="select" id="klima" name="klima" placeholder="Klima">
+                            <option value="" disabled selected hidden>Klima</option>
                             <option value="Nema klimu">Nema klimu</option>
                             <option value="Manuelna klima">Manuelna klima</option>
                             <option value="Automatska klima">Automatska klima</option>
@@ -396,17 +434,19 @@ if (Input::exists()) {
 
                 <div>
                     <div class="section-label">Cena</div>
-                    <input class="text-input" type="text" placeholder="Cena" required>
+                    <input class="text-input" type="text" placeholder="Cena" name="cena" required>
                 </div>
 
                 <div>
                     <div class="section-label">Opis oglasa</div>
-                    <textarea class="text-area" required></textarea>
+                    <textarea class="text-area" name="opis" required></textarea>
                 </div>
 
                 <div>
 
                 <div class="submit-container">
+                    
+                    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
                     <button class="footer__button" type="submit">POSTAVITE OGLAS</button>
                 </div>
             </div>
@@ -438,17 +478,6 @@ if (Input::exists()) {
                 </div>
         </section>
     <script src="postavi-oglas.js"></script>
-    <script>
-        function handleFileSelection(event) {
-            var fileInput = event.target;
-            var fileChosenSpan = document.getElementById("file-chosen");
-            
-            if (fileInput.files.length > 0) {
-                fileChosenSpan.textContent = fileInput.files.length + " file(s) selected";
-            } else {
-                fileChosenSpan.textContent = "";
-            }
-        }
     </script>
 </body>
 

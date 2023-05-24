@@ -1,8 +1,11 @@
-const actualBtn = document.getElementById('actual-btn');
 
-const fileChosen = document.getElementById('file-chosen');
-
-actualBtn.addEventListener('change', function(){
-  console.log(this.files)
-  fileChosen.textContent = [...this.files].map(file => file.name).join(', ')
-})
+function handleFileSelection(event) {
+  var fileInput = event.target;
+  var fileChosenSpan = document.getElementById("file-chosen");
+  
+  if (fileInput.files.length > 0) {
+      fileChosenSpan.textContent = fileInput.files.length + " file(s) selected";
+  } else {
+      fileChosenSpan.textContent = "";
+  }
+}
