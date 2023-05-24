@@ -24,13 +24,13 @@
       <i class='bx bx-menu' id="menu-icon"></i>
       <a href="#" class="logo">Used<span>Cars</span></a>
       <ul class="navbar">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#poslednje">Poslednje dodato</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="index.php#poslednje">Poslednje dodato</a></li>
         <li><a href="registracija.php">Registracija</a></li>
         <li><a href="prijava.php">Prijava</a></li>
-        <li><a href="index.html#kontakt">Kontakt</a></li>
-        <li><a href="profil.html">Profil</a></li>
-        <li><a href="postavi-oglas.html">Postavi Oglas</a></li>
+        <li><a href="index.php#kontakt">Kontakt</a></li>
+        <li><a href="profil.php">Profil</a></li>
+        <li><a href="postavi-oglas.php">Postavi Oglas</a></li>
       </ul>
       <i class='bx bx-search' id="search-icon" onclick="showDiv('search-box')"></i>
   </header>

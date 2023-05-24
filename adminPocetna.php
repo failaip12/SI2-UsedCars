@@ -33,12 +33,5 @@
                 <i class='bx bx-search' id="search-icon" onclick="showDiv('search-box')""></i>
             </div>
         </header>
-        
-        
-
-
-
-      
-       
     </body>
 </html>

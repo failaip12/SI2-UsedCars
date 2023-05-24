@@ -38,8 +38,8 @@ require_once 'core/init.php';
                 <li><a href="registracija.php">Registracija</a></li>
                 <li><a href="prijava.php">Prijava</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
-                <li><a href="profil.html">Profil</a></li>
-                <li><a href="postavi-oglas.html">Postavi Oglas</a></li>
+                <li><a href="profil.php">Profil</a></li>
+                <li><a href="postavi-oglas.php">Postavi Oglas</a></li>
             </ul>
             <i class='bx bx-search' id="search-icon" onclick="showDiv('search-box')"></i>
 
@@ -192,7 +192,7 @@ require_once 'core/init.php';
         <div class="swiper popular__container container">
             <div class="swiper-wrapper">
                 <div class=" swiper-slide popular__card">
-                    <a href="oglas.html">
+                    <a href="oglas.php">
                         <div class=" shape shape__smaller">
                         </div>
                         <h1 class="popular__title">Honda</h1>
@@ -215,7 +215,7 @@ require_once 'core/init.php';
                     </a>
                 </div>
                 <div class="swiper-slide popular__card">
-                    <a href="oglas.html">
+                    <a href="oglas.php">
                         <div class=" shape shape__smaller">
                         </div>
                         <h1 class="popular__title">Honda</h1>
@@ -238,7 +238,7 @@ require_once 'core/init.php';
                     </a>
                 </div>
                 <div class="swiper-slide popular__card">
-                    <a href="oglas.html">
+                    <a href="oglas.php">
                         <div class=" shape shape__smaller">
                         </div>
                         <h1 class="popular__title">Honda</h1>
@@ -261,7 +261,7 @@ require_once 'core/init.php';
                     </a>
                 </div>
                 <div class="swiper-slide popular__card">
-                    <a href="oglas.html">
+                    <a href="oglas.php">
                         <div class="shape shape__smaller">
                         </div>
                         <h1 class="popular__title">Honda</h1>
@@ -284,7 +284,7 @@ require_once 'core/init.php';
                     </a>
                 </div>
                 <div class="swiper-slide popular__card">
-                    <a href="oglas.html">
+                    <a href="oglas.php">
                         <div class=" shape shape__smaller">
                         </div>
                         <h1 class="popular__title">Honda</h1>
