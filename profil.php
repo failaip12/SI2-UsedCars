@@ -3,7 +3,7 @@ declare(strict_types=1);
 require_once 'core/init.php';
 
 $user = new User();
-if (!$user->isLoggedIn()) {
+if ($user->permissionLevel()!=1) {
     Redirect::to('index.php');
 }
 $db = DB::getInstance();

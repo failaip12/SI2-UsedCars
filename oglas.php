@@ -52,7 +52,7 @@ $slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slik
         <div class="oglas-header">
           <div class="oglas-header-content">
             <h1 class="title"><?php echo escape($oglas->naslov) ?></h1>
-            <span class="year"><?php echo escape($oglas->godiste) ?>. godište</span>
+            <span class="year"><?php echo $oglas->godiste ?>. godište</span>
           </div>
         </div>
 
@@ -92,13 +92,13 @@ $slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slik
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Godište</div>
-                  <div class="info-value"><?php echo escape($oglas->godiste) ?>.</div>
+                  <div class="info-value"><?php $oglas->godiste ?>.</div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Kilometraža</div>
-                  <div class="info-value"><?php echo escape($oglas->kilometraza) ?> km</div>
+                  <div class="info-value"><?php echo $oglas->kilometraza ?> km</div>
                 </div>
               </div>
               <div class="divider">
@@ -322,7 +322,7 @@ $slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slik
         </div>
       </div>
       <div class="oglas-column-2">
-        <span class="price"><?php echo escape($oglas->cena) ?> €</span>
+        <span class="price"><?php echo $oglas->cena ?> €</span>
         <div class="info-card">
           <h2>Force Luxury Cars</h2>
           <div class="info-card-address">

@@ -15,6 +15,8 @@ if ($user->permissionLevel()!=2) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script>
         function odobriOglas(id){
         var odgovor=confirm("Odobravanje oglasa: Da li ste sigurni?");
@@ -23,6 +25,10 @@ if ($user->permissionLevel()!=2) {
         return false;
       }
     </script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous"/>
     <title>Dobrodoslica</title>
 </head>
 <body>
@@ -32,7 +38,7 @@ if ($user->permissionLevel()!=2) {
             <div class="table-title">
                 <div class="row">
                     <div class="col-xs-5">
-                        <h2>ADMIN <b>Tabela neodobrenih oglasa</b></h2>
+                        <h2><b>Tabela neodobrenih oglasa</b></h2>
                     </div>
         <form method="post" id="profil" action="">
         <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
@@ -42,6 +48,7 @@ if ($user->permissionLevel()!=2) {
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Naslov oglasa</th>
                         <th>Marka vozila</th>
                         <th>Tip vozila</th>
                         <th>Godina vozila</th>
@@ -64,18 +71,22 @@ if ($user->permissionLevel()!=2) {
                     $oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NULL limit ? , ?', array(($trenutna_strana - 1) * 10, 10))->results();
                     if (count($oglasi) > 0) {
                         foreach ($oglasi as $oglas) {
+                            $link = "oglas.php?id=" . strval($oglas->oglas_id);
                             echo "<tr class='manageRows'>";
-                            echo "<td id='id'>";
+                            echo '<td id=\'id\'> <a href="'.$link.'">';
                             echo $oglas->oglas_id;
+                            echo "</td>";
+                            echo "<td id='naslov'>";
+                            echo $oglas->naslov;
                             echo "</td>";
                             echo "<td id='marka'>";
                             echo $oglas->marka;
                             echo "</td>";
-                            echo "<td id='tip'>";
-                            echo $oglas->tip;
+                            echo "<td id='karoserija'>";
+                            echo $oglas->karoserija;
                             echo "</td>";
-                            echo "<td id='godina'>";
-                            echo $oglas->godina;
+                            echo "<td id='godiste'>";
+                            echo $oglas->godiste;
                             echo "</td>";
                             echo "<td id='kilometraza'>";
                             echo $oglas->kilometraza;
