@@ -1,3 +1,11 @@
+<?php
+declare(strict_types=1);
+require_once 'core/init.php';
+if (empty($_GET)) {
+  Redirect::to('index.php');
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
