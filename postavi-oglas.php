@@ -85,7 +85,7 @@ if (Input::exists()) {
             try {
                 $db = DB::getInstance();
                 $fileNames = array_filter($_FILES['fileToUpload']['name']);
-                $target_dir = "slike/";
+                $target_dir = "slike_oglasa/";
                 echo '<pre>';
                 var_dump($_FILES);
                 echo '</pre>';
@@ -205,8 +205,8 @@ if (Input::exists()) {
         UsedCars
     </title>
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="postavi-oglas.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="postavi-css/oglas.css">
     <!--=============== REMIX ICON/BOXICON ===============-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -240,9 +240,9 @@ if (Input::exists()) {
 
             <div class="form-container">
             <div class="file-upload-container">
-                <div class="section-label" style="margin-bottom:20px;">Slike</div>
+                <div class="section-label" style="margin-bottom:20px;">slike_oglasa</div>
                 <input class="form-control" type="file" id="fileToUpload" name="fileToUpload[]" style='border:1px solid black;max-width:40%;border-left:0' hidden multiple onchange="handleFileSelection(event)">
-                <label for="fileToUpload" class="file-upload-label">Izaberi slike</label>
+                <label for="fileToUpload" class="file-upload-label">Izaberi slike_oglasa</label>
                 <span id="file-chosen"></span>
             </div>
 
@@ -477,7 +477,7 @@ if (Input::exists()) {
                         e-mail: info@laguna.rs</p>
                 </div>
         </section>
-    <script src="postavi-oglas.js"></script>
+    <script src="js/postavi-oglas.js"></script>
     </script>
 </body>
 

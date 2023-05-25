@@ -46,7 +46,7 @@ if (Input::exists()) {
             try {
                 $db = DB::getInstance();
                 $fileNames = array_filter($_FILES['fileToUpload']['name']);
-                $target_dir = "slike/";
+                $target_dir = "slike_oglasa/";
                 if (!empty($fileNames)) {
                     foreach ($_FILES['fileToUpload']['name'] as $key => $val) {
                         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"][$key]);

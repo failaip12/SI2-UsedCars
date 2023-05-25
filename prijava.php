@@ -43,7 +43,7 @@ if(Input::exists()) {
         </title>
         <!--=============== CSS ===============-->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <!--=============== REMIX ICON/BOXICON ===============-->
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">

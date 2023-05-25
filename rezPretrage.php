@@ -8,14 +8,13 @@
         </title>
         <!--=============== CSS ===============-->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <!--=============== REMIX ICON/BOXICON ===============-->
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist\css\bootstrap.css">
         <script src="bootstrap-5.3.0-alpha1-dist\js\bootstrap.bundle.js"></script>
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="custom.css">
+		<link rel="stylesheet" type="text/css" href="css/custom.css">
         
     </head>
     <body>
