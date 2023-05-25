@@ -113,7 +113,7 @@ section{
     min-height:660px;
     display:flex;
     align-items:center;
-    background-image:url(slika/usedcars.jpg);
+    background-image:url(../slika/usedcars.jpg);
     background-repeat:no-repeat;
     background-size:cover;
     background-position:center left;
