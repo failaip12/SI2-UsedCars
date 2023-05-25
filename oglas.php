@@ -51,8 +51,8 @@ $slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slik
       <div class="oglas-column-1">
         <div class="oglas-header">
           <div class="oglas-header-content">
-            <h1 class="title"><?php echo $oglas->naslov ?></h1>
-            <span class="year"><?php echo $oglas->godiste ?>. godište</span>
+            <h1 class="title"><?php echo escape($oglas->naslov) ?></h1>
+            <span class="year"><?php echo escape($oglas->godiste) ?>. godište</span>
           </div>
         </div>
 
@@ -86,31 +86,31 @@ $slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slik
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Marka</div>
-                  <div class="info-value"><?php echo $oglas->marka ?></div>
+                  <div class="info-value"><?php echo escape($oglas->marka) ?></div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Godište</div>
-                  <div class="info-value"><?php echo $oglas->godiste ?>.</div>
+                  <div class="info-value"><?php echo escape($oglas->godiste) ?>.</div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Kilometraža</div>
-                  <div class="info-value"><?php echo $oglas->kilometraza ?> km</div>
+                  <div class="info-value"><?php echo escape($oglas->kilometraza) ?> km</div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Karoserija</div>
-                  <div class="info-value"><?php echo $oglas->karoserija ?></div>
+                  <div class="info-value"><?php echo escape($oglas->karoserija) ?></div>
                 </div>
               </div>
               <div class="divider" style="border-bottom: none">
                 <div class="info-entry">
                   <div class="info-label">Gorivo</div>
-                  <div class="info-value"><?php echo $oglas->gorivo ?></div>
+                  <div class="info-value"><?php echo escape($oglas->gorivo) ?></div>
                 </div>
               </div>
             </div>
@@ -118,13 +118,13 @@ $slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slik
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Kubikaža</div>
-                  <div class="info-value"><?php echo $oglas->kubikaza ?> cm<sup>3</sup></div>
+                  <div class="info-value"><?php echo escape($oglas->kubikaza) ?> cm<sup>3</sup></div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Snaga motora</div>
-                  <div class="info-value"><?php echo $oglas->snaga ?>/<?php echo $oglas->snaga * 1.36 ?> (kW/KS)</div>
+                  <div class="info-value"><?php echo escape($oglas->snaga) ?>/<?php echo escape($oglas->snaga) * 1.36 ?> (kW/KS)</div>
                 </div>
               </div>
               <div class="divider">
@@ -150,43 +150,43 @@ $slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slik
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Emisiona klasa motora</div>
-                  <div class="info-value"><?php echo $oglas->emisiona_klasa ?></div>
+                  <div class="info-value"><?php echo escape($oglas->emisiona_klasa) ?></div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Pogon</div>
-                  <div class="info-value"><?php echo $oglas->pogon ?> </div>
+                  <div class="info-value"><?php echo escape($oglas->pogon) ?> </div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Menjač</div>
-                  <div class="info-value"><?php echo $oglas->menjac ?> </div>
+                  <div class="info-value"><?php echo escape($oglas->menjac) ?> </div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Broj vrata</div>
-                  <div class="info-value"><?php echo $oglas->broj_vrata ?> </div>
+                  <div class="info-value"><?php echo escape($oglas->broj_vrata) ?> </div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Broj sedišta</div>
-                  <div class="info-value"><?php echo $oglas->broj_sedista ?> </div>
+                  <div class="info-value"><?php echo escape($oglas->broj_sedista) ?> </div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Strana volana</div>
-                  <div class="info-value"><?php echo $oglas->volan ?> </div>
+                  <div class="info-value"><?php echo escape($oglas->volan) ?> </div>
                 </div>
               </div>
               <div class="divider" style="border-bottom: none;">
                 <div class="info-entry">
                   <div class="info-label">Klima</div>
-                  <div class="info-value"><?php echo $oglas->klima ?> </div>
+                  <div class="info-value"><?php echo escape($oglas->klima) ?> </div>
                 </div>
               </div>
             </div>
@@ -317,12 +317,12 @@ $slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slik
         <div class="info-box">
           <h2>Opis</h2>
           <div class="info-description">
-          <?php echo $oglas->opis_oglasa ?>
+          <?php echo escape($oglas->opis_oglasa) ?>
           </div>
         </div>
       </div>
       <div class="oglas-column-2">
-        <span class="price"><?php echo $oglas->cena ?> €</span>
+        <span class="price"><?php echo escape($oglas->cena) ?> €</span>
         <div class="info-card">
           <h2>Force Luxury Cars</h2>
           <div class="info-card-address">

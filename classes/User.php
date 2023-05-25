@@ -66,7 +66,7 @@ class User
     public function update($table, $fields = array(), $id = null)
     {
         if (!$id && $this->isLoggedIn()) {
-            $id = $this->data()->nalog_id;
+            $id = $this->data()->korisnik_id;
         }
         if (!$this->_db->updateUser($table, $id, $fields)) {
             throw new Exception('Desio se problem tokom azuriranja.');

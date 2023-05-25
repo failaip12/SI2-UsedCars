@@ -2,6 +2,63 @@
 declare(strict_types=1);
 require_once 'core/init.php';
 
+$user = new User();
+if (!$user->isLoggedIn()) {
+    Redirect::to('index.php');
+}
+$db = DB::getInstance();
+
+if (Input::exists()) {
+  if (Token::check(Input::get('token'))) {
+      $validate = new Validate();
+      $validation = $validate->check($_POST, array(
+          'ime' => array(
+              'max' => 45
+          ),
+          'prezime' => array(
+              'max' => 45
+          ),
+          'adresa' => array(
+              'max' => 45
+          ),
+          'grad' => array(
+              'max' => 45
+          ),
+          'postanski_broj' => array(
+              'max' => 45
+          ),
+          'fiksni' => array(
+              'max' => 45
+          ),
+          'mobilni' => array(
+              'max' => 45
+          )
+      ));
+
+      if ($validation->passed()) {
+          // update
+          try {
+              $user->update(User_type($user->permissionLevel()), array(
+                  'ime' => Input::get('ime'),
+                  'prezime' => Input::get('prezime'),
+                  'adresa' => Input::get('adresa'),
+                  'grad' => Input::get('grad'),
+                  'postanski_broj' => Input::get('postanski_broj'),
+                  'fiksni' => Input::get('fiksni'),
+                  'mobilni' => Input::get('mobilni')
+              ));
+              Session::flash('home', 'Your details have been updated.');
+              Redirect::to('profil.php');
+          } catch (Exception $e) {
+              die($e->getMessage());
+          }
+      } else {
+          foreach ($validation->errors() as $error) {
+              echo $error, '<br>';
+          }
+      }
+  }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -61,36 +118,40 @@ require_once 'core/init.php';
             Profil
           </h2>
           <h3 class="tab-subtitle">Osnovne informacije</h3>
-          <div class="profile-inputs-container">
-            <div class="profile-inputs">
-              <input class="text-input" type="text" placeholder="Ime" required>
-              <input class="text-input" type="text" placeholder="Prezime" required>
-              <input class="text-input" type="text" placeholder="Adresa" required>
-              <input class="text-input" type="text" placeholder="Grad" required>
-              <input class="text-input" type="text" placeholder="Poštanski broj" required>
-              <input class="text-input" type="text" placeholder="Okrug" required>
-              <input class="text-input" type="text" placeholder="Odaberite okrug" required>
-              <input class="text-input" type="text" placeholder="Država" required>
+          <form action="" method="post">
+            <div class="profile-inputs-container">
+              <div class="profile-inputs">
+                Ime: <br><input class="text-input" type="text" placeholder="Ime" name="ime" value="<?php echo escape($user->data()->ime)?>">
+                Prezime:<input class="text-input" type="text" placeholder="Prezime" name="prezime" value="<?php echo escape($user->data()->prezime)?>">
+                Adresa:<input class="text-input" type="text" placeholder="Adresa" name="adresa" value="<?php echo escape($user->data()->adresa)?>">
+                <br>
+                Grad:
+                <br><input class="text-input" type="text" placeholder="Grad" name="grad" value="<?php echo escape($user->data()->grad)?>">
+                Poštanski broj:<input class="text-input" type="text" placeholder="Poštanski broj" name="postanski_broj" value="<?php echo escape($user->data()->postanski_broj)?>">
+              </div>
+              <div class="profile-inputs">
+              Fiksni Telefon:<input class="text-input" type="text" placeholder="Fiksni Telefon" name="fiksni" value="<?php echo escape($user->data()->fiksni)?>">
+              Mobilni telefon:<input class="text-input" type="text" placeholder="Mobilni telefon" name="mobilni" value="<?php echo escape($user->data()->mobilni)?>">
+              <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+              </div>
             </div>
-            <div class="profile-inputs">
-              <input class="text-input" type="text" placeholder="Telefon" required>
-              <input class="text-input" type="text" placeholder="Telefon 2" required>
-              <input class="text-input" type="text" placeholder="Mobilni telefon" required>
-              <input class="text-input" type="text" placeholder="Mobilni telefon 2" required>
-              <input class="text-input" type="text" placeholder="Fax" required>
+            <div class="submit-container">
+              <button class="button" type="submit">SAČUVAJ</button>
             </div>
-          </div>
+          </form>
           <h3 class="tab-subtitle">Bezbednost</h3>
-          <div class="profile-inputs-container">
-            <div class="profile-inputs">
-              <input class="text-input" type="text" placeholder="Nova šifra" required>
-              <input class="text-input" type="text" placeholder="Ponovi novu šifru" required>
-              <input class="text-input" type="text" placeholder="Trenutna šifra" required>
+          <form action="changepassword.php" method="post">
+            <div class="profile-inputs-container">
+              <div class="profile-inputs">
+                <input class="text-input" type="password" placeholder="Trenutna šifra" name="password_current" id="password_current" required>
+                <input class="text-input" type="password" placeholder="Nova šifra" name="password_new" id="password_new" required>
+                <input class="text-input" type="password" placeholder="Ponovi novu šifru" name="password_new_again" id="password_new_again" required>
+              </div>
             </div>
-          </div>
-          <div class="submit-container">
-            <button class="button" type="submit">SAČUVAJ</button>
-          </div>
+            <div class="submit-container">
+              <button class="button" type="submit">Promeni šifru</button>
+            </div>
+          </form>
         </div>
         <div id="sacuvane-pretrage" class="tab">
           <h2 class="tab-title">
