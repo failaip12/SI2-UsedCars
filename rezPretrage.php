@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist\css\bootstrap.css">
         <script src="bootstrap-5.3.0-alpha1-dist\js\bootstrap.bundle.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/custom.css">
+    <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist\css\bootstrap.min.css">
         
     </head>
     <body>

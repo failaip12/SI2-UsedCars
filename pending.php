@@ -14,7 +14,7 @@
 		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist\css\bootstrap.css">
         <script src="bootstrap-5.3.0-alpha1-dist\js\bootstrap.bundle.js"></script>
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist\css\bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/custom.css">
         
     </head>

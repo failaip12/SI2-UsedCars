@@ -13,6 +13,8 @@ require_once 'core/init.php';
         <!--=============== CSS ===============-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/oglas.css">
+        <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist\css\bootstrap.min.css">
         <!--=============== REMIX ICON/BOXICON ===============-->
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
