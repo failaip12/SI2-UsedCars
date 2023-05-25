@@ -77,6 +77,10 @@ if (Input::exists()) {
             'opis' => array(
                 'required' => true,
                 'max' => 1000
+            ),
+            'naslov' => array(
+                'required' => true,
+                'max' => 1000
             )
             )
         );
@@ -87,9 +91,6 @@ if (Input::exists()) {
                 $db = DB::getInstance();
                 $fileNames = array_filter($_FILES['fileToUpload']['name']);
                 $target_dir = "slike_oglasa/";
-                echo '<pre>';
-                var_dump($_FILES);
-                echo '</pre>';
                 if (!empty($fileNames)) {
                     foreach ($_FILES['fileToUpload']['name'] as $key => $val) {
                         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"][$key]);
@@ -149,6 +150,7 @@ if (Input::exists()) {
                         'klima' => Input::get('klima'),
                         'volan' => Input::get('volan'),
                         'opis_oglasa' => Input::get('opis'),
+                        'naslov' => Input::get('naslov'),
                         'korisnik_id' => $user->data()->korisnik_id
                     )
                 );
@@ -333,6 +335,7 @@ if (Input::exists()) {
                 </div>
                 <div>
                     <div class="section-label">Osnovne informacije</div>
+                    <input class="text-input" type="text" placeholder="Naslov" name="naslov" required>
                     <input class="text-input" type="text" placeholder="Godiste" name="godiste" required>
                     <select class="select" id="karoserija" name="karoserija" placeholder="Karoserija">
                         <option value="" disabled selected hidden>Karoserija</option>

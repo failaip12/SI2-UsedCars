@@ -1,10 +1,13 @@
 <?php
 declare(strict_types=1);
 require_once 'core/init.php';
-if (empty($_GET)) {
+if (!Input::exists('get')) {
   Redirect::to('index.php');
 }
-
+$oglas_id = Input::get('id');
+$db = DB::getInstance();
+$oglas = $db->get('oglasi', array('oglas_id', '=', $oglas_id))->first();
+$slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slika_id=s.slika_id JOIN oglasi o ON o.oglas_id = os.oglas_id WHERE o.oglas_id = ?', array($oglas_id))->results();
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,21 +51,21 @@ if (empty($_GET)) {
       <div class="oglas-column-1">
         <div class="oglas-header">
           <div class="oglas-header-content">
-            <h1 class="title">Mazda 6 SKYACTIV-G </h1>
-            <span class="year">2021. godište</span>
+            <h1 class="title"><?php echo $oglas->naslov ?></h1>
+            <span class="year"><?php echo $oglas->godiste ?>. godište</span>
           </div>
         </div>
 
         <div class="swiper-container">
           <div class="swiper image-swiper">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="img/oglas/1.jpg"></div>
-              <div class="swiper-slide"><img src="img/oglas/2.jpg"></div>
-              <div class="swiper-slide"><img src="img/oglas/3.jpg"></div>
-              <div class="swiper-slide"><img src="img/oglas/4.jpg"></div>
-              <div class="swiper-slide"><img src="img/oglas/5.jpg"></div>
-              <div class="swiper-slide"><img src="img/oglas/6.jpg"></div>
-              <div class="swiper-slide"><img src="img/oglas/7.jpg"></div>
+              <?php
+                if (!empty($slike)) {
+                  foreach ($slike as $slika) {
+                    echo '<div class="swiper-slide"><img src="slike_oglasa/'. $slika->hash .'"></div>';
+                  }
+                }
+              ?>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -83,37 +86,31 @@ if (empty($_GET)) {
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Marka</div>
-                  <div class="info-value">Mazda</div>
-                </div>
-              </div>
-              <div class="divider">
-                <div class="info-entry">
-                  <div class="info-label">Model</div>
-                  <div class="info-value">6</div>
+                  <div class="info-value"><?php echo $oglas->marka ?></div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Godište</div>
-                  <div class="info-value">2021.</div>
+                  <div class="info-value"><?php echo $oglas->godiste ?>.</div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Kilometraža</div>
-                  <div class="info-value">38.000 km</div>
+                  <div class="info-value"><?php echo $oglas->kilometraza ?> km</div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Karoserija</div>
-                  <div class="info-value">Limuzina</div>
+                  <div class="info-value"><?php echo $oglas->karoserija ?></div>
                 </div>
               </div>
               <div class="divider" style="border-bottom: none">
                 <div class="info-entry">
                   <div class="info-label">Gorivo</div>
-                  <div class="info-value">Benzin</div>
+                  <div class="info-value"><?php echo $oglas->gorivo ?></div>
                 </div>
               </div>
             </div>
@@ -121,13 +118,13 @@ if (empty($_GET)) {
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Kubikaža</div>
-                  <div class="info-value">1998 cm<sup>3</sup></div>
+                  <div class="info-value"><?php echo $oglas->kubikaza ?> cm<sup>3</sup></div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Snaga motora</div>
-                  <div class="info-value">121/165 (kW/KS)</div>
+                  <div class="info-value"><?php echo $oglas->snaga ?>/<?php echo $oglas->snaga * 1.36 ?> (kW/KS)</div>
                 </div>
               </div>
               <div class="divider">
@@ -142,12 +139,6 @@ if (empty($_GET)) {
                   <div class="info-value">NE</div>
                 </div>
               </div>
-              <div class="divider" style="border-bottom: none">
-                <div class="info-entry">
-                  <div class="info-label">Broj oglasa:</div>
-                  <div class="info-value">21589272</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -159,43 +150,43 @@ if (empty($_GET)) {
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Emisiona klasa motora</div>
-                  <div class="info-value">Euro 6</div>
+                  <div class="info-value"><?php echo $oglas->emisiona_klasa ?></div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Pogon</div>
-                  <div class="info-value">Prednji </div>
+                  <div class="info-value"><?php echo $oglas->pogon ?> </div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Menjač</div>
-                  <div class="info-value">Automatski / poluautomatski </div>
+                  <div class="info-value"><?php echo $oglas->menjac ?> </div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Broj vrata</div>
-                  <div class="info-value">4/5 vrata </div>
+                  <div class="info-value"><?php echo $oglas->broj_vrata ?> </div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Broj sedišta</div>
-                  <div class="info-value">5 sedišta </div>
+                  <div class="info-value"><?php echo $oglas->broj_sedista ?> </div>
                 </div>
               </div>
               <div class="divider">
                 <div class="info-entry">
                   <div class="info-label">Strana volana</div>
-                  <div class="info-value">Levi volan </div>
+                  <div class="info-value"><?php echo $oglas->volan ?> </div>
                 </div>
               </div>
               <div class="divider" style="border-bottom: none;">
                 <div class="info-entry">
                   <div class="info-label">Klima</div>
-                  <div class="info-value">Automatska klima </div>
+                  <div class="info-value"><?php echo $oglas->klima ?> </div>
                 </div>
               </div>
             </div>
@@ -326,16 +317,12 @@ if (empty($_GET)) {
         <div class="info-box">
           <h2>Opis</h2>
           <div class="info-description">
-            * Mogućnost kupovine vozila putem kredita i lizinga<br>
-            * Pismena garancija na kilometrazu<br>
-            * Pismena garancija da auto nikada nije bio havarisan<br>
-            * Dozvoljen svaki vid provere<br>
-            * Na ime kupca bez troškova prenosa
+          <?php echo $oglas->opis_oglasa ?>
           </div>
         </div>
       </div>
       <div class="oglas-column-2">
-        <span class="price">28.500 €</span>
+        <span class="price"><?php echo $oglas->cena ?> €</span>
         <div class="info-card">
           <h2>Force Luxury Cars</h2>
           <div class="info-card-address">

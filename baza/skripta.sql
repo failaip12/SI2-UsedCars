@@ -90,6 +90,7 @@ CREATE TABLE IF NOT EXISTS `cars`.`oglasi` (
   `klima` VARCHAR(45) NOT NULL,
   `volan` VARCHAR(45) NOT NULL,
   `opis_oglasa` VARCHAR(1000) NOT NULL,
+  `naslov` VARCHAR(45) NOT NULL,
   `korisnik_id` INT NOT NULL,
   `admin_id` INT NULL,
   PRIMARY KEY (`oglas_id`),
