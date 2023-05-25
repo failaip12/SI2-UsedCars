@@ -1,9 +1,6 @@
 <?php
 declare(strict_types=1);
 require_once 'core/init.php';
-//echo '<pre>';
-//var_dump($_POST);
-//echo '</pre>';
 $user = new User();
 if (!$user->isLoggedIn()) {
     Redirect::to('index.php');
@@ -185,7 +182,6 @@ if (Input::exists()) {
                 }
                 
                 Session::flash('home', 'Oglas je postavljen.');
-                //Redirect::to('index.php');
             } catch (Exception $e) {
                 die($e->getMessage());
             }
@@ -199,7 +195,7 @@ if (Input::exists()) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -482,7 +478,6 @@ if (Input::exists()) {
                 </div>
         </section>
     <script src="js/postavi-oglas.js"></script>
-    </script>
 </body>
 
 </html>

@@ -35,7 +35,7 @@ require_once 'core/init.php';
                     <li><a href="#pretraga korisnika">Pretraga korisnika</a></li>
                     
                 </ul>
-                <i class='bx bx-search' id="search-icon" onclick="showDiv('search-box')""></i>
+                <i class='bx bx-search' id="search-icon" onclick="showDiv('search-box')"></i>
             </div>
         </header>
     </body>

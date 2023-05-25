@@ -36,7 +36,7 @@ if ($user->permissionLevel()!=2) {
                     </div>
         <form method="post" id="profil" action="">
         <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-        <div id = "personal" style="">
+        <div id = "personal">
 
         <table class="table table-striped table-hover">
                 <thead>
