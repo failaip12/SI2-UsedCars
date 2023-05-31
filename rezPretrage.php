@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 require_once 'core/init.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +20,6 @@ require_once 'core/init.php';
         <script src="bootstrap-5.3.0-alpha1-dist\js\bootstrap.bundle.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/custom.css">
     <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist\css\bootstrap.min.css">
-        
     </head>
     <body>
         <header>
@@ -40,17 +38,10 @@ require_once 'core/init.php';
                     <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
                 <i class='bx bx-search' id="search-icon" onclick="showDiv('search-box')"></i>
-				
             </div>
         </header>
-
-
         <section class="home" id="home">
-
-
             <div class="container" style="margin-top: 200px;">
-            
-           
             <form action="">
                 <div class="card pozadina">
                  <div class="card-body">
@@ -138,16 +129,11 @@ require_once 'core/init.php';
                           <option value="skoda">Škoda</option>
                           <option value="ostalo">Ostalo</option>
                         </select>
-
-
                       </div>                 
                        </div>
                        <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="input-group my-2">
-                          
                             <input type="text" class="form-control" id="inputModel" name="inputModel" placeholder="Model">
-
-                          
                         </div>
                   </div>
                       <div class="col-lg-2 col-md-2 col-sm-2">
@@ -166,12 +152,8 @@ require_once 'core/init.php';
                             <option value="2022">2022.</option>
                             <option value="2022">2022.</option>
                             <option value="2022">2022.</option>
-
-
-
                           </select>
                       </div>
-                      
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2">
                       <div class="input-group my-2">
@@ -189,9 +171,6 @@ require_once 'core/init.php';
                           <option value="2022">2022.</option>
                           <option value="2022">2022.</option>
                           <option value="2022">2022.</option>
-
-
-
                         </select>
                     </div>
                   </div>
@@ -203,9 +182,6 @@ require_once 'core/init.php';
                         <option value="Manuelni 5 brzina">Manuelni 5 brzina</option>
                         <option value="Manuelni 6 brzina">Manuelni 6 brzina</option>
                         <option value="Automatski / poluautomatski">Automatski / poluautomatski</option>
-
-
-
                       </select>
                   </div>
                 </div>
@@ -215,13 +191,8 @@ require_once 'core/init.php';
                       <option value="" disabled selected hidden>Karoserija</option>
                             <option value="2/3 vrata">2/3 vrata</option>
                             <option value="4/5 vrata">4/5 vrata</option>
-                      
-
-
-
                     </select>
                 </div>
-                
               </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="input-group my-2">
@@ -233,13 +204,8 @@ require_once 'core/init.php';
                             <option value="Benzin + Metan (CNG)">Benzin + Metan (CNG)</option>
                             <option value="Električni pogon">Električni pogon</option>
                             <option value="Hibridni pogon">Hibridni pogon</option>
-                        
-
-
-
                       </select>
                   </div>
-                  
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2">
                   <div class="input-group my-2">
@@ -257,9 +223,6 @@ require_once 'core/init.php';
                       <option value="2022">2022.</option>
                       <option value="2022">2022.</option>
                       <option value="2022">2022.</option>
-
-
-
                     </select>
                 </div>
                 </div>
@@ -279,41 +242,31 @@ require_once 'core/init.php';
                         <option value="2022">2022.</option>
                         <option value="2022">2022.</option>
                         <option value="2022">2022.</option>
-
-
-
                       </select>
                   </div>
                 </div>
-                
                 <div class="col-lg-2 col-md-2 col-sm-2">
                   <div class="input-group my-2 justify-content-center">
                 <button type="button" class="btn btn-success">Trazi</button>
                 </div>
               </div>
               <div class="col-lg-6 col-md-6">
-
               </div>
               <div class="col-lg-2 col-md-2 col-sm-2">
                 <div class="input-group my-2 justify-content-center">
                   <button type="button" class="btn btn-info" id="sacuvajPretragu" name="sacuvajPretragu">Sacuvaj pretragu</button>
                   </div>
-
-
               </div>
               <div class="col-lg-2 col-md-2 col-sm-2">
                 <div class="input-group my-2 justify-content-center">
                   <button type="button" class="btn btn-info" id="sacuvanePretrage" name="sacuvanePretrage" >Sacuvane pretrage</button>
                   </div>
-
-
               </div>
               <div class="col-lg-2 col-md-2 col-sm-2">
                 <div class="input-group my-2 justify-content-center">
                   <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#detaljnaPretraga" aria-expanded="true" aria-controls="detaljnaPretraga">
                     Detaljna pretraga
                   </button>
-                  
                   </div>
               </div>
 <!-- collapse iz detaljne tretrage treba 
@@ -326,13 +279,8 @@ require_once 'core/init.php';
                         <option value="" disabled selected hidden>Volan</option>
                         <option value="Levi volan">Levi volan</option>
                         <option value="Desni volan">Desni volan</option>
-                        
-  
-  
-  
                       </select>
                   </div>
-                  
                 </div>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                       <div class="input-group my-2">
@@ -344,13 +292,8 @@ require_once 'core/init.php';
                           <option value="Euro 4">Euro 4</option>
                           <option value="Euro 5">Euro 5</option>
                           <option value="Euro 6">Euro 6</option>
-                          
-  
-  
-  
                         </select>
                     </div>
-                    
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2">
                     <div class="input-group my-2">
@@ -368,9 +311,6 @@ require_once 'core/init.php';
                         <option value="2022">2022.</option>
                         <option value="2022">2022.</option>
                         <option value="2022">2022.</option>
-  
-  
-  
                       </select>
                   </div>
                   </div>
@@ -390,9 +330,6 @@ require_once 'core/init.php';
                           <option value="2022">2022.</option>
                           <option value="2022">2022.</option>
                           <option value="2022">2022.</option>
-  
-  
-  
                         </select>
                     </div>
                   </div>
@@ -412,9 +349,6 @@ require_once 'core/init.php';
                         <option value="2022">2022.</option>
                         <option value="2022">2022.</option>
                         <option value="2022">2022.</option>
-
-
-
                       </select>
                   </div>
                 </div>
@@ -424,84 +358,72 @@ require_once 'core/init.php';
                       <input class="form-check-input" type="checkbox" id="AIRBAG">
                       <label class="form-check-label" for="AIRBAG">Airbag za vozaca</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="passengerAIRBAG">
                       <label class="form-check-label" for="passengerAIRBAG">Airbag za suvozaca</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="passengerAIRBAG">
                       <label class="form-check-label" for="passengerAIRBAG">Airbag za suvozaca</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="childLOCK">
                       <label class="form-check-label" for="childLOCK">Child lock</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="ABS">
                       <label class="form-check-label" for="ABS">ABS</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="ESP">
                       <label class="form-check-label" for="ESP">ESP</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="ABR">
                       <label class="form-check-label" for="ABS">ABR</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="ALARM">
                       <label class="form-check-label" for="ALARM">Alarm</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="kodiranKljuc">
                       <label class="form-check-label" for="kodiranKljuc">Kodiran kljuc</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="blokadaMotora">
                       <label class="form-check-label" for="blokadaMotora">Blokada motora</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="centralnoZakljucavanje">
                       <label class="form-check-label" for="centralnoZakljucavanje">Centralno zakljucavanje</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="ulazBezKljuca">
                       <label class="form-check-label" for="ulazBezKljuca">Ulaz bez kljuca</label>
                     </div>
-
                   </div>
                   <h3>Oprema</h3>
                   <div class="col-lg-3 col-md-4 col-sm-6">
@@ -509,148 +431,126 @@ require_once 'core/init.php';
                       <input class="form-check-input" type="checkbox" id="metalikBoja">
                       <label class="form-check-label" for="metalikBoja">Metalik boja</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="servo">
                       <label class="form-check-label" for="servo">Servo volan</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="multifunkcionalniVolan">
                       <label class="form-check-label" for="multifunkcionalniVolan">Multifuncionalni volan</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="tempo">
                       <label class="form-check-label" for="tempo">Tempomat</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="daljinskoZakljucavanje">
                       <label class="form-check-label" for="daljinskoZakljucavanje">Daljinsko zakljucavanje</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="putniRacunar">
                       <label class="form-check-label" for="putniRacunar">Putni racunar</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="siber">
                       <label class="form-check-label" for="siber">Šiber</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="panorama">
                       <label class="form-check-label" for="panorama">Panorama</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="toniranaStakla">
                       <label class="form-check-label" for="toniranaStakla">Tonirana stakla</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="elektricnaStakla">
                       <label class="form-check-label" for="elektricnaStakla">Elektricna stakla</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="elektricniRetrovizori">
                       <label class="form-check-label" for="elektricniRetrovizori">Elektricni retrovizori</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="grejaciRetrovizora">
                       <label class="form-check-label" for="grejaciRetrovizora">Grejaci retrovizora</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="grejaciSedista">
                       <label class="form-check-label" for="grejaciSedista">Grejaci sedista</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="parkingSenzori">
                       <label class="form-check-label" for="parkingSenzori">Parking senzori</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="navigacija">
                       <label class="form-check-label" for="navigacija">Navigacija</label>
                     </div>
-
                   </div>
-
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="radio">
                       <label class="form-check-label" for="radio">Radio</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="kamera">
                       <label class="form-check-label" for="kamera">Kamera</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="multimedija">
                       <label class="form-check-label" for="multimedija">Multimedija</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="grejanjeVolana">
                       <label class="form-check-label" for="grejanjeVolana">Grejanje volana</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="USB">
                       <label class="form-check-label" for="USB">USB</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="rezervniTocak">
                       <label class="form-check-label" for="rezervniTocak">Rezervni tocak</label>
                     </div>
-
                   </div>
                   <h3>Stanje vozila</h3>
                   <div class="col-lg-3 col-md-4 col-sm-6">
@@ -658,80 +558,55 @@ require_once 'core/init.php';
                       <input class="form-check-input" type="checkbox" id="prviVlasnik">
                       <label class="form-check-label" for="prviVlasnik">Prvi vlasnik</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="kupljenNov">
                       <label class="form-check-label" for="kupljenNov">Kupljen nov</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="garancija">
                       <label class="form-check-label" for="garancija">Garancija</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="garaziran">
                       <label class="form-check-label" for="garaziran">Garanžiran</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="servisnaKnjiga">
                       <label class="form-check-label" for="servisnaKnjiga">Servisna knjiga</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="rezervniKljuc">
                       <label class="form-check-label" for="rezervniKljuc">Rezervni kljuc</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="restauriran">
                       <label class="form-check-label" for="restauriran">Restauriran</label>
                     </div>
-
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="autoSkola">
                       <label class="form-check-label" for="autoSkola">Auto škola</label>
                     </div>
-
-                  </div>
-                  
-
-                  
-
-                  
-
-                  
-              
-
-                </div>
-                </div>
-
-
-
-                 
-
                   </div>
                 </div>
                 </div>
-
+                  </div>
+                </div>
+                </div>
             </form>
-
-           
           <div class="container elementi" style="margin-top: 100px;" >
             <div class="row" >
                 <div class="col-lg-3 col-sm-12 col-md-4">
@@ -740,10 +615,7 @@ require_once 'core/init.php';
                 <div class="card-img-overlay">
                   <h5 class="card-title">Honda</h5>
                   <h6 class="card-subtitle mb-2 text-muted">Civic</h6>
-                  
                   <img  class="car-img" src="slika\car1.jpg" alt="Card image">
-                  
-                  
                   <div class="col">
                      <i class="ri-dashboard-3-line"></i>3.7sec
                   </div>
@@ -754,19 +626,11 @@ require_once 'core/init.php';
                   <i class="ri-charging-pile-2-line"></i> Electric
                 </div>
                 <h4 class="popular__price">2000€</h4>
-                
-                  
                 <button type="button" class="btn btn-default">Klik za vise</button>
-                  
-                    
-                  
                     <button class="button popular__button"data-toggle="tooltip" data-placement="bottom" title="Sacuvaj oglas">
                     <i class="ri-shopping-bag-2-line"></i>
                   </button>
-     
-                  
                 </div>
-                
               </div>
             </div>
             <!--ovo kao primer kako ce da izgleda-->
@@ -776,10 +640,7 @@ require_once 'core/init.php';
                   <div class="card-img-overlay">
                     <h5 class="card-title">Honda</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Civic</h6>
-                    
                     <img  class="car-img" src="slika\car1.jpg" alt="Card image">
-                    
-                    
                     <div class="col">
                        <i class="ri-dashboard-3-line"></i>3.7sec
                     </div>
@@ -790,19 +651,11 @@ require_once 'core/init.php';
                     <i class="ri-charging-pile-2-line"></i> Electric
                   </div>
                   <h4 class="popular__price">2000€</h4>
-                  
-                    
                   <button type="button" class="btn btn-default">Klik za vise</button>
-                    
-                      
-                    
                       <button class="button popular__button"data-toggle="tooltip" data-placement="bottom" title="Sacuvaj oglas">
                       <i class="ri-shopping-bag-2-line"></i>
                     </button>
-       
-                    
                   </div>
-                  
                 </div>
               </div>
               <div class="col-lg-3 col-sm-12 col-md-4">
@@ -811,10 +664,7 @@ require_once 'core/init.php';
                     <div class="card-img-overlay">
                       <h5 class="card-title">Honda</h5>
                       <h6 class="card-subtitle mb-2 text-muted">Civic</h6>
-                      
                       <img  class="car-img" src="slika\car1.jpg" alt="Card image">
-                      
-                      
                       <div class="col">
                          <i class="ri-dashboard-3-line"></i>3.7sec
                       </div>
@@ -825,19 +675,11 @@ require_once 'core/init.php';
                       <i class="ri-charging-pile-2-line"></i> Electric
                     </div>
                     <h4 class="popular__price">2000€</h4>
-                    
-                      
                     <button type="button" class="btn btn-default">Klik za vise</button>
-                      
-                        
-                      
                         <button class="button popular__button"data-toggle="tooltip" data-placement="bottom" title="Sacuvaj oglas">
                         <i class="ri-shopping-bag-2-line"></i>
                       </button>
-         
-                      
                     </div>
-                    
                   </div>
                 </div>
                 <div class="col-lg-3 col-sm-12 col-md-4">
@@ -846,10 +688,7 @@ require_once 'core/init.php';
                       <div class="card-img-overlay">
                         <h5 class="card-title">Honda</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Civic</h6>
-                        
                         <img  class="car-img" src="slika\car1.jpg" alt="Card image">
-                        
-                        
                         <div class="col">
                            <i class="ri-dashboard-3-line"></i>3.7sec
                         </div>
@@ -860,19 +699,11 @@ require_once 'core/init.php';
                         <i class="ri-charging-pile-2-line"></i> Electric
                       </div>
                       <h4 class="popular__price">2000€</h4>
-                      
-                        
                       <button type="button" class="btn btn-default">Klik za vise</button>
-                        
-                          
-                        
                           <button class="button popular__button"data-toggle="tooltip" data-placement="bottom" title="Sacuvaj oglas">
                           <i class="ri-shopping-bag-2-line"></i>
                         </button>
-           
-                        
                       </div>
-                      
                     </div>
                   </div>
                   <div class="col-lg-3 col-sm-12 col-md-4">
@@ -881,10 +712,7 @@ require_once 'core/init.php';
                         <div class="card-img-overlay">
                           <h5 class="card-title">Honda</h5>
                           <h6 class="card-subtitle mb-2 text-muted">Civic</h6>
-                          
                           <img  class="car-img" src="slika\car1.jpg" alt="Card image">
-                          
-                          
                           <div class="col">
                              <i class="ri-dashboard-3-line"></i>3.7sec
                           </div>
@@ -895,19 +723,11 @@ require_once 'core/init.php';
                           <i class="ri-charging-pile-2-line"></i> Electric
                         </div>
                         <h4 class="popular__price">2000€</h4>
-                        
-                          
                         <button type="button" class="btn btn-default">Klik za vise</button>
-                          
-                            
-                          
                             <button class="button popular__button"data-toggle="tooltip" data-placement="bottom" title="Sacuvaj oglas">
                             <i class="ri-shopping-bag-2-line"></i>
                           </button>
-             
-                          
                         </div>
-                        
                       </div>
                     </div>
                     <div class="col-lg-3 col-sm-12 col-md-4">
@@ -916,10 +736,7 @@ require_once 'core/init.php';
                           <div class="card-img-overlay">
                             <h5 class="card-title">Honda</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Civic</h6>
-                            
                             <img  class="car-img" src="slika\car1.jpg" alt="Card image">
-                            
-                            
                             <div class="col">
                                <i class="ri-dashboard-3-line"></i>3.7sec
                             </div>
@@ -930,19 +747,11 @@ require_once 'core/init.php';
                             <i class="ri-charging-pile-2-line"></i> Electric
                           </div>
                           <h4 class="popular__price">2000€</h4>
-                          
-                            
                           <button type="button" class="btn btn-default">Klik za vise</button>
-                            
-                              
-                            
                               <button class="button popular__button"data-toggle="tooltip" data-placement="bottom" title="Sacuvaj oglas">
                               <i class="ri-shopping-bag-2-line"></i>
                             </button>
-               
-                            
                           </div>
-                          
                         </div>
                       </div>
                       <div class="col-lg-3 col-sm-12 col-md-4">
@@ -951,10 +760,7 @@ require_once 'core/init.php';
                             <div class="card-img-overlay">
                               <h5 class="card-title">Honda</h5>
                               <h6 class="card-subtitle mb-2 text-muted">Civic</h6>
-                              
                               <img  class="car-img" src="slika\car1.jpg" alt="Card image">
-                              
-                              
                               <div class="col">
                                  <i class="ri-dashboard-3-line"></i>3.7sec
                               </div>
@@ -965,19 +771,11 @@ require_once 'core/init.php';
                               <i class="ri-charging-pile-2-line"></i> Electric
                             </div>
                             <h4 class="popular__price">2000€</h4>
-                            
-                              
                             <button type="button" class="btn btn-default">Klik za vise</button>
-                              
-                                
-                              
                                 <button class="button popular__button"data-toggle="tooltip" data-placement="bottom" title="Sacuvaj oglas">
                                 <i class="ri-shopping-bag-2-line"></i>
                               </button>
-                 
-                              
                             </div>
-                            
                           </div>
                         </div>
                       </div>
@@ -1005,7 +803,6 @@ require_once 'core/init.php';
                     font-weight: 500;line-height: 25px;cursor: pointer;" value="5" onclick="activeLink()">5</li>
                     <li class="link"  style="display: inline-block;margin: 0 10px;width: 25px;height: 25px;border-radius: 50%;text-align: center;font-size: 15px;
                     font-weight: 500;line-height: 25px;cursor: pointer;" value="6" onclick="activeLink()">6</li>
-                    
                   </ul>
                   <button class="btn2" style="display: inline-flex;
                   align-items: center;
@@ -1016,21 +813,11 @@ require_once 'core/init.php';
                   outline: none;
                   border: none;
                   cursor: pointer;" onclick="nextBtn" >next</button>
-    
                 </div>
-    
               </div>
             </div>
             </div>
-          
-
-
-
-
-
         </section>
-
-
         <section class="footer" >
             <div class="col-1"><h3>Korisni linkovi</h3>
                 <a href="#home">Home</a>
@@ -1053,8 +840,6 @@ require_once 'core/init.php';
                     Tel: 011/71-55-055
                     e-mail: info@laguna.rs</p>
             </div>
-        
         </section>
-        
     </body>
     </html>
