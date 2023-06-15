@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/single-ad.css">
+        <title>UsedCars | Oglas</title>
+        <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
+        <script src="index.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <div class="menu">
+                <div class="logo">
+                    <img src="./images/icons/car-icon.png" alt="Yellow car icon that is part of the logo">
+                    <span class="yellow">Used</span>
+                    <span class="white">Cars</span>
+                </div>
+                <img src="./images/icons/hamburger-icon.png" alt="Hamburger icon" id="hamburger">
+            </div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#">Početna</a></li>
+                    <li><a href="#">Pretraga</a></li>
+                    <li><a href="#">Vesti</a></li>
+                    <div class="buttons">
+                        <li><button class="modal-btn">Prijavi se</button></li>
+                        <li><a href="register.html" class="login-btn">Registruj se</a></li>
+                    </div>
+                </ul>
+            </nav>
+            <div id="overlay">
+                <div class="login-form">
+                    <div class="login-data">
+                        <div class="login-item">
+                            <label for="uname">Korisničko ime</label>
+                            <input type="text" placeholder="Korisničko ime" name="uname" required>
+                        </div>
+                        <div class="login-item">
+                            <label for="psw">Šifra</label>
+                            <input type="password" placeholder="Šifra" name="psw" required>
+                        </div>
+                        <button type="submit" class="login-btn">Uloguj se</button>
+                    </div>
+        
+                    <div class="close-login">
+                        <button type="button" class="cancel-btn">Zatvori</button>
+                        <a href="register.html">Nemate svoj nalog? Napravite novi!</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="ad">
+                <h1>Volkswagen Passat B7 1.4 CNG</h1>
+                <div class="ad-image-toggler">
+                    <div class="num-of-photo"></div>
+                    <div class="toggler toggler-one"> < </div>
+                    <img src="./images/car_images/car1.jpg" alt="Advertised car image" class="ad-image">
+                    <div class="toggler toggler-two"> > </div>
+                </div>
+                <div class="ad-info">
+                    <h2>Opšte informacije</h2>
+                    <ul>
+                        <li>
+                            <p>Stanje: </p>
+                            <p>Polovno vozilo</p>
+                        </li>
+                        <li>
+                            <p>Marka: </p>
+                            <p>Volkswagen</p>
+                        </li>
+                        <li>
+                            <p>Model: </p>
+                            <p>Passat B7</p>
+                        </li>
+                        <li>
+                            <p>Godište: </p>
+                            <p>2012.</p>
+                        </li>
+                        <li>
+                            <p>Kilometraža: </p>
+                            <p>180,350 km</p>
+                        </li>
+                        <li>
+                            <p>Cena: </p>
+                            <p>7,000$</p>
+                        </li>
+                        <li>
+                            <p>Gorivo: </p>
+                            <p>Dizel</p>
+                        </li>
+                        <li>
+                            <p>Kubikaža:</p>
+                            <p>1,900cm3</p>
+                        </li>
+                        <li>
+                            <p>Snaga motora: </p>
+                            <p>120kW</p>
+                        </li>
+                        <li>
+                            <p>Vrsta pogona:</p>
+                            <p>Prednji</p>
+                        </li>
+                        <li>
+                            <p>Vrsta menjača: </p>
+                            <p>Manuelni 6 brzina</p>
+                        </li>
+                        <li>
+                            <p>Broj vrata: </p>
+                            <p>4/5 vrata</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ad-desc">
+                    <h2>Opis vozila</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint at quod laborum natus aliquid dolorum fugit harum fuga labore ducimus?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur tenetur qui nostrum deserunt distinctio temporibus vero dolores nobis, velit nesciunt quis debitis consequatur iure ea harum fugit obcaecati officia cumque repellendus vitae eos delectus nihil recusandae? Facere doloremque deserunt molestiae.</p>
+                </div>
+                <div class="user">
+                    <h2>Informacije o prodavcu</h2>
+                    <div class="user-info">
+                        <div class="user-basic">
+                            <img src="./images/cvrle.jpg" alt="Profile picture of the user">
+                            <h3>Cvrle Auto</h3>
+                        </div>
+                        <p class="user-city">Kragujevac</p>
+                        <p>Broj telefona: 061/231-34-02</p>
+                    </div>
+                </div>
+                <div class="other-ads">
+                    <h2>Ostali oglasi ovog prodavca</h2>
+                    <div class="car-ads-grid">
+                        <div class="car-ad">
+                            <img src="./images/car_images/car1.jpg" alt="A car">
+                            <div class="car-desc">
+                                <div class="car-name-price">
+                                    <h2 class="car-name">Lorem, ipsum dolor.</h2>
+                                    <p class="car-price">1,400.00$</p>
+                                </div>
+                                <p class="car-details">Benzin (2007) | Futog</p>
+                            </div>
+                        </div>
+                        <div class="car-ad">
+                            <img src="./images/car_images/car2.jpg" alt="A car">
+                            <div class="car-desc">
+                                <div class="car-name-price">
+                                    <h2 class="car-name">Lorem, ipsum dolor.</h2>
+                                    <p class="car-price">1,400.00$</p>
+                                </div>
+                                <p class="car-details">Benzin (2007) | Futog</p>
+                            </div>
+                        </div>
+                        <div class="car-ad">
+                            <img src="./images/car_images/car3.jpg" alt="A car">
+                            <div class="car-desc">
+                                <div class="car-name-price">
+                                    <h2 class="car-name">Lorem, ipsum dolor.</h2>
+                                    <p class="car-price">1,400.00$</p>
+                                </div>
+                                <p class="car-details">Benzin (2007) | Futog</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="guide">
+                <div class="guide-desc">
+                    <h1 class="guide-title">Kako izabrati najbolji automobil za Vas?</h1>
+                    <p>Na šta sve treba obratiti pažnju pri kupovini automobila, koji detalji su najvažniji? Pročitajte naš <a
+                            href="#">vodič</a> pre Vaše prve kupovine!</p>
+                </div>
+                <img src="./images/icons/shopping_cart.png" alt="Shopping cart icon">
+            </section>
+        </main>
+        <footer>
+            <div class="logo">
+                <img src="./images/icons/car-icon.png" alt="Yellow car icon that is part of the logo">
+                <span class="yellow">Used</span>
+                <span class="white">Cars</span>
+            </div>
+            <div class="contact">
+                <div class="contact-info">
+                    <a href="#">Oglasi</a>
+                    <a href="#">Cene</a>
+                    <a href="register.html" class="login-btn">Prijavi se</a>
+                </div>
+                <div class="contact-sections">
+                    <div class="contact-section">
+                        <h2>Kompanija</h2>
+                        <a href="#">Iskustva korisnika</a>
+                        <a href="#">O nama</a>
+                        <a href="#">Kontakt</a>
+                    </div>
+                    <div class="contact-section">
+                        <h2>Pomoć</h2>
+                        <a href="#">Podrška</a>
+                        <a href="#">Blog</a>
+                    </div>
+                </div>
+            </div>
+            <p>©2022 UsedCars.com, sva prava zadržana.</p>
+        </footer>
+    </body>
+</html>

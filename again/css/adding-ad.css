@@ -1,0 +1,130 @@
+:root {
+    --yellow: #F9FF12;
+    --black: #1D1C0C;
+    --white: #FCFAEA;
+    --font-family: 'Encode Sans Expanded', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.new-ad {
+    padding: 2rem 1rem;
+}
+
+.new-ad h1 {
+    font-size: xx-large;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.ad-parts {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+}
+
+.ad-part {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+}
+
+.ad-part label {
+    text-align: left;
+    margin: 0;
+    width: 30%;
+    margin-right: 10%;
+}
+
+.ad-part select,
+.ad-part input {
+    margin: 0;
+    width: 50%;
+    border: .5px solid var(--black);
+}
+
+.submit-btn {
+    display: inline-block;
+    margin: 2rem 0 1rem;
+    background-color: var(--yellow);
+    color: var(--black);
+    border: .5px solid var(--black);
+    cursor: pointer;
+    border-radius: .25em;
+    font-family: var(--font-family);
+    font-weight: bold;
+    padding: .5em 1.25em;
+    font-size: medium;
+}
+
+@media screen and (min-width: 500px) {
+    .ad-part {
+        width: 80%;
+        margin: 0 auto;
+        justify-content: space-around;
+    }
+
+    .ad-part label {
+        width: 40%;
+        margin-right: 5%;
+    }
+
+    .ad-part select,
+    .ad-part input {
+        width: 40%;
+    }
+
+    .submit-btn {
+        display: block;
+        margin: 1.5rem auto;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .ad-part {
+        width: 65%;
+    }
+}
+
+@media screen and (min-width: 850px) {
+    .ad-parts {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1em 3em;
+    }
+
+    .ad-part {
+        width: 100%;
+    }
+
+    .ad-part label {
+        margin-right: 0;
+    }
+}
+
+@media screen and (min-width: 1050px) {
+    .ad-parts {
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    .submit-btn {
+        display: block;
+        margin: 2.5rem auto 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1350px) {
+    .ad-parts {
+        width: 100%;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1350px) {
+    .ad-parts {
+        width: 80%;
+    }
+}
