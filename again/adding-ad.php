@@ -27,29 +27,30 @@
                     <li><a href="#">Vesti</a></li>
                     <div class="buttons">
                         <li><button class="modal-btn">Prijavi se</button></li>
-                        <li><a href="register.html" class="login-btn">Registruj se</a></li>
+                        <li><a href="register.php" class="login-btn">Registruj se</a></li>
                     </div>
                 </ul>
             </nav>
             <div id="overlay">
-                <div class="login-form">
+                <form action="login.php" method="post" class="login-form" >
                     <div class="login-data">
                         <div class="login-item">
-                            <label for="uname">Korisničko ime</label>
-                            <input type="text" placeholder="Korisničko ime" name="uname" required>
+                            <label for="email">E-mail</label>
+                            <input type="text" placeholder="E-mail" name="email" required>
                         </div>
                         <div class="login-item">
-                            <label for="psw">Šifra</label>
-                            <input type="password" placeholder="Šifra" name="psw" required>
+                            <label for="password">Šifra</label>
+                            <input type="password" placeholder="Šifra" name="password" required>
                         </div>
                         <button type="submit" class="login-btn">Uloguj se</button>
+                        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
                     </div>
-        
+                    
                     <div class="close-login">
                         <button type="button" class="cancel-btn">Zatvori</button>
-                        <a href="register.html">Nemate svoj nalog? Napravite novi!</a>
+                        <a href="register.php">Nemate svoj nalog? Napravite novi!</a>
                     </div>
-                </div>
+                </form>
             </div>
         </header>
         <main>
@@ -160,7 +161,7 @@
                 <div class="contact-info">
                     <a href="#">Oglasi</a>
                     <a href="#">Cene</a>
-                    <a href="register.html" class="login-btn">Prijavi se</a>
+                    <a href="register.php" class="login-btn">Prijavi se</a>
                 </div>
                 <div class="contact-sections">
                     <div class="contact-section">

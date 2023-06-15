@@ -1,3 +1,77 @@
+<?php
+declare(strict_types=1);
+require_once 'core/init.php';
+
+if (Input::exists()) {
+    if (Token::check(Input::get('token'))) {
+        $validate = new Validate();
+        $validation = $validate->check(
+            $_POST, array(
+            'ime' => array(
+                'required' => true,
+                'min' => 2,
+                'max' => 40,
+            ),
+            'prezime' => array(
+                'required' => true,
+                'min' => 2,
+                'max' => 40,
+            ),
+            'datum_rodjenja' => array(
+                'required' => true,
+                'min' => 2,
+                'max' => 40,
+            ),
+            'grad' => array(
+                'required' => true,
+                'min' => 2,
+                'max' => 40,
+            ),
+            'email' => array(
+                'required' => true,
+                'min' => 5,
+                'max' => 80,
+                'unique' => 'korisnik'
+            ),
+            'password' => array(
+                'required' => true,
+                'min' => 6
+            ),
+            'password_again' => array(
+                'required' => true,
+                'matches' => 'password'
+            )
+            )
+        );
+        
+        if ($validation->passed()) {
+            $user = new User();
+
+            try {
+                $user->create('korisnik', array(
+                    'email' => Input::get('email'),
+                    'password' => password_hash(Input::get('password'), PASSWORD_BCRYPT),
+                    'ime' => Input::get('ime'),
+                    'prezime' => Input::get('prezime'),
+                    'datum_rodjenja' => Input::get('datum_rodjenja'), //FIXXXXXXXXXXXX
+                    'grad' => Input::get('grad'),
+                ));
+                Session::flash('home', 'You have been registered and can now log in!');
+                Redirect::to('index.php');
+            } catch(Exception $e) {
+                die($e->getMessage());
+            }
+        } else {
+            foreach($validation->errors() as $error) {
+                echo $error, '<br>';
+            }
+        }
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,40 +103,41 @@
             </nav>
         </header>
         <section class="sign-in">
-            <h1>Popunite podatke za prijavljivanje:</h1>
-            <div class="form">
+            <h1>Popunite podatke za registraciju:</h1>
+            <form action="" method="post" class="form">
                 <div class="form-item">
-                    <label for="name"><b>Ime</b></label>
-                    <input type="text" name="uname" required>
+                    <label for="ime"><b>Ime</b></label>
+                    <input type="text" name="ime" required>
                 </div>
                 <div class="form-item">
-                    <label for="sname"><b>Prezime</b></label>
-                    <input type="text" name="sname" required>
+                    <label for="prezime"><b>Prezime</b></label>
+                    <input type="text" name="prezime" required>
                 </div>
                 <div class="form-item">
-                    <label for="birth-date"><b>Datum rođenja</b></label>
-                    <input type="text" name="birth-date" required>
+                    <label for="datum_rodjenja"><b>Datum rođenja</b></label>
+                    <input type="text" name="datum_rodjenja" required>
                 </div>
                 <div class="form-item">
-                    <label for="city"><b>Grad</b></label>
-                    <input type="text" name="city" required>
+                    <label for="grad"><b>Grad</b></label>
+                    <input type="text" name="grad" required>
                 </div>
                 <div class="form-item">
                     <label for="email"><b>Email adresa</b></label>
                     <input type="email" name="email" required>
                 </div>
                 <div class="form-item">
-                    <label for="uname"><b>Korisničko ime</b></label>
-                    <input type="text" name="uname" required>
+                    <label for="password"><b>Šifra</b></label>
+                    <input type="password" name="password" required>
                 </div>
                 <div class="form-item">
-                    <label for="psw"><b>Šifra</b></label>
-                    <input type="password" name="psw" required>
+                    <label for="password_again"><b>Ponovi Šifru</b></label>
+                    <input type="password" name="password_again" required>
                 </div>
-                <button type="submit" class="login-btn form-btn">Uloguj se</button>
-            </div>
+                <input type="hidden" value="<?php echo Token::generate(); ?>"  name="token" class="box"/>
+                <button type="submit" class="login-btn form-btn">Registruj se</button>
+            </form>
             <div class="links">
-                <a href="index.html" class="link-back">Nazad na početnu stranicu</a>
+                <a href="index.php" class="link-back">Nazad na početnu stranicu</a>
                 <a href="#" class="link-back">Vodič za nove korisnike</a>
             </div>
         </section>

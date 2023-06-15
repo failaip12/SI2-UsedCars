@@ -41,7 +41,7 @@ class User
         if (!is_array($fields)) {
             throw new Exception('Pogresni podaci');
         }
-        if (count($fields) != 2) {
+        if (count($fields) < 2) {
             throw new Exception('Nedovoljno polja');
         }
         if (!in_array($tip_korisnika, array('korisnik', 'admin'))) {
