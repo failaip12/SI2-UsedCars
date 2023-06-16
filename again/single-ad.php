@@ -1,6 +1,15 @@
 <?php
 declare(strict_types=1);
 require_once 'core/init.php';
+
+if (!Input::exists('get')) {
+    Redirect::to('index.php');
+}
+$oglas_id = Input::get('id');
+$db = DB::getInstance();
+$oglas = $db->get('oglasi', array('oglas_id', '=', $oglas_id))->first();
+$slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slika_id=s.slika_id JOIN oglasi o ON o.oglas_id = os.oglas_id WHERE o.oglas_id = ?', array($oglas_id))->results();
+$prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))->first();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,127 +67,143 @@ require_once 'core/init.php';
             </div>
         </header>
         <main>
-            <section class="ad">
-                <h1>Volkswagen Passat B7 1.4 CNG</h1>
-                <div class="ad-image-toggler">
-                    <div class="num-of-photo"></div>
-                    <div class="toggler toggler-one"> < </div>
-                    <img src="./images/car_images/car1.jpg" alt="Advertised car image" class="ad-image">
-                    <div class="toggler toggler-two"> > </div>
+        <section class="ad">
+        <h1><?php echo escape($oglas->naslov) ?></h1>
+        <div class="ad-image-toggler">
+            <div class="num-of-photo"></div>
+            <div class="toggler toggler-one"> < </div>
+            <img src="./images/car_images/car1.jpg" alt="Advertised car image" class="ad-image">
+            <div class="toggler toggler-two"> > </div>
+        </div>
+        
+        <div class="swiper-container">
+          <div class="swiper image-swiper">
+            <div class="swiper-wrapper">
+              <?php
+                if (!empty($slike)) {
+                  foreach ($slike as $slika) {
+                    echo '<div class="swiper-slide"><img src="../slike_oglasa/'. $slika->hash .'"></div>';
+                  }
+                }
+              ?>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+        <div class="ad-info">
+            <h2>Opšte informacije</h2>
+            <ul>
+                <li>
+                    <p>Stanje: </p>
+                    <p>Stanje</p>
+                </li>
+                <li>
+                    <p>Marka: </p>
+                    <p><?php echo escape($oglas->marka) ?></p>
+                </li>
+                <li>
+                    <p>Model: </p>
+                    <p>Model</p>
+                </li>
+                <li>
+                    <p>Godište: </p>
+                    <p><?php echo $oglas->godiste ?>.</p>
+                </li>
+                <li>
+                    <p>Kilometraža: </p>
+                    <p><?php echo $oglas->kilometraza ?> km</p>
+                </li>
+                <li>
+                    <p>Cena: </p>
+                    <p><?php echo $oglas->cena ?> €</p>
+                </li>
+                <li>
+                    <p>Gorivo: </p>
+                    <p><?php echo escape($oglas->gorivo) ?></p>
+                </li>
+                <li>
+                    <p>Kubikaža:</p>
+                    <p><?php echo escape($oglas->kubikaza) ?> cm<sup>3</sup></p>
+                </li>
+                <li>
+                    <p>Snaga motora: </p>
+                    <p><?php echo escape($oglas->snaga) ?> kW</p>
+                </li>
+                <li>
+                    <p>Vrsta pogona:</p>
+                    <p><?php echo escape($oglas->pogon) ?></p>
+                </li>
+                <li>
+                    <p>Vrsta menjača: </p>
+                    <p><?php echo escape($oglas->menjac) ?></p>
+                </li>
+                <li>
+                    <p>Broj vrata: </p>
+                    <p><?php echo escape($oglas->broj_vrata) ?></p>
+                </li>
+            </ul>
+        </div>
+        <div class="ad-desc">
+            <h2>Opis vozila</h2>
+            <p><?php echo escape($oglas->opis_oglasa) ?></p>
+        </div>
+        <div class="user">
+            <h2>Informacije o prodavcu</h2>
+            <div class="user-info">
+                <div class="user-basic">
+                    <img src="./images/cvrle.jpg" alt="Profile picture of the user">
+                    <h3><?php echo escape($prodavac->ime).' '.escape($prodavac->prezime) ?></h3>
                 </div>
-                <div class="ad-info">
-                    <h2>Opšte informacije</h2>
-                    <ul>
-                        <li>
-                            <p>Stanje: </p>
-                            <p>Polovno vozilo</p>
-                        </li>
-                        <li>
-                            <p>Marka: </p>
-                            <p>Volkswagen</p>
-                        </li>
-                        <li>
-                            <p>Model: </p>
-                            <p>Passat B7</p>
-                        </li>
-                        <li>
-                            <p>Godište: </p>
-                            <p>2012.</p>
-                        </li>
-                        <li>
-                            <p>Kilometraža: </p>
-                            <p>180,350 km</p>
-                        </li>
-                        <li>
-                            <p>Cena: </p>
-                            <p>7,000$</p>
-                        </li>
-                        <li>
-                            <p>Gorivo: </p>
-                            <p>Dizel</p>
-                        </li>
-                        <li>
-                            <p>Kubikaža:</p>
-                            <p>1,900cm3</p>
-                        </li>
-                        <li>
-                            <p>Snaga motora: </p>
-                            <p>120kW</p>
-                        </li>
-                        <li>
-                            <p>Vrsta pogona:</p>
-                            <p>Prednji</p>
-                        </li>
-                        <li>
-                            <p>Vrsta menjača: </p>
-                            <p>Manuelni 6 brzina</p>
-                        </li>
-                        <li>
-                            <p>Broj vrata: </p>
-                            <p>4/5 vrata</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="ad-desc">
-                    <h2>Opis vozila</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint at quod laborum natus aliquid dolorum fugit harum fuga labore ducimus?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur tenetur qui nostrum deserunt distinctio temporibus vero dolores nobis, velit nesciunt quis debitis consequatur iure ea harum fugit obcaecati officia cumque repellendus vitae eos delectus nihil recusandae? Facere doloremque deserunt molestiae.</p>
-                </div>
-                <div class="user">
-                    <h2>Informacije o prodavcu</h2>
-                    <div class="user-info">
-                        <div class="user-basic">
-                            <img src="./images/cvrle.jpg" alt="Profile picture of the user">
-                            <h3>Cvrle Auto</h3>
+                <p class="user-city"><?php echo escape($prodavac->grad) ?></p>
+                <p>Broj telefona: <?php echo escape($prodavac->mobilni) ?></p>
+            </div>
+        </div>
+        <div class="other-ads">
+            <h2>Ostali oglasi ovog prodavca</h2>
+            <div class="car-ads-grid">
+                <div class="car-ad">
+                    <img src="./images/car_images/car1.jpg" alt="A car">
+                    <div class="car-desc">
+                        <div class="car-name-price">
+                            <h2 class="car-name">Lorem, ipsum dolor.</h2>
+                            <p class="car-price">1,400.00$</p>
                         </div>
-                        <p class="user-city">Kragujevac</p>
-                        <p>Broj telefona: 061/231-34-02</p>
+                        <p class="car-details">Benzin (2007) | Futog</p>
                     </div>
                 </div>
-                <div class="other-ads">
-                    <h2>Ostali oglasi ovog prodavca</h2>
-                    <div class="car-ads-grid">
-                        <div class="car-ad">
-                            <img src="./images/car_images/car1.jpg" alt="A car">
-                            <div class="car-desc">
-                                <div class="car-name-price">
-                                    <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                                    <p class="car-price">1,400.00$</p>
-                                </div>
-                                <p class="car-details">Benzin (2007) | Futog</p>
-                            </div>
+                <div class="car-ad">
+                    <img src="./images/car_images/car2.jpg" alt="A car">
+                    <div class="car-desc">
+                        <div class="car-name-price">
+                            <h2 class="car-name">Lorem, ipsum dolor.</h2>
+                            <p class="car-price">1,400.00$</p>
                         </div>
-                        <div class="car-ad">
-                            <img src="./images/car_images/car2.jpg" alt="A car">
-                            <div class="car-desc">
-                                <div class="car-name-price">
-                                    <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                                    <p class="car-price">1,400.00$</p>
-                                </div>
-                                <p class="car-details">Benzin (2007) | Futog</p>
-                            </div>
-                        </div>
-                        <div class="car-ad">
-                            <img src="./images/car_images/car3.jpg" alt="A car">
-                            <div class="car-desc">
-                                <div class="car-name-price">
-                                    <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                                    <p class="car-price">1,400.00$</p>
-                                </div>
-                                <p class="car-details">Benzin (2007) | Futog</p>
-                            </div>
-                        </div>
+                        <p class="car-details">Benzin (2007) | Futog</p>
                     </div>
                 </div>
-            </section>
-            <section class="guide">
-                <div class="guide-desc">
-                    <h1 class="guide-title">Kako izabrati najbolji automobil za Vas?</h1>
-                    <p>Na šta sve treba obratiti pažnju pri kupovini automobila, koji detalji su najvažniji? Pročitajte naš <a
-                            href="#">vodič</a> pre Vaše prve kupovine!</p>
+                <div class="car-ad">
+                    <img src="./images/car_images/car3.jpg" alt="A car">
+                    <div class="car-desc">
+                        <div class="car-name-price">
+                            <h2 class="car-name">Lorem, ipsum dolor.</h2>
+                            <p class="car-price">1,400.00$</p>
+                        </div>
+                        <p class="car-details">Benzin (2007) | Futog</p>
+                    </div>
                 </div>
-                <img src="./images/icons/shopping_cart.png" alt="Shopping cart icon">
-            </section>
+            </div>
+        </div>
+        </section>
+        <section class="guide">
+            <div class="guide-desc">
+                <h1 class="guide-title">Kako izabrati najbolji automobil za Vas?</h1>
+                <p>Na šta sve treba obratiti pažnju pri kupovini automobila, koji detalji su najvažniji? Pročitajte naš <a
+                        href="#">vodič</a> pre Vaše prve kupovine!</p>
+            </div>
+            <img src="./images/icons/shopping_cart.png" alt="Shopping cart icon">
+        </section>
         </main>
         <footer>
             <div class="logo">
