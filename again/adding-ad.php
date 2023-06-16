@@ -36,10 +36,6 @@ if (Input::exists()) {
                 'required' => true,
                 'max' => 45
             ),
-            'karoserija' => array(
-                'required' => true,
-                'max' => 45
-            ),
             'gorivo' => array(
                 'required' => true,
                 'max' => 45
@@ -52,33 +48,9 @@ if (Input::exists()) {
                 'required' => true,
                 'numeric' => true
             ),
-            'emisionaKlasa' => array(
-                'required' => true,
-                'max' => 45
-            ),
             'broj_vrata' => array(
                 'required' => true,
                 'max' => 45
-            ),
-            'broj_sedista' => array(
-                'required' => true,
-                'max' => 45
-            ),
-            'volan' => array(
-                'required' => true,
-                'max' => 45
-            ),
-            'klima' => array(
-                'required' => true,
-                'max' => 45
-            ),
-            'opis' => array(
-                'required' => true,
-                'max' => 1000
-            ),
-            'naslov' => array(
-                'required' => true,
-                'max' => 1000
             )
             )
         );
@@ -138,17 +110,10 @@ if (Input::exists()) {
                         'cena' => Input::get('cena'),
                         'pogon' => Input::get('pogon'),
                         'menjac' => Input::get('menjac'),
-                        'karoserija' => Input::get('karoserija'),
                         'gorivo' => Input::get('gorivo'),
                         'kubikaza' => Input::get('kubikaza'),
                         'snaga' => Input::get('snaga'),
-                        'emisiona_klasa' => Input::get('emisionaKlasa'),
                         'broj_vrata' => Input::get('broj_vrata'),
-                        'broj_sedista' => Input::get('broj_sedista'),
-                        'klima' => Input::get('klima'),
-                        'volan' => Input::get('volan'),
-                        'opis_oglasa' => Input::get('opis'),
-                        'naslov' => Input::get('naslov'),
                         'korisnik_id' => $user->data()->korisnik_id
                     )
                 );
@@ -251,6 +216,13 @@ if (Input::exists()) {
         </header>
         <main>
             <section class="new-ad">
+            <form action="" method="post" enctype="multipart/form-data">
+            <div class="file-upload-container">
+                <div class="section-label" style="margin-bottom:20px;">Slike oglasa</div>
+                <input class="form-control" type="file" id="fileToUpload" name="fileToUpload[]" style='border:1px solid black;max-width:40%;border-left:0' hidden multiple onchange="handleFileSelection(event)">
+                <label for="fileToUpload" class="file-upload-label">Izaberi slike oglasa</label>
+                <span id="file-chosen"></span>
+            </div>
                 <h1>Unesite karakteristike automobila:</h1>
                 <div class="ad-parts">
                     <!--<input type="file" name="filename" accept="image/gif, image/jpeg, image/png">-->
@@ -263,27 +235,27 @@ if (Input::exists()) {
                     </div>
                     <div class="ad-part">
                         <label for="marka">Marka:</label>
-                        <input type="text" id="marka">
+                        <input type="text" id="marka" name="marka">
                     </div>
                     <div class="ad-part">
                         <label for="model">Model:</label>
-                        <input type="text" id="model">
+                        <input type="text" id="model" name="model">
                     </div>
                     <div class="ad-part">
                         <label for="godiste">Godište:</label>
-                        <input type="text" id="godiste">
+                        <input type="text" id="godiste" name="godiste">
                     </div>
                     <div class="ad-part">
                         <label for="kilometraza">Kilometraža:</label>
-                        <input type="text" id="kilometraza">
+                        <input type="text" id="kilometraza" name="kilometraza">
                     </div>
                     <div class="ad-part">
                         <label for="cena">Cena:</label>
-                        <input type="text" id="cena">
+                        <input type="text" id="cena" name="cena">
                     </div>
                     <div class="ad-part">
                         <label for="gorivo">Gorivo:</label>
-                        <select id="gorivo">
+                        <select id="gorivo" name="gorivo">
                             <option value="dizel">Dizel</option>
                             <option value="benzin">Benzin</option>
                             <option value="tng">Benzin + Gas (TNG)</option>
@@ -294,15 +266,15 @@ if (Input::exists()) {
                     </div>
                     <div class="ad-part">
                         <label for="marka">Kubikaža:</label>
-                        <input type="text" id="kubikaza">
+                        <input type="text" id="kubikaza" name="kubikaza">
                     </div>
                     <div class="ad-part">
                         <label for="model">Snaga motora:</label>
-                        <input type="text" id="snaga">
+                        <input type="text" id="snaga" name="snaga">
                     </div>
                     <div class="ad-part">
                         <label for="pogon">Vrsta pogona:</label>
-                        <select id="pogon">
+                        <select id="pogon" name="pogon">
                             <option value="prednji">Prednji</option>
                             <option value="zadnji">Zadnji</option>
                             <option value="na_sve_tockove">4x4</option>
@@ -310,34 +282,36 @@ if (Input::exists()) {
                     </div>
                     <div class="ad-part">
                         <label for="menjac">Menjač:</label>
-                        <select id="menjac">
+                        <select id="menjac" name="menjac">
                             <optgroup label="Manuelni menjač">
-                                <option value="m1">1 brzina</option>
-                                <option value="m2">2 brzine</option>
-                                <option value="m3">3 brzine</option>
-                                <option value="m4">4 brzina</option>
-                                <option value="m5">5 brzina</option>
-                                <option value="m6">6 brzina</option>
+                                <option value="Manuelni 1 brzina">1 brzina</option>
+                                <option value="Manuelni 2 brzina">2 brzine</option>
+                                <option value="Manuelni 3 brzina">3 brzine</option>
+                                <option value="Manuelni 4 brzina">4 brzina</option>
+                                <option value="Manuelni 5 brzina">5 brzina</option>
+                                <option value="Manuelni 6 brzina">6 brzina</option>
                             </optgroup>
                             <optgroup label="Automatski menjač">
-                                <option value="a1">1 brzina</option>
-                                <option value="a2">2 brzine</option>
-                                <option value="a3">3 brzine</option>
-                                <option value="a4">4 brzina</option>
-                                <option value="a5">5 brzina</option>
-                                <option value="a6">6 brzina</option>
+                                <option value="Automatski 1 brzina">1 brzina</option>
+                                <option value="Automatski 2 brzina">2 brzine</option>
+                                <option value="Automatski 3 brzina">3 brzine</option>
+                                <option value="Automatski 4 brzina">4 brzina</option>
+                                <option value="Automatski 5 brzina">5 brzina</option>
+                                <option value="Automatski 6 brzina">6 brzina</option>
                             </optgroup>
                         </select>
                     </div>
                     <div class="ad-part">
                         <label for="vrata">Broj vrata:</label>
-                        <select id="vrata">
+                        <select id="vrata" name="broj_vrata">
                             <option value="2/3">2/3</option>
                             <option value="4/5">4/5</option>
                         </select>
                     </div>
                 </div>
+                <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
                 <button class="submit-btn">Pošalji oglas</button>
+            </form>
             </section>
             <section class="guide">
                 <div class="guide-desc">

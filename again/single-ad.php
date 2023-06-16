@@ -82,7 +82,7 @@ $prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))
               <?php
                 if (!empty($slike)) {
                   foreach ($slike as $slika) {
-                    echo '<div class="swiper-slide"><img src="../slike_oglasa/'. $slika->hash .'"></div>';
+                    echo '<div class="swiper-slide"><img src="./slike_oglasa/'. $slika->hash .'"></div>';
                   }
                 }
               ?>
