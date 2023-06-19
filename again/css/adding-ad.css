@@ -1,7 +1,4 @@
 :root {
-    --yellow: #F9FF12;
-    --black: #1D1C0C;
-    --white: #FCFAEA;
     --font-family: 'Encode Sans Expanded', sans-serif;
 }
 
@@ -43,15 +40,15 @@
 .ad-part input {
     margin: 0;
     width: 50%;
-    border: .5px solid var(--black);
+    border: .5px solid black;
 }
 
 .submit-btn {
     display: inline-block;
     margin: 2rem 0 1rem;
-    background-color: var(--yellow);
-    color: var(--black);
-    border: .5px solid var(--black);
+    background-color: pink;
+    color: black;
+    border: .5px solid black;
     cursor: pointer;
     border-radius: .25em;
     font-family: var(--font-family);

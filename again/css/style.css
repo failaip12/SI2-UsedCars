@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300;400;500;700;900&display=swap');
 
 :root {
-    --yellow: #F9FF12;
-    --black: #1D1C0C;
-    --white: #FCFAEA;
     --font-family: 'Encode Sans Expanded', sans-serif;
 }
 
@@ -15,12 +12,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--font-family);
-    background-color: var(--white);
+    background-color: #c9c8c3;
 }
 
 /* Header section */
 header {
-    background-color: var(--black);
+    background-color: black;
     padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
@@ -58,7 +55,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: var(--white);
+    color: whitesmoke;
 }
 
 .buttons {
@@ -80,21 +77,22 @@ nav ul li a {
 }
 
 .login-btn {
-    background-color: var(--yellow);
-    color: var(--black);
-    border: .5px solid var(--black);
+    background-color: pink;
+    color: black;
+    border: .5px solid black;
+    justify-content: center;
 }
 
 .buttons {
-    border-color: var(--yellow);
+    border-color: pink;
 }
 
 .modal-btn,
 .cancel-btn {
     margin-top: .25rem;
-    background-color: var(--black);
-    color: var(--white);
-    border: .5px solid var(--white);
+    background-color: black;
+    color: grey;
+    border: .5px solid #c9c8c3;
 }
 
 .logo img {
@@ -102,12 +100,12 @@ nav ul li a {
     height: 40px;
 }
 
-.yellow {
-    color: var(--yellow);
+.pink {
+    color: pink;
 }
 
-.white {
-    color: var(--white);
+.grey {
+    color: grey;
 }
 
 #overlay {
@@ -128,7 +126,7 @@ nav ul li a {
     width: 80%;
     max-width: 500px;
     height: 350px;
-    background-color: var(--white);
+    background-color: grey;
     border-radius: .5em;
 }
 
@@ -187,15 +185,17 @@ select {
 
 .search-text {
     margin: 2em auto 0;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
+    /* display: flex; */
+    /* justify-content: space-between; */
 }
 
-#search-input {
-    margin-right: .5em;
-    width: 75%;
-    border: 1px solid var(--black);
+.search-input {
+    /* display: inline-flex; */
+    /* text-justify: center; */
+    /* margin-right: .5em; */
+    width: 100%; 
+    border: 1px solid black;
     border-radius: .2em;
 }
 
@@ -210,11 +210,11 @@ select {
 .car-ad {
     margin: .5rem auto 1rem;
     width: 350px;
-    border: .5px solid var(--black);
+    border: .5px solid black;
 }
 
 .car-desc {
-    background-color: white;
+    background-color: grey;
     padding: .5em;
 }
 
@@ -251,7 +251,7 @@ select {
 
 /* Guide section */
 .guide {
-    background-color: white;
+    background-color: grey;
     display: flex;
     align-items: center;
     padding: 2rem 1rem;
@@ -269,8 +269,8 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 2em;
-    background-color: var(--black);
-    color: var(--white);
+    background-color: black;
+    color: grey;
 }
 
 footer .logo {
@@ -290,11 +290,11 @@ footer .logo {
 .contact a {
     margin: .75em 0;
     text-decoration: none;
-    color: var(--white);
+    color: grey;
 }
 
 .contact .login-btn {
-    color: var(--black);
+    color: black;
 }
 
 footer p {

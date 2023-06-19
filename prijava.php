@@ -63,7 +63,7 @@ if (Input::exists()) {
                     <li><a href="prijava.php">Prijava</a></li>
                     <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
-                <i class='bx bx-search' id="search-icon" onclick="showDiv('search-box')""></i>
+                <i class='bx bx-search' id="search-icon" onclick="showDiv('search-box')"></i>
             </div>
         </header>
         

@@ -1,7 +1,4 @@
 :root {
-    --yellow: #F9FF12;
-    --black: #1D1C0C;
-    --white: #FCFAEA;
     --font-family: 'Encode Sans Expanded', sans-serif;
 }
 
@@ -25,7 +22,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: var(--white);
+    background-color: grey;
 }
 
 .toggler {
@@ -34,8 +31,8 @@
     top: calc(50% - .5em);
     padding: .25em .5em;
     border-radius: 50%;
-    background-color: var(--white);
-    color: var(--black);
+    background-color: grey;
+    color: black;
     font-weight: bold;
 }
 
@@ -58,7 +55,7 @@
 .other-ads {
     margin-top: 1em;
     padding: .5em 1em;
-    background-color: white;
+    background-color: grey;
 }
 
 h2 {
