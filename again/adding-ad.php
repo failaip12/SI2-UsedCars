@@ -12,7 +12,15 @@ if (Input::exists()) {
         $validate = new Validate();
         $validation = $validate->check(
             $_POST, array(
+            'naslov' => array(
+                'required' => true,
+                'max' => 45
+            ),
             'marka' => array(
+                'required' => true,
+                'max' => 45
+            ),
+            'model' => array(
                 'required' => true,
                 'max' => 45
             ),
@@ -51,6 +59,14 @@ if (Input::exists()) {
             'broj_vrata' => array(
                 'required' => true,
                 'max' => 45
+            ),
+            'broj_sedista' => array(
+                'required' => true,
+                'numeric' => true
+            ),
+            'opis_oglasa' => array(
+                'required' => true,
+                'max' => 1000
             )
             )
         );
@@ -101,10 +117,16 @@ if (Input::exists()) {
                             }
                         }
                     }
+                }
+                else {
+                    echo 'Slika je obavezna<br>';
+                    return;
                 }//IMPROVE ERROR HANDLING
                 $db->insert(
                     'oglasi', array(
+                        'naslov' => Input::get('naslov'),
                         'marka' => Input::get('marka'),
+                        'model' => Input::get('model'),
                         'godiste' => Input::get('godiste'),
                         'kilometraza' => Input::get('kilometraza'),
                         'cena' => Input::get('cena'),
@@ -114,11 +136,13 @@ if (Input::exists()) {
                         'kubikaza' => Input::get('kubikaza'),
                         'snaga' => Input::get('snaga'),
                         'broj_vrata' => Input::get('broj_vrata'),
+                        'broj_sedista' => Input::get('broj_sedista'),
+                        'opis_oglasa' => Input::get('opis_oglasa'),
                         'korisnik_id' => $user->data()->korisnik_id
                     )
                 );
                 $oglas_id = $db->query('SELECT oglas_id FROM oglasi ORDER BY oglas_id DESC LIMIT 1')->first()->oglas_id;
-                foreach ($fileNames as $filename) {
+                foreach ($fileNames as $filename) { //TODO: Fix filename issue when there is a . in the filename
                     $sha1 = sha1_file($target_dir . $filename);
                     rename($target_dir . $filename, $target_dir . $sha1 . '.' . explode(".", $filename)[1]);
                     $slika = $db->get('slika', array('hash', '=', $sha1 . '.' . explode(".", $filename)[1]));
@@ -225,13 +249,9 @@ if (Input::exists()) {
             </div>
                 <h1>Unesite karakteristike automobila:</h1>
                 <div class="ad-parts">
-                    <!--<input type="file" name="filename" accept="image/gif, image/jpeg, image/png">-->
                     <div class="ad-part">
-                        <label for="stanje">Stanje:</label>
-                        <select id="stanje">
-                            <option value="polovno">Polovno vozilo</option>
-                            <option value="novo">Novo vozilo</option>
-                        </select>
+                        <label for="naslov">Naslov oglasa:</label>
+                        <input type="text" id="naslov" name="naslov">
                     </div>
                     <div class="ad-part">
                         <label for="marka">Marka:</label>
@@ -256,28 +276,28 @@ if (Input::exists()) {
                     <div class="ad-part">
                         <label for="gorivo">Gorivo:</label>
                         <select id="gorivo" name="gorivo">
-                            <option value="dizel">Dizel</option>
-                            <option value="benzin">Benzin</option>
-                            <option value="tng">Benzin + Gas (TNG)</option>
-                            <option value="cng">Benzin + Metan (CNG)</option>
-                            <option value="elektricni">Električni pogon</option>
-                            <option value="hibridni">Hibridni pogon</option>
+                            <option value="Dizel">Dizel</option>
+                            <option value="Benzin">Benzin</option>
+                            <option value="Benzin + Gas (TNG)">Benzin + Gas (TNG)</option>
+                            <option value="Benzin + Metan (CNG)">Benzin + Metan (CNG)</option>
+                            <option value="Električni pogon">Električni pogon</option>
+                            <option value="Hibridni pogon">Hibridni pogon</option>
                         </select>
                     </div>
                     <div class="ad-part">
-                        <label for="marka">Kubikaža:</label>
+                        <label for="kubikaza">Kubikaža:</label>
                         <input type="text" id="kubikaza" name="kubikaza">
                     </div>
                     <div class="ad-part">
-                        <label for="model">Snaga motora:</label>
+                        <label for="snaga">Snaga motora:</label>
                         <input type="text" id="snaga" name="snaga">
                     </div>
                     <div class="ad-part">
                         <label for="pogon">Vrsta pogona:</label>
                         <select id="pogon" name="pogon">
-                            <option value="prednji">Prednji</option>
-                            <option value="zadnji">Zadnji</option>
-                            <option value="na_sve_tockove">4x4</option>
+                            <option value="Prednji">Prednji</option>
+                            <option value="Zadnji">Zadnji</option>
+                            <option value="4x4">4x4</option>
                         </select>
                     </div>
                     <div class="ad-part">
@@ -302,11 +322,19 @@ if (Input::exists()) {
                         </select>
                     </div>
                     <div class="ad-part">
-                        <label for="vrata">Broj vrata:</label>
-                        <select id="vrata" name="broj_vrata">
+                        <label for="broj_vrata">Broj vrata:</label>
+                        <select id="broj_vrata" name="broj_vrata">
                             <option value="2/3">2/3</option>
                             <option value="4/5">4/5</option>
                         </select>
+                    </div>
+                    <div class="ad-part">
+                        <label for="broj_sedista">Broj sedista:</label>
+                        <input type="text" id="broj_sedista", name="broj_sedista"></input>
+                    </div>
+                    <div class="ad-part">
+                        <label for="opis_oglasa">Opis oglasa:</label>
+                        <textarea cols="100" rows="10" id="opis_oglasa", name="opis_oglasa"></textarea>
                     </div>
                 </div>
                 <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
@@ -331,7 +359,6 @@ if (Input::exists()) {
                 <div class="contact-info">
                     <a href="#">Oglasi</a>
                     <a href="#">Cene</a>
-                    <a href="login.php" class="login-btn">Prijavi se</a>
                 </div>
                 <div class="contact-sections">
                     <div class="contact-section">

@@ -22,6 +22,7 @@ $prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))
         <title>UsedCars | Oglas</title>
         <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
         <script src="js/index.js" defer></script>
+        <script src="js/single-ad.js" defer></script>
     </head>
     <body>
         <header>
@@ -96,16 +97,12 @@ $prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))
             <h2>Opšte informacije</h2>
             <ul>
                 <li>
-                    <p>Stanje: </p>
-                    <p>Stanje</p>
-                </li>
-                <li>
                     <p>Marka: </p>
                     <p><?php echo escape($oglas->marka) ?></p>
                 </li>
                 <li>
                     <p>Model: </p>
-                    <p>Model</p>
+                    <p><?php echo escape($oglas->marka) ?></p>
                 </li>
                 <li>
                     <p>Godište: </p>
@@ -125,11 +122,11 @@ $prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))
                 </li>
                 <li>
                     <p>Kubikaža:</p>
-                    <p><?php echo escape($oglas->kubikaza) ?> cm<sup>3</sup></p>
+                    <p><?php echo $oglas->kubikaza ?> cm<sup>3</sup></p>
                 </li>
                 <li>
                     <p>Snaga motora: </p>
-                    <p><?php echo escape($oglas->snaga) ?> kW</p>
+                    <p><?php echo $oglas->snaga ?> kW</p>
                 </li>
                 <li>
                     <p>Vrsta pogona:</p>
@@ -142,6 +139,10 @@ $prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))
                 <li>
                     <p>Broj vrata: </p>
                     <p><?php echo escape($oglas->broj_vrata) ?></p>
+                </li>
+                <li>
+                    <p>Broj vrata: </p>
+                    <p><?php echo $oglas->broj_sedista ?></p>
                 </li>
             </ul>
         </div>
@@ -215,7 +216,6 @@ $prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))
                 <div class="contact-info">
                     <a href="#">Oglasi</a>
                     <a href="#">Cene</a>
-                    <a href="login.php" class="login-btn">Prijavi se</a>
                 </div>
                 <div class="contact-sections">
                     <div class="contact-section">

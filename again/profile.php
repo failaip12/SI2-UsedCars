@@ -3,7 +3,7 @@ declare(strict_types=1);
 require_once 'core/init.php';
 
 $user = new User();
-if (!$user->isLoggedIn()) {
+if (!$user->isLoggedIn() || $user->permissionLevel()==2) {
     Redirect::to('index.php');
 }
 ?>
@@ -36,7 +36,7 @@ if (!$user->isLoggedIn()) {
                     <li><a href="#">Vesti</a></li>
                     <div class="buttons">
                         <li><button class="modal-btn">Prijavi se</button></li>
-                        <li><a href="register.html" class="login-btn">Registruj se</a></li>
+                        <li><a href="register.php" class="login-btn">Registruj se</a></li>
                     </div>
                 </ul>
             </nav>
@@ -70,19 +70,19 @@ if (!$user->isLoggedIn()) {
                     <ul>
                         <li>
                             <p>Ime: </p>
-                            <p><?php echo escape($user->data()->ime); ?></p>
+                            <p><?php if($user->data()->ime !== null) echo escape($user->data()->ime); ?></p>
                         </li>
                         <li>
                             <p>Prezime</p>
-                            <p><?php echo escape($user->data()->prezime); ?></p>
+                            <p><?php if($user->data()->prezime !== null)  echo escape($user->data()->prezime); ?></p>
                         </li>
                         <li>
                             <p>E-mail: </p>
-                            <p><?php echo escape($user->data()->email); ?></p>
+                            <p><?php if($user->data()->email !== null) echo escape($user->data()->email); ?></p>
                         </li>
                         <li>
                             <p>Broj telefona: </p>
-                            <p><?php echo escape($user->data()->mobilni); ?></p>
+                            <p><?php if($user->data()->mobilni !== null)  echo escape($user->data()->mobilni); ?></p>
                         </li>
                        
                     </ul>
@@ -107,7 +107,6 @@ if (!$user->isLoggedIn()) {
                 <div class="contact-info">
                     <a href="#">Oglasi</a>
                     <a href="#">Cene</a>
-                    <a href="login.php" class="login-btn">Prijavi se</a>
                 </div>
                 <div class="contact-sections">
                     <div class="contact-section">

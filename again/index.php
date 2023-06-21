@@ -1,6 +1,15 @@
 <?php
 declare(strict_types=1);
 require_once 'core/init.php';
+$db = DB::getInstance();
+$oglasi_query = $db->query("SELECT * FROM `oglasi` WHERE admin_id is NULL");
+if (!Input::exists('get')) {
+    $trenutna_strana = 1;
+} else {
+    $trenutna_strana = (int) Input::get('strana');
+}
+$broj_oglasa = $oglasi_query->count();
+$oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NOT NULL limit ? , ?', array(($trenutna_strana - 1) * 10, 10))->results();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,36 +93,28 @@ require_once 'core/init.php';
             <section class="car-ads">
                 <h1>Oglasi</h1>
                 <div class="car-ads-grid">
-                    <div class="car-ad">
-                        <img src="./images/car_images/car1.jpg" alt="A car">
-                        <div class="car-desc">
-                            <div class="car-name-price">
-                                <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                                <p class="car-price">1,400.00$</p>
-                            </div>
-                            <p class="car-details">Benzin (2007) | Futog</p>
-                        </div>
-                    </div>
-                    <div class="car-ad">
-                        <img src="./images/car_images/car2.jpg" alt="A car">
-                        <div class="car-desc">
-                            <div class="car-name-price">
-                                <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                                <p class="car-price">1,400.00$</p>
-                            </div>
-                            <p class="car-details">Benzin (2007) | Futog</p>
-                        </div>
-                    </div>
-                    <div class="car-ad">
-                        <img src="./images/car_images/car3.jpg" alt="A car">
-                        <div class="car-desc">
-                            <div class="car-name-price">
-                                <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                                <p class="car-price">1,400.00$</p>
-                            </div>
-                            <p class="car-details">Benzin (2007) | Futog</p>
-                        </div>
-                    </div>
+                    <?php
+                    if (count($oglasi) > 0) {
+                        foreach ($oglasi as $oglas) {
+                            $korisnik = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))->first();
+                            $slika_id = $db->get('oglas_ima_sliku', array('oglas_id', '=', $oglas->oglas_id))->first()->slika_id;
+                            $slika_hash = $db->get('slika', array('slika_id', '=', $slika_id))->first()->hash;
+                            $link = "single-ad.php?id=" . strval($oglas->oglas_id);
+                            echo '<div class="car-ad">';
+                                echo '<a href="' . $link . '">';
+                                    echo '<img src="slike_oglasa/' . $slika_hash . '" alt="A car">';
+                                    echo '<div class="car-desc">';
+                                        echo '<div class="car-name-price">';
+                                            echo '<h2 class="car-name">' . $oglas->naslov . '</h2>';
+                                            echo '<p class="car-price">€' . $oglas->cena . '</p>';
+                                        echo '</div>';
+                                        echo '<p class="car-details">' . $oglas->gorivo . '(' . $oglas->godiste . ')</p>';
+                                    echo '</div>';
+                                echo '</a>';
+                            echo '</div>';
+                        }
+                    }
+                    ?>
                 </div>
             </section>
             <section class="guide">

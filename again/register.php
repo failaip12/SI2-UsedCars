@@ -17,16 +17,6 @@ if (Input::exists()) {
                 'min' => 2,
                 'max' => 40,
             ),
-            'datum_rodjenja' => array(
-                'required' => true,
-                'min' => 2,
-                'max' => 40,
-            ),
-            'grad' => array(
-                'required' => true,
-                'min' => 2,
-                'max' => 40,
-            ),
             'email' => array(
                 'required' => true,
                 'min' => 5,
@@ -40,7 +30,22 @@ if (Input::exists()) {
             'password_again' => array(
                 'required' => true,
                 'matches' => 'password'
-            )
+            ),
+            'datum_rodjenja' => array(
+                'required' => true,
+                'min' => 2,
+                'max' => 40,
+            ),
+            'grad' => array(
+                'required' => true,
+                'min' => 2,
+                'max' => 40,
+            ),
+            'mobilni' => array(
+                'required' => true,
+                'min' => 2,
+                'max' => 40,
+            ),
             )
         );
         
@@ -53,8 +58,9 @@ if (Input::exists()) {
                     'password' => password_hash(Input::get('password'), PASSWORD_BCRYPT),
                     'ime' => Input::get('ime'),
                     'prezime' => Input::get('prezime'),
-                    'datum_rodjenja' => Input::get('datum_rodjenja'), //FIXXXXXXXXXXXX
+                    'mobilni' => Input::get('mobilni'),
                     'grad' => Input::get('grad'),
+                    'datum_rodjenja' => Input::get('datum_rodjenja'), //TODO:FIXXXXXXXXXXXX
                 ));
                 Session::flash('home', 'You have been registered and can now log in!');
                 Redirect::to('index.php');
@@ -82,7 +88,6 @@ if (Input::exists()) {
         <link rel="stylesheet" href="./css/register.css">
         <title>UsedCars | Registracija</title>
         <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
-        <script src="js/index.js" defer></script>
     </head>
     <body>
         <header>
@@ -114,14 +119,6 @@ if (Input::exists()) {
                     <input type="text" name="prezime" required>
                 </div>
                 <div class="form-item">
-                    <label for="datum_rodjenja"><b>Datum rođenja</b></label>
-                    <input type="text" name="datum_rodjenja" required>
-                </div>
-                <div class="form-item">
-                    <label for="grad"><b>Grad</b></label>
-                    <input type="text" name="grad" required>
-                </div>
-                <div class="form-item">
                     <label for="email"><b>Email adresa</b></label>
                     <input type="email" name="email" required>
                 </div>
@@ -132,6 +129,18 @@ if (Input::exists()) {
                 <div class="form-item">
                     <label for="password_again"><b>Ponovi Šifru</b></label>
                     <input type="password" name="password_again" required>
+                </div>
+                <div class="form-item">
+                    <label for="datum_rodjenja"><b>Datum rođenja</b></label>
+                    <input type="text" name="datum_rodjenja" required>
+                </div>
+                <div class="form-item">
+                    <label for="grad"><b>Grad</b></label>
+                    <input type="text" name="grad" required>
+                </div>
+                <div class="form-item">
+                    <label for="mobilni"><b>Mobilni telefon</b></label>
+                    <input type="text" name="mobilni" id="mobilni" required>
                 </div>
                 <input type="hidden" value="<?php echo Token::generate(); ?>"  name="token" class="box"/>
                 <button type="submit" class="login-btn form-btn">Registruj se</button>
@@ -159,7 +168,7 @@ if (Input::exists()) {
                 <div class="contact-info">
                     <a href="#">Oglasi</a>
                     <a href="#">Cene</a>
-                    <a href="login.html" class="login-btn">Prijavi se</a>
+                    <a href="login.php" class="login-btn">Prijavi se</a>
                 </div>
                 <div class="contact-sections">
                     <div class="contact-section">

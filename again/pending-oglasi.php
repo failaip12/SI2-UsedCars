@@ -117,7 +117,6 @@ $oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NULL limit ? , ?', 
                 <div class="contact-info">
                     <a href="#">Oglasi</a>
                     <a href="#">Cene</a>
-                    <a href="login.php" class="login-btn">Prijavi se</a>
                 </div>
                 <div class="contact-sections">
                     <div class="contact-section">
