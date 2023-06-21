@@ -82,7 +82,7 @@ if (Input::exists()) {
         <link rel="stylesheet" href="./css/register.css">
         <title>UsedCars | Registracija</title>
         <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
-        <script src="index.js" defer></script>
+        <script src="js/index.js" defer></script>
     </head>
     <body>
         <header>
@@ -96,8 +96,8 @@ if (Input::exists()) {
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href="#">Početna</a></li>
-                    <li><a href="#">Pretraga</a></li>
+                    <li><a href="index.php">Početna</a></li>
+                    <li><a href="index.php">Pretraga</a></li>
                     <li><a href="#">Vesti</a></li>
                 </ul>
             </nav>

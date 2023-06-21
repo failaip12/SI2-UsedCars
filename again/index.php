@@ -11,7 +11,7 @@ require_once 'core/init.php';
         <link rel="stylesheet" href="./css/style.css">
         <title>UsedCars</title>
         <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
-        <script src="index.js" defer></script>
+        <script src="js/index.js" defer></script>
     </head>
     <body>
         <header>

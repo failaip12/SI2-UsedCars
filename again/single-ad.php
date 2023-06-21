@@ -21,7 +21,7 @@ $prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))
         <link rel="stylesheet" href="./css/single-ad.css">
         <title>UsedCars | Oglas</title>
         <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
-        <script src="index.js" defer></script>
+        <script src="js/index.js" defer></script>
     </head>
     <body>
         <header>
@@ -35,8 +35,8 @@ $prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href="#">Početna</a></li>
-                    <li><a href="#">Pretraga</a></li>
+                    <li><a href="index.php">Početna</a></li>
+                    <li><a href="index.php">Pretraga</a></li>
                     <li><a href="#">Vesti</a></li>
                     <div class="buttons">
                         <li><button class="modal-btn">Prijavi se</button></li>
@@ -215,7 +215,7 @@ $prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))
                 <div class="contact-info">
                     <a href="#">Oglasi</a>
                     <a href="#">Cene</a>
-                    <a href="register.php" class="login-btn">Prijavi se</a>
+                    <a href="login.php" class="login-btn">Prijavi se</a>
                 </div>
                 <div class="contact-sections">
                     <div class="contact-section">
