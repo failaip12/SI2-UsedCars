@@ -14,37 +14,57 @@ require_once 'navbar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="stylesheet" href="./css/single-ad.css">
-        <title>UsedCars | Oglas</title>
-        <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
-        <script src="js/index.js" defer></script>
-        <script src="js/single-ad.js" defer></script>
-    </head>
-    <body>
-        <main>
-        <section class="ad">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/single-ad.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <title>UsedCars | Oglas</title>
+    <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
+    <script src="js/index.js" defer></script>
+    <script src="js/single-ad.js" defer></script>
+    <style>
+        .swiper-container {
+            width: 100%;
+            height: 100vh; /* Adjust the height as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section class="ad">
         <h1><?php echo escape($oglas->naslov) ?></h1>
-        
+
         <div class="swiper-container">
-          <div class="swiper image-swiper">
             <div class="swiper-wrapper">
-              <?php
+                <?php
                 if (!empty($slike)) {
-                  foreach ($slike as $slika) {
-                    echo '<div class="swiper-slide"><img src="./slike_oglasa/'. $slika->hash .'"></div>';
-                  }
+                    foreach ($slike as $slika) {
+                        echo '<div class="swiper-slide"><img src="./slike_oglasa/'. $slika->hash .'"></div>';
+                    }
                 }
-              ?>
+                ?>
             </div>
+            <div class="swiper-pagination"></div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-          </div>
         </div>
         <div class="ad-info">
             <h2>Opšte informacije</h2>
@@ -114,41 +134,6 @@ require_once 'navbar.php';
                 <p>Broj telefona: <?php echo escape($prodavac->mobilni) ?></p>
             </div>
         </div>
-        <div class="other-ads">
-            <h2>Ostali oglasi ovog prodavca</h2>
-            <div class="car-ads-grid">
-                <div class="car-ad">
-                    <img src="./images/car_images/car1.jpg" alt="A car">
-                    <div class="car-desc">
-                        <div class="car-name-price">
-                            <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                            <p class="car-price">1,400.00$</p>
-                        </div>
-                        <p class="car-details">Benzin (2007) | Futog</p>
-                    </div>
-                </div>
-                <div class="car-ad">
-                    <img src="./images/car_images/car2.jpg" alt="A car">
-                    <div class="car-desc">
-                        <div class="car-name-price">
-                            <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                            <p class="car-price">1,400.00$</p>
-                        </div>
-                        <p class="car-details">Benzin (2007) | Futog</p>
-                    </div>
-                </div>
-                <div class="car-ad">
-                    <img src="./images/car_images/car3.jpg" alt="A car">
-                    <div class="car-desc">
-                        <div class="car-name-price">
-                            <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                            <p class="car-price">1,400.00$</p>
-                        </div>
-                        <p class="car-details">Benzin (2007) | Futog</p>
-                    </div>
-                </div>
-            </div>
-        </div>
         </section>
         <section class="guide">
             <div class="guide-desc">
@@ -186,5 +171,18 @@ require_once 'navbar.php';
             </div>
             <p>©2022 UsedCars.com, sva prava zadržana.</p>
         </footer>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script>
+            var swiper = new Swiper('.swiper-container', {
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+        </script>
     </body>
 </html>

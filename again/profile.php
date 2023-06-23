@@ -26,25 +26,38 @@ require_once 'navbar.php';
                 
                 <div class="info">
                     <h2>Opšte informacije</h2>
-                    <ul>
-                        <li>
-                            <p>Ime: </p>
-                            <p><?php if($user->data()->ime !== null) echo escape($user->data()->ime); ?></p>
-                        </li>
-                        <li>
-                            <p>Prezime</p>
-                            <p><?php if($user->data()->prezime !== null)  echo escape($user->data()->prezime); ?></p>
-                        </li>
-                        <li>
-                            <p>E-mail: </p>
-                            <p><?php if($user->data()->email !== null) echo escape($user->data()->email); ?></p>
-                        </li>
-                        <li>
-                            <p>Broj telefona: </p>
-                            <p><?php if($user->data()->mobilni !== null)  echo escape($user->data()->mobilni); ?></p>
-                        </li>
-                       
-                    </ul>
+                    <form action="update_profile.php" method="post">
+                        <ul>
+                            <li>
+                                <label for="ime">Ime:</label>
+                                <input type="text" id="ime" name="ime" value="<?php if($user->data()->ime !== null) echo escape($user->data()->ime); ?>">
+                            </li>
+                            <li>
+                                <label for="prezime">Prezime:</label>
+                                <input type="text" id="prezime" name="prezime" value="<?php if($user->data()->prezime !== null) echo escape($user->data()->prezime); ?>">
+                            </li>
+                            <li>
+                                <label for="email">E-mail:</label>
+                                <input type="email" id="email" name="email" value="<?php if($user->data()->email !== null) echo escape($user->data()->email); ?>">
+                            </li>
+                            <li>
+                                <label for="mobilni">Broj telefona:</label>
+                                <input type="tel" id="mobilni" name="mobilni" value="<?php if($user->data()->mobilni !== null) echo escape($user->data()->mobilni); ?>">
+                            </li>
+                            <li>
+                                <label for="grad">Grad</label>
+                                <input type="text" id="grad" name="grad" value="<?php if($user->data()->grad !== null) echo escape($user->data()->grad); ?>">
+                            </li>
+                            <li>
+                                <label for="datum_rodjenja">Datum rodjenja</label>
+                                <input type="text" id="datum_rodjenja" name="datum_rodjenja" value="<?php if($user->data()->datum_rodjenja !== null) echo escape($user->data()->datum_rodjenja); ?>">
+                            </li>
+                            <li>
+                                <input type="submit" value="Update">
+                            </li>
+                        </ul>
+                    </form>
+
                 </div>
             </section>
             <section class="guide">
