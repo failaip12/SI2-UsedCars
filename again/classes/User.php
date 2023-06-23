@@ -66,7 +66,15 @@ class User
     public function update($table, $fields = array(), $id = null)
     {
         if (!$id && $this->isLoggedIn()) {
-            $id = $this->data()->korisnik_id;
+            if ($table == 'korisnik') {
+                $id = $this->data()->korisnik_id;
+            }
+            elseif ($table == 'admin') {
+                $id = $this->data()->admin_id;
+            }
+            else {
+                throw new Exception('Nepoznat tip korisnika');
+            }
         }
         if (!$this->_db->updateUser($table, $id, $fields)) {
             throw new Exception('Desio se problem tokom azuriranja.');

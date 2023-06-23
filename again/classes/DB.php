@@ -104,8 +104,15 @@ class DB
             }
             $x++;
         }
-
-        $sql = "UPDATE `{$table}` SET {$set} WHERE `korisnik_id` = ?";
+        if ($table == 'korisnik') {
+            $sql = "UPDATE `{$table}` SET {$set} WHERE `korisnik_id` = ?";
+        }
+        elseif ($table == 'admin') {
+            $sql = "UPDATE `{$table}` SET {$set} WHERE `admin_id` = ?";
+        }
+        else {
+            return false;
+        }
         $parameters[$x - 1] = $id;
 
         if (!$this->query($sql, $parameters)->error()) {

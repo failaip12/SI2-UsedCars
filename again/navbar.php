@@ -64,6 +64,7 @@ require_once 'core/init.php';
                     <li><a href="adding-ad.php">Dodaj oglas</a></li>
                     <li><a href="profile.php">Moj profil</a></li>
                     <li><a href="saved-search.php">Sacuvane pretrage</a></li>
+                    <li><a href="change-password.php">Promeni sifru</a></li>
                     <div class="buttons">
                         <li><a href="logout.php" class="login-btn">Odjavi se</a></li>
                     </div>
@@ -73,6 +74,7 @@ require_once 'core/init.php';
                     echo'
                     <li><a href="index.php">Početna</a></li>
                     <li><a href="pending-oglasi.php">Oglasi na cekanju</a></li>
+                    <li><a href="change-password.php">Promeni sifru</a></li>
                     <div class="buttons">
                         <li><a href="logout.php" class="login-btn">Odjavi se</a></li>
                     </div>

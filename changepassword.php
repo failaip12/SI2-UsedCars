@@ -7,7 +7,6 @@ if (!$user->isLoggedIn()) {
     Redirect::to('index.php');
 }
 if (Input::exists()) {
-        // echo 'OK!'; validate stuff
     $validate = new Validate();
     $validation = $validate->check($_POST, array(
         'password_current' => array(
@@ -46,6 +45,3 @@ if (Input::exists()) {
         }
     }
 }
-
-
-?>
