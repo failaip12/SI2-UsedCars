@@ -100,14 +100,14 @@ require_once 'navbar.php';
                 </select> -->
                 <div class="search-text">
                 <form method="GET">
-                    <input type="text" placeholder="Marka" name="marka" class="search-input" value="<?php echo Input::get('marka', ''); ?>" />
-                    <input type="text" placeholder="Model" name="model" class="search-input" value="<?php echo Input::get('model', ''); ?>" />
-                    <input type="text" placeholder="Godste od" name="godiste_od" class="search-input" value="<?php echo Input::get('godiste_od', ''); ?>" />
-                    <input type="text" placeholder="Godste do" name="godiste_do" class="search-input" value="<?php echo Input::get('godiste_do', ''); ?>" />
-                    <input type="text" placeholder="Kilometraza od" name="kilometraza_od" class="search-input" value="<?php echo Input::get('kilometraza_od', ''); ?>" />
-                    <input type="text" placeholder="Kilometraza do" name="kilometraza_do" class="search-input" value="<?php echo Input::get('kilometraza_do', ''); ?>" />
-                    <input type="text" placeholder="Cena od" name="cena_od" class="search-input" value="<?php echo Input::get('cena_od', ''); ?>" />
-                    <input type="text" placeholder="Cena do" name="cena_do" class="search-input" value="<?php echo Input::get('cena_do', ''); ?>" />
+                    <input type="text" placeholder="Marka" name="marka" class="search-input" value="<?php echo Input::get('marka'); ?>" />
+                    <input type="text" placeholder="Model" name="model" class="search-input" value="<?php echo Input::get('model'); ?>" />
+                    <input type="text" placeholder="Godste od" name="godiste_od" class="search-input" value="<?php echo Input::get('godiste_od'); ?>" />
+                    <input type="text" placeholder="Godste do" name="godiste_do" class="search-input" value="<?php echo Input::get('godiste_do'); ?>" />
+                    <input type="text" placeholder="Kilometraza od" name="kilometraza_od" class="search-input" value="<?php echo Input::get('kilometraza_od'); ?>" />
+                    <input type="text" placeholder="Kilometraza do" name="kilometraza_do" class="search-input" value="<?php echo Input::get('kilometraza_do'); ?>" />
+                    <input type="text" placeholder="Cena od" name="cena_od" class="search-input" value="<?php echo Input::get('cena_od'); ?>" />
+                    <input type="text" placeholder="Cena do" name="cena_do" class="search-input" value="<?php echo Input::get('cena_do'); ?>" />
                     <select id="gorivo" name="gorivo">
                         <option value="Dizel" <?php if (Input::get('gorivo') === 'Dizel') echo 'selected'; ?>>Dizel</option>
                         <option value="Benzin" <?php if (Input::get('gorivo') === 'Benzin') echo 'selected'; ?>>Benzin</option>
@@ -139,30 +139,30 @@ require_once 'navbar.php';
                             <option value="Automatski 6 brzina" <?php if (Input::get('menjac') === 'Automatski 6 brzina') echo 'selected'; ?>>6 brzina</option>
                         </optgroup>
                     </select>
-                    <input type="text" placeholder="Kubikaza od" name="kubikaza_od" class="search-input" value="<?php echo Input::get('kubikaza_od', ''); ?>" />
-                    <input type="text" placeholder="Kubikaza do" name="kubikaza_do" class="search-input" value="<?php echo Input::get('kubikaza_do', ''); ?>" />
-                    <input type="text" placeholder="Snaga od" name="snaga_od" class="search-input" value="<?php echo Input::get('snaga_od', ''); ?>" />
-                    <input type="text" placeholder="Snaga do" name="snaga_do" class="search-input" value="<?php echo Input::get('snaga_do', ''); ?>" />
+                    <input type="text" placeholder="Kubikaza od" name="kubikaza_od" class="search-input" value="<?php echo Input::get('kubikaza_od'); ?>" />
+                    <input type="text" placeholder="Kubikaza do" name="kubikaza_do" class="search-input" value="<?php echo Input::get('kubikaza_do'); ?>" />
+                    <input type="text" placeholder="Snaga od" name="snaga_od" class="search-input" value="<?php echo Input::get('snaga_od'); ?>" />
+                    <input type="text" placeholder="Snaga do" name="snaga_do" class="search-input" value="<?php echo Input::get('snaga_do'); ?>" />
                     <button type="submit" class="login-btn">Pretraži</button>
                 </form>
                 <form method="POST" action="save-search.php">
-                <input type="hidden" name="marka" value="<?php echo Input::get('marka', ''); ?>" />
-                <input type="hidden" name="model" value="<?php echo Input::get('model', ''); ?>" />
-                <input type="hidden" name="godiste_od" value="<?php echo Input::get('godiste_od', ''); ?>" />
-                <input type="hidden" name="godiste_do" value="<?php echo Input::get('godiste_do', ''); ?>" />
-                <input type="hidden" name="kilometraza_od" value="<?php echo Input::get('kilometraza_od', ''); ?>" />
-                <input type="hidden" name="kilometraza_do" value="<?php echo Input::get('kilometraza_do', ''); ?>" />
-                <input type="hidden" name="cena_od" value="<?php echo Input::get('cena_od', ''); ?>" />
-                <input type="hidden" name="cena_do" value="<?php echo Input::get('cena_do', ''); ?>" />
-                <input type="hidden" name="gorivo" value="<?php echo Input::get('gorivo', ''); ?>" />
-                <input type="hidden" name="pogon" value="<?php echo Input::get('pogon', ''); ?>" />
-                <input type="hidden" name="menjac" value="<?php echo Input::get('menjac', ''); ?>" />
-                <input type="hidden" name="kubikaza_od" value="<?php echo Input::get('kubikaza_od', ''); ?>" />
-                <input type="hidden" name="kubikaza_do" value="<?php echo Input::get('kubikaza_do', ''); ?>" />
-                <input type="hidden" name="snaga_od" value="<?php echo Input::get('snaga_od', ''); ?>" />
-                <input type="hidden" name="snaga_do" value="<?php echo Input::get('snaga_do', ''); ?>" />
+                <input type="hidden" name="marka" value="<?php echo Input::get('marka'); ?>" />
+                <input type="hidden" name="model" value="<?php echo Input::get('model'); ?>" />
+                <input type="hidden" name="godiste_od" value="<?php echo Input::get('godiste_od'); ?>" />
+                <input type="hidden" name="godiste_do" value="<?php echo Input::get('godiste_do'); ?>" />
+                <input type="hidden" name="kilometraza_od" value="<?php echo Input::get('kilometraza_od'); ?>" />
+                <input type="hidden" name="kilometraza_do" value="<?php echo Input::get('kilometraza_do'); ?>" />
+                <input type="hidden" name="cena_od" value="<?php echo Input::get('cena_od'); ?>" />
+                <input type="hidden" name="cena_do" value="<?php echo Input::get('cena_do'); ?>" />
+                <input type="hidden" name="gorivo" value="<?php echo Input::get('gorivo'); ?>" />
+                <input type="hidden" name="pogon" value="<?php echo Input::get('pogon'); ?>" />
+                <input type="hidden" name="menjac" value="<?php echo Input::get('menjac'); ?>" />
+                <input type="hidden" name="kubikaza_od" value="<?php echo Input::get('kubikaza_od'); ?>" />
+                <input type="hidden" name="kubikaza_do" value="<?php echo Input::get('kubikaza_do'); ?>" />
+                <input type="hidden" name="snaga_od" value="<?php echo Input::get('snaga_od'); ?>" />
+                <input type="hidden" name="snaga_do" value="<?php echo Input::get('snaga_do'); ?>" />
                 <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
-                <?php 
+                <?php
                 if(Input::exists('get'))
                  echo '<button type="submit" class="login-btn">Sacuvaj pretragu</button>';
                 ?>

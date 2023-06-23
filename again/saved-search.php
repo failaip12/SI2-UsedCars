@@ -1,9 +1,12 @@
 <?php
 declare(strict_types=1);
 require_once 'core/init.php';
+$user = new User();
 if (!$user->isLoggedIn() || $user->permissionLevel()==2) {
     Redirect::to('index.php');
 }
+$db = DB::getInstance();
+$pretrage = $db->get('pretraga', array('korisnik_id', '=', $user->data()->korisnik_id))->results();
 require_once 'navbar.php';
 ?>
 <!DOCTYPE html>
@@ -17,34 +20,99 @@ require_once 'navbar.php';
         <title>UsedCars | Oglas</title>
         <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
         <script src="js/index.js" defer></script>
+        <script>
+        function obrisiPretragu(id){
+        var odgovor=confirm("Brisanje pretrage: Da li ste sigurni?");
+        if (odgovor)
+        window.location = "obrisi_pretragu.php?id="+id;
+        return false;
+      }
+    </script>
     </head>
     <body>
         <main>
             <h1 id="oglasi">Sacuvane pretrage</h1>
             <table id="pending-oglasi">
                 <tr>
-                  <th data-column-name="Marka">Marka</th>
-                  <th data-column-name="Tip">Tip</th>
-                  <th data-column-name="Godiste">Godiste</th>
-                  <th data-column-name="Kilometraza">Kilometraza</th>
-                  <th data-column-name="Cena">Cena</th>
-                  <th data-column-name="Pogon">Cena</th>
-                  <th data-column-name="Menjac">Cena</th>
-                  <th data-column-name="Pretrazi"></th>
-                  <th data-column-name="Obrisi"></th>
+                    <th data-column-name="Marka">Marka</th>
+                    <th data-column-name="Model">Model</th>
+                    <th data-column-name="Godiste od">Godiste od</th>
+                    <th data-column-name="Godiste do">Godiste do</th>
+                    <th data-column-name="Kilometraza od">Kilometraza od</th>
+                    <th data-column-name="Kilometraza do">Kilometraza do</th>
+                    <th data-column-name="Cena od">Cena od</th>
+                    <th data-column-name="Cena do">Cena do</th>
+                    <th data-column-name="Gorivo">Gorivo</th>
+                    <th data-column-name="Pogon">Pogon</th>
+                    <th data-column-name="Menjac">Menjac</th>
+                    <th data-column-name="Kubikaza od">Kubikaza od</th>
+                    <th data-column-name="Kubikaza do">Kubikaza do</th>
+                    <th data-column-name="Snaga od">Snaga od</th>
+                    <th data-column-name="Snaga do">Snaga do</th>
+                    <th data-column-name="Pretrazi"></th>
+                    <th data-column-name="Obrisi"></th>
                 </tr>
-                <tr>
-                  <td data-column-name="Marka">Cell 1</td>
-                  <td data-column-name="Tip">Cell 2</td>
-                  <td data-column-name="Godiste">Cell 3</td>
-                  <td data-column-name="Kilometraza">Cell 4</td>
-                  <td data-column-name="Cena">Cell 4</td>
-                  <td data-column-name="Pogon">Cell 4</td>
-                  <td data-column-name="Menjac">Cell 4</td>
-                  <td data-column-name="Pretrazi"><button class="login-btn">Pretrazi</button></td>
-                  <td data-column-name="Obrisi"><button class="login-btn">Obrisi</button></td>
-                </tr>
-              </table>
+                <?php 
+                if(count($pretrage) > 0) {
+                    foreach ($pretrage as $pretraga) {
+                        $marka = $pretraga->marka;
+                        $model = $pretraga->model;
+                        $godiste_od = $pretraga->godiste_od;
+                        $godiste_do = $pretraga->godiste_do;
+                        $kilometraza_od = $pretraga->kilometraza_od;
+                        $kilometraza_do = $pretraga->kilometraza_do;
+                        $cena_od = $pretraga->cena_od;
+                        $cena_do = $pretraga->cena_do;
+                        $gorivo = $pretraga->gorivo;
+                        $pogon = $pretraga->pogon;
+                        $menjac = $pretraga->menjac;
+                        $kubikaza_od = $pretraga->kubikaza_od;
+                        $kubikaza_do = $pretraga->kubikaza_do;
+                        $snaga_od = $pretraga->snaga_od;
+                        $snaga_do = $pretraga->snaga_do;
+
+                        $searchParams = http_build_query(array(
+                            'marka' => $marka,
+                            'model' => $model,
+                            'godiste_od' => $godiste_od,
+                            'godiste_do' => $godiste_do,
+                            'kilometraza_od' => $kilometraza_od,
+                            'kilometraza_do' => $kilometraza_do,
+                            'cena_od' => $cena_od,
+                            'cena_do' => $cena_do,
+                            'gorivo' => $gorivo,
+                            'pogon' => $pogon,
+                            'menjac' => $menjac,
+                            'kubikaza_od' => $kubikaza_od,
+                            'kubikaza_do' => $kubikaza_do,
+                            'snaga_od' => $snaga_od,
+                            'snaga_do' => $snaga_do,
+                        ));
+
+                        $link = 'index.php?' . $searchParams;
+                        echo '<tr>';
+                        echo '<td data-column-name="Marka">'. $marka .'</td>';
+                        echo '<td data-column-name="Model">'. $model .'</td>';
+                        echo '<td data-column-name="Godiste od">'. $godiste_od .'</td>';
+                        echo '<td data-column-name="Godiste do">'. $godiste_do .'</td>';
+                        echo '<td data-column-name="Kilometraza od">'. $kilometraza_od .'</td>';
+                        echo '<td data-column-name="Kilometraza do">'. $kilometraza_do .'</td>';
+                        echo '<td data-column-name="Cena od">'. $cena_od .'</td>';
+                        echo '<td data-column-name="Cena do">'. $cena_do .'</td>';
+                        echo '<td data-column-name="Gorivo">'. $gorivo .'</td>';
+                        echo '<td data-column-name="Pogon">'. $pogon .'</td>';
+                        echo '<td data-column-name="Menjac">'. $menjac .'</td>';
+                        echo '<td data-column-name="Kubikaza od">'. $kubikaza_od .'</td>';
+                        echo '<td data-column-name="Kubikaza do">'. $kubikaza_do .'</td>';
+                        echo '<td data-column-name="Snaga od">'. $snaga_od .'</td>';
+                        echo '<td data-column-name="Snaga do">'. $snaga_do .'</td>';
+                        echo '<td data-column-name="Pretrazi"><a href="'. $link .'"><button class="login-btn">Pretrazi</button></td></a>';
+                        echo '<td data-column-name="Obrisi"><button class="login-btn" onclick=\'return obrisiPretragu(' .$pretraga->pretraga_id .')\'>Obrisi</button></td>';
+                        echo '</tr>';
+                    }
+                }
+                ?>
+            </table>
               
         </main>
         <footer>
