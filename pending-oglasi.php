@@ -68,7 +68,7 @@ require_once 'navbar.php';
         </main>
         <footer>
             <div class="logo">
-                <!-- <img src="./images/icons/car-icon.png" alt="Yellow car icon that is part of the logo"> -->
+                <img src="./images/icons/car-icon.png" alt="Car icon that is part of the logo">
                 <span class="pink">Used</span>
                 <span class="grey">Cars</span>
             </div>

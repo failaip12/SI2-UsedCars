@@ -17,9 +17,9 @@ require_once 'core/init.php';
     <header>
             <div class="menu">
                 <div class="logo">
-                    <img src="./images/icons/car-icon.png" alt="Yellow car icon that is part of the logo">
-                    <span class="yellow">Used</span>
-                    <span class="white">Cars</span>
+                    <img src="./images/icons/car-icon.png" alt="Car icon that is part of the logo">
+                    <span class="pink">Used</span>
+                    <span class="grey">Cars</span>
                 </div>
                 <img src="./images/icons/hamburger-icon.png" alt="Hamburger icon" id="hamburger">
             </div>

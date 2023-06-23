@@ -89,15 +89,7 @@ require_once 'navbar.php';
             <section class="search">
                 <h1>Dobrodošli na UsedCars stranicu!</h1>
                 <label htmlFor="search-bar">Izaberi kriterijum za pretragu: </label>
-                <!-- <select id="search-bar" class="search-select">
-                    <option value="marka" default>Marka vozila</option>
-                    <option value="tip">Tip vozila</option>
-                    <option value="godina">Godina proizvodnje</option>
-                    <option value="kilometraza">Pređeni kilometri</option>
-                    <option value="cena">Cena</option>
-                    <option value="pogon">Vrsta pogona</option>
-                    <option value="menjac">Vrsta menjača</option>
-                </select> -->
+                
                 <div class="search-text">
                 <form method="GET">
                     <input type="text" placeholder="Marka" name="marka" class="search-input" value="<?php echo Input::get('marka'); ?>" />
@@ -208,9 +200,9 @@ require_once 'navbar.php';
         </main>
         <footer>
             <div class="logo">
-                <img src="./images/icons/car-icon.png" alt="Yellow car icon that is part of the logo">
-                <span class="yellow">Used</span>
-                <span class="white">Cars</span>
+                <img src="./images/icons/car-icon.png" alt="Car icon that is part of the logo">
+                <span class="pink">Used</span>
+                <span class="grey">Cars</span>
             </div>
             <div class="contact">
                 <div class="contact-info">
