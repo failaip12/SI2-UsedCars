@@ -9,4 +9,4 @@ if ($user->permissionLevel()!=2) {
 $admin_id = $user->data()->admin_id;
 $db = DB::getInstance();
 $db->query("UPDATE `oglasi` SET `admin_id` = ? WHERE `oglasi`.`oglas_id` = ?", array($admin_id, Input::get('id')));
-Redirect::to('listaoglasa.php');
+Redirect::to('pending-oglasi.php');

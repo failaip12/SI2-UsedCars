@@ -41,7 +41,7 @@ class User
         if (!is_array($fields)) {
             throw new Exception('Pogresni podaci');
         }
-        if (count($fields) != 2) {
+        if (count($fields) < 2) {
             throw new Exception('Nedovoljno polja');
         }
         if (!in_array($tip_korisnika, array('korisnik', 'admin'))) {
@@ -66,7 +66,15 @@ class User
     public function update($table, $fields = array(), $id = null)
     {
         if (!$id && $this->isLoggedIn()) {
-            $id = $this->data()->korisnik_id;
+            if ($table == 'korisnik') {
+                $id = $this->data()->korisnik_id;
+            }
+            elseif ($table == 'admin') {
+                $id = $this->data()->admin_id;
+            }
+            else {
+                throw new Exception('Nepoznat tip korisnika');
+            }
         }
         if (!$this->_db->updateUser($table, $id, $fields)) {
             throw new Exception('Desio se problem tokom azuriranja.');

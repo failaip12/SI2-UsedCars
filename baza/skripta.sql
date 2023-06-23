@@ -55,11 +55,9 @@ CREATE TABLE IF NOT EXISTS `cars`.`korisnik` (
   `password` VARCHAR(80) NOT NULL,
   `ime` VARCHAR(45) NULL,
   `prezime` VARCHAR(45) NULL,
-  `adresa` VARCHAR(45) NULL,
   `mobilni` VARCHAR(45) NULL,
   `grad` VARCHAR(45) NULL,
-  `postanski_broj` VARCHAR(45) NULL,
-  `fiksni` VARCHAR(45) NULL,
+  `datum_rodjenja` VARCHAR(45) NULL,
   `nalog_id` INT NOT NULL,
   PRIMARY KEY (`korisnik_id`),
   UNIQUE INDEX `korisnik_id_UNIQUE` (`korisnik_id` ASC) VISIBLE,
@@ -77,23 +75,20 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cars`.`oglasi` (
   `oglas_id` INT NOT NULL AUTO_INCREMENT,
+  `naslov` VARCHAR(80) NOT NULL,
   `marka` VARCHAR(45) NOT NULL,
+  `model` VARCHAR(45) NOT NULL,
   `godiste` INT NOT NULL,
   `kilometraza` INT NOT NULL,
   `cena` INT NOT NULL,
   `pogon` VARCHAR(45) NOT NULL,
   `menjac` VARCHAR(45) NOT NULL,
-  `karoserija` VARCHAR(45) NOT NULL,
   `gorivo` VARCHAR(45) NOT NULL,
-  `kubikaza` VARCHAR(45) NOT NULL,
-  `snaga` VARCHAR(45) NOT NULL,
-  `emisiona_klasa` VARCHAR(45) NOT NULL,
+  `kubikaza` INT NOT NULL,
+  `snaga` INT NOT NULL,
   `broj_vrata` VARCHAR(45) NOT NULL,
-  `broj_sedista` VARCHAR(45) NOT NULL,
-  `klima` VARCHAR(45) NOT NULL,
-  `volan` VARCHAR(45) NOT NULL,
+  `broj_sedista` INT NOT NULL,
   `opis_oglasa` VARCHAR(1000) NOT NULL,
-  `naslov` VARCHAR(45) NOT NULL,
   `korisnik_id` INT NOT NULL,
   `admin_id` INT NULL,
   PRIMARY KEY (`oglas_id`),
@@ -141,6 +136,38 @@ CREATE TABLE IF NOT EXISTS `cars`.`oglas_ima_sliku` (
   CONSTRAINT `fk_oglas_ima_sliku_slika1`
     FOREIGN KEY (`slika_id`)
     REFERENCES `cars`.`slika` (`slika_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cars`.`pretraga`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cars`.`pretraga` (
+  `pretraga_id` INT NOT NULL AUTO_INCREMENT,
+  `marka` VARCHAR(45) NULL,
+  `model` VARCHAR(45) NULL,
+  `godiste_od` VARCHAR(45) NULL,
+  `godiste_do` VARCHAR(45) NULL,
+  `kilometraza_od` VARCHAR(45) NULL,
+  `kilometraza_do` VARCHAR(45) NULL,
+  `cena_od` VARCHAR(45) NULL,
+  `cena_do` VARCHAR(45) NULL,
+  `pogon` VARCHAR(45) NULL,
+  `menjac` VARCHAR(45) NULL,
+  `gorivo` VARCHAR(45) NULL,
+  `kubikaza_od` VARCHAR(45) NULL,
+  `kubikaza_do` VARCHAR(45) NULL,
+  `snaga_od` VARCHAR(45) NULL,
+  `snaga_do` VARCHAR(45) NULL,
+  `korisnik_id` INT NOT NULL,
+  PRIMARY KEY (`pretraga_id`),
+  UNIQUE INDEX `idOglas_UNIQUE` (`pretraga_id` ASC) VISIBLE,
+  INDEX `fk_Oglas_zaposleni1_idx` (`korisnik_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Oglas_zaposleni10`
+    FOREIGN KEY (`korisnik_id`)
+    REFERENCES `cars`.`korisnik` (`korisnik_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

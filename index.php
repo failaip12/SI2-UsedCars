@@ -1,371 +1,237 @@
 <?php
 declare(strict_types=1);
 require_once 'core/init.php';
+$db = DB::getInstance();
+$user = new User();
+$marka = "%" . strtolower(Input::get('marka')) . "%";
+$model = "%" . strtolower(Input::get('model')) . "%";
+$pogon = "%" . strtolower(Input::get('pogon')) . "%";
+$menjac = "%" . strtolower(Input::get('menjac')) . "%";
+$gorivo = "%" . strtolower(Input::get('gorivo')) . "%";
 
+$godiste_od = !empty(Input::get('godiste_od')) ? Input::get('godiste_od') : PHP_INT_MIN;
+$godiste_do = !empty(Input::get('godiste_do')) ? Input::get('godiste_do') : PHP_INT_MAX;
+$kilometraza_od = !empty(Input::get('kilometraza_od')) ? Input::get('kilometraza_od') : PHP_INT_MIN;
+$kilometraza_do = !empty(Input::get('kilometraza_do')) ? Input::get('kilometraza_do') : PHP_INT_MAX;
+$cena_od = !empty(Input::get('cena_od')) ? Input::get('cena_od') : PHP_INT_MIN;
+$cena_do = !empty(Input::get('cena_do')) ? Input::get('cena_do') : PHP_INT_MAX;
+$kubikaza_od = !empty(Input::get('kubikaza_od')) ? Input::get('kubikaza_od') : PHP_INT_MIN;
+$kubikaza_do = !empty(Input::get('kubikaza_do')) ? Input::get('kubikaza_do') : PHP_INT_MAX;
+$snaga_od = !empty(Input::get('snaga_od')) ? Input::get('snaga_od') : PHP_INT_MIN;
+$snaga_do = !empty(Input::get('snaga_do')) ? Input::get('snaga_do') : PHP_INT_MAX;
+
+$sql = "SELECT * FROM oglasi WHERE admin_id is NOT NULL";
+
+$bindings = [];
+
+if (!empty($marka)) {
+  $sql .= " AND LOWER(marka) LIKE ?";
+  $bindings[] = $marka;
+}
+
+if (!empty($model)) {
+  $sql .= " AND LOWER(model) LIKE ?";
+  $bindings[] = $model;
+}
+
+$sql .= " AND godiste BETWEEN ? AND ?";
+$bindings[] = $godiste_od;
+$bindings[] = $godiste_do;
+
+$sql .= " AND kilometraza BETWEEN ? AND ?";
+$bindings[] = $kilometraza_od;
+$bindings[] = $kilometraza_do;
+
+$sql .= " AND cena BETWEEN ? AND ?";
+$bindings[] = $cena_od;
+$bindings[] = $cena_do;
+
+if (!empty($pogon)) {
+  $sql .= " AND LOWER(pogon) LIKE ?";
+  $bindings[] = $pogon;
+}
+
+if (!empty($menjac)) {
+  $sql .= " AND LOWER(menjac) LIKE ?";
+  $bindings[] = $menjac;
+}
+
+if (!empty($gorivo)) {
+  $sql .= " AND LOWER(gorivo) LIKE ?";
+  $bindings[] = $gorivo;
+}
+
+$sql .= " AND kubikaza BETWEEN ? AND ?";
+$bindings[] = $kubikaza_od;
+$bindings[] = $kubikaza_do;
+
+$sql .= " AND snaga BETWEEN ? AND ?";
+$bindings[] = $snaga_od;
+$bindings[] = $snaga_do;
+
+// Execute the prepared SQL statement
+$oglasi = $db->query($sql, $bindings)->results();
+require_once 'navbar.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            UsedCars
-        </title>
-        <!--=============== CSS ===============-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/oglas.css">
-        <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist\css\bootstrap.min.css">
-        <!--=============== REMIX ICON/BOXICON ===============-->
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-        <!--=============== SWIPPER ===============-->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+        <link rel="stylesheet" href="./css/style.css">
+        <title>UsedCars</title>
+        <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
+        <script src="js/index.js" defer></script>
     </head>
-    
     <body>
-        <header>
-        <div class="nav container">
-            <!--====treba mi jos i broj sedista vrsta motora broj vrata za oglas====-->
-            <i class='bx bx-menu' id="menu-icon"></i>
-            <!--====logo====-->
-            <a href="#" class="logo">Used<span>Cars</span></a>
-            <!--<div class="logo"><a href=""><img src=".\img\logo.jpg" width="30px" height="50px"></a></div>-->
-            <!--====nav list====-->
-            <ul class="navbar">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#poslednje">Poslednje dodato</a></li>
-                <li><a href="registracija.php">Registracija</a></li>
-                <li><a href="prijava.php">Prijava</a></li>
-                <li><a href="#kontakt">Kontakt</a></li>
-                <li><a href="profil.php">Profil</a></li>
-                <li><a href="postavi-oglas.php">Postavi Oglas</a></li>
-            </ul>
-            <i class='bx bx-search' id="search-icon" onclick="showDiv('search-box')"></i>
-
-        </div>
-        </header>
-    <section class=" home" id="home">
-        <div class="search-box glass">
-            <h2 class="section__title">Pretraga</h2>
-            <select class="brand" id="brand" name="brand" placeholder="Marka">
-                <option value="" disabled selected hidden>Marka</option>
-                <option value="ac">AC</option>
-                <option value="alfa-romeo">Alfa Romeo</option>
-                <option value="alpina">Alpina</option>
-                <option value="aro">Aro</option>
-                <option value="audi">Audi</option>
-                <option value="austin">Austin</option>
-                <option value="bentley">Bentley</option>
-                <option value="bmw">BMW</option>
-                <option value="buick">Buick</option>
-                <option value="cadillac">Cadillac</option>
-                <option value="chery">Chery</option>
-                <option value="chevrolet">Chevrolet</option>
-                <option value="chrysler">Chrysler</option>
-                <option value="citroen">Citroen</option>
-                <option value="cupra">Cupra</option>
-                <option value="dacia">Dacia</option>
-                <option value="daewoo">Daewoo</option>
-                <option value="daihatsu">Daihatsu</option>
-                <option value="dodge">Dodge</option>
-                <option value="dr">DR</option>
-                <option value="ferrari">Ferrari</option>
-                <option value="fiat">Fiat</option>
-                <option value="ford">Ford</option>
-                <option value="gaz">GAZ</option>
-                <option value="great-wall">Great Wall</option>
-                <option value="honda">Honda</option>
-                <option value="hummer">Hummer</option>
-                <option value="hyundai">Hyundai</option>
-                <option value="infiniti">Infiniti</option>
-                <option value="isuzu">Isuzu</option>
-                <option value="jaguar">Jaguar</option>
-                <option value="jeep">Jeep</option>
-                <option value="kia">Kia</option>
-                <option value="lada">Lada</option>
-                <option value="lamborghini">Lamborghini</option>
-                <option value="lancia">Lancia</option>
-                <option value="land-rover">Land Rover</option>
-                <option value="lexus">Lexus</option>
-                <option value="lincoln">Lincoln</option>
-                <option value="linzda">Linzda</option>
-                <option value="mahindra">Mahindra</option>
-                <option value="maserati">Maserati</option>
-                <option value="mazda">Mazda</option>
-                <option value="mercedes-benz">Mercedes Benz</option>
-                <option value="mg">MG</option>
-                <option value="mini">MINI</option>
-                <option value="mitsubishi">Mitsubishi</option>
-                <option value="moskvitch">Moskvitch</option>
-                <option value="nissan">Nissan</option>
-                <option value="nsu">NSU</option>
-                <option value="oldsmobile">Oldsmobile</option>
-                <option value="opel">Opel</option>
-                <option value="peugeot">Peugeot</option>
-                <option value="piaggio">Piaggio</option>
-                <option value="polski-fiat">Polski Fiat</option>
-                <option value="porsche">Porsche</option>
-                <option value="renault">Renault</option>
-                <option value="rolls-royce">Rolls Royce</option>
-                <option value="rover">Rover</option>
-                <option value="saab">Saab</option>
-                <option value="seat">Seat</option>
-                <option value="shuanghuan">Shuanghuan</option>
-                <option value="smart">Smart</option>
-                <option value="ssangyong">SsangYong</option>
-                <option value="subaru">Subaru</option>
-                <option value="suzuki">Suzuki</option>
-                <option value="tesla">Tesla</option>
-                <option value="toyota">Toyota</option>
-                <option value="trabant">Trabant</option>
-                <option value="triumph">Triumph</option>
-                <option value="uaz">UAZ</option>
-                <option value="volkswagen">Volkswagen</option>
-                <option value="volvo">Volvo</option>
-                <option value="wartburg">Wartburg</option>
-                <option value="zastava">Zastava</option>
-                <option value="zhidou">ZhiDou</option>
-                <option value="skoda">Škoda</option>
-                <option value="ostalo">Ostalo</option>
-            </select>
-            <select id="godinaod" name="godinaod" placeholder="Godina od">
-                <option value="" disabled selected hidden>Godina od</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-            </select>
-            <select id="godinado" name="godinado" placeholder="Godina do">
-                <option value="" disabled selected hidden>Godina do</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-                <option value="2022">2022.</option>
-            </select>
-            <select id="karoserija" name="karoserija" placeholder="Karoserija">
-                <option value="" disabled selected hidden>Karoserija</option>
-                <option value="benzin">Benzin</option>
-                <option value="benzin">Benzin</option>
-                <option value="benzin">Benzin</option>
-                <option value="benzin">Benzin</option>
-            </select>
-            <select id="gorivo" name="gorivo" placeholder="Gorivo">
-                <option value="" disabled selected hidden>Gorivo</option>
-                <option value="benzin">Benzin</option>
-                <option value="benzin">Benzin</option>
-                <option value="benzin">Benzin</option>
-                <option value="benzin">Benzin</option>
-            </select>
-            <select id="vozila" name="vozila" placeholder="Polovna i nova vozila">
-                <option value="" disabled selected hidden>Polovna i nova vozila</option>
-                <option value="benzin">Benzin</option>
-                <option value="benzin">Benzin</option>
-                <option value="benzin">Benzin</option>
-                <option value="benzin">Benzin</option>
-            </select>
-            <button class="button pretraga__button">Pretraži</button>
-            <button class="button detaljna__button">Detaljna pretraga</button>
-            <button class="button sacuvaj__button">Sačuvaj pretragu</button>
-            <button class="button sacuvane__button">Sačuvane pretrage</button>
-        </div>
-    </section>
-
-    <section class="popular section" id="popular">
-        <h2 class="section__title">Poslednje dodati oglasi</h2>
-        <div class="swiper popular__container container">
-            <div class="swiper-wrapper">
-                <div class=" swiper-slide popular__card">
-                    <a href="oglas.php">
-                        <div class=" shape shape__smaller">
-                        </div>
-                        <h1 class="popular__title">Honda</h1>
-                        <h3 class="popular__subtitle">Civic</h3>
-                        <img src="img/car1.jpg" class="popular__img">
-                        <div class="popular__data">
-                            <div class="popular__data-group">
-                                <i class="ri-dashboard-3-line"></i>3.7sec
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-funds-box-line"></i> 356 km/h
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-charging-pile-2-line"></i> Electric
-                            </div>
-                        </div>
-                        <h3 class="popular__price">2000€</h3>
-                        <button class="button popular__button">
-                            <i class="ri-shopping-bag-2-line"></i></button>
-                    </a>
+        <main>
+            <section class="search">
+                <h1>Dobrodošli na UsedCars stranicu!</h1>
+                <label htmlFor="search-bar">Izaberi kriterijum za pretragu: </label>
+                <!-- <select id="search-bar" class="search-select">
+                    <option value="marka" default>Marka vozila</option>
+                    <option value="tip">Tip vozila</option>
+                    <option value="godina">Godina proizvodnje</option>
+                    <option value="kilometraza">Pređeni kilometri</option>
+                    <option value="cena">Cena</option>
+                    <option value="pogon">Vrsta pogona</option>
+                    <option value="menjac">Vrsta menjača</option>
+                </select> -->
+                <div class="search-text">
+                <form method="GET">
+                    <input type="text" placeholder="Marka" name="marka" class="search-input" value="<?php echo Input::get('marka'); ?>" />
+                    <input type="text" placeholder="Model" name="model" class="search-input" value="<?php echo Input::get('model'); ?>" />
+                    <input type="text" placeholder="Godste od" name="godiste_od" class="search-input" value="<?php echo Input::get('godiste_od'); ?>" />
+                    <input type="text" placeholder="Godste do" name="godiste_do" class="search-input" value="<?php echo Input::get('godiste_do'); ?>" />
+                    <input type="text" placeholder="Kilometraza od" name="kilometraza_od" class="search-input" value="<?php echo Input::get('kilometraza_od'); ?>" />
+                    <input type="text" placeholder="Kilometraza do" name="kilometraza_do" class="search-input" value="<?php echo Input::get('kilometraza_do'); ?>" />
+                    <input type="text" placeholder="Cena od" name="cena_od" class="search-input" value="<?php echo Input::get('cena_od'); ?>" />
+                    <input type="text" placeholder="Cena do" name="cena_do" class="search-input" value="<?php echo Input::get('cena_do'); ?>" />
+                    <select id="gorivo" name="gorivo">
+                        <option value="Dizel" <?php if (Input::get('gorivo') === 'Dizel') echo 'selected'; ?>>Dizel</option>
+                        <option value="Benzin" <?php if (Input::get('gorivo') === 'Benzin') echo 'selected'; ?>>Benzin</option>
+                        <option value="Benzin + Gas (TNG)" <?php if (Input::get('gorivo') === 'Benzin + Gas (TNG)') echo 'selected'; ?>>Benzin + Gas (TNG)</option>
+                        <option value="Benzin + Metan (CNG)" <?php if (Input::get('gorivo') === 'Benzin + Metan (CNG)') echo 'selected'; ?>>Benzin + Metan (CNG)</option>
+                        <option value="Električni pogon" <?php if (Input::get('gorivo') === 'Električni pogon') echo 'selected'; ?>>Električni pogon</option>
+                        <option value="Hibridni pogon" <?php if (Input::get('gorivo') === 'Hibridni pogon') echo 'selected'; ?>>Hibridni pogon</option>
+                    </select>
+                    <select id="pogon" name="pogon">
+                        <option value="Prednji" <?php if (Input::get('pogon') === 'Prednji') echo 'selected'; ?>>Prednji</option>
+                        <option value="Zadnji" <?php if (Input::get('pogon') === 'Zadnji') echo 'selected'; ?>>Zadnji</option>
+                        <option value="4x4" <?php if (Input::get('pogon') === '4x4') echo 'selected'; ?>>4x4</option>
+                    </select>
+                    <select id="menjac" name="menjac">
+                        <optgroup label="Manuelni menjač">
+                            <option value="Manuelni 1 brzina" <?php if (Input::get('menjac') === 'Manuelni 1 brzina') echo 'selected'; ?>>1 brzina</option>
+                            <option value="Manuelni 2 brzina" <?php if (Input::get('menjac') === 'Manuelni 2 brzina') echo 'selected'; ?>>2 brzine</option>
+                            <option value="Manuelni 3 brzina" <?php if (Input::get('menjac') === 'Manuelni 3 brzina') echo 'selected'; ?>>3 brzine</option>
+                            <option value="Manuelni 4 brzina" <?php if (Input::get('menjac') === 'Manuelni 4 brzina') echo 'selected'; ?>>4 brzina</option>
+                            <option value="Manuelni 5 brzina" <?php if (Input::get('menjac') === 'Manuelni 5 brzina') echo 'selected'; ?>>5 brzina</option>
+                            <option value="Manuelni 6 brzina" <?php if (Input::get('menjac') === 'Manuelni 6 brzina') echo 'selected'; ?>>6 brzina</option>
+                        </optgroup>
+                        <optgroup label="Automatski menjač">
+                            <option value="Automatski 1 brzina" <?php if (Input::get('menjac') === 'Automatski 1 brzina') echo 'selected'; ?>>1 brzina</option>
+                            <option value="Automatski 2 brzina" <?php if (Input::get('menjac') === 'Automatski 2 brzina') echo 'selected'; ?>>2 brzine</option>
+                            <option value="Automatski 3 brzina" <?php if (Input::get('menjac') === 'Automatski 3 brzina') echo 'selected'; ?>>3 brzine</option>
+                            <option value="Automatski 4 brzina" <?php if (Input::get('menjac') === 'Automatski 4 brzina') echo 'selected'; ?>>4 brzina</option>
+                            <option value="Automatski 5 brzina" <?php if (Input::get('menjac') === 'Automatski 5 brzina') echo 'selected'; ?>>5 brzina</option>
+                            <option value="Automatski 6 brzina" <?php if (Input::get('menjac') === 'Automatski 6 brzina') echo 'selected'; ?>>6 brzina</option>
+                        </optgroup>
+                    </select>
+                    <input type="text" placeholder="Kubikaza od" name="kubikaza_od" class="search-input" value="<?php echo Input::get('kubikaza_od'); ?>" />
+                    <input type="text" placeholder="Kubikaza do" name="kubikaza_do" class="search-input" value="<?php echo Input::get('kubikaza_do'); ?>" />
+                    <input type="text" placeholder="Snaga od" name="snaga_od" class="search-input" value="<?php echo Input::get('snaga_od'); ?>" />
+                    <input type="text" placeholder="Snaga do" name="snaga_do" class="search-input" value="<?php echo Input::get('snaga_do'); ?>" />
+                    <button type="submit" class="login-btn">Pretraži</button>
+                </form>
+                <form method="POST" action="save-search.php">
+                <input type="hidden" name="marka" value="<?php echo Input::get('marka'); ?>" />
+                <input type="hidden" name="model" value="<?php echo Input::get('model'); ?>" />
+                <input type="hidden" name="godiste_od" value="<?php echo Input::get('godiste_od'); ?>" />
+                <input type="hidden" name="godiste_do" value="<?php echo Input::get('godiste_do'); ?>" />
+                <input type="hidden" name="kilometraza_od" value="<?php echo Input::get('kilometraza_od'); ?>" />
+                <input type="hidden" name="kilometraza_do" value="<?php echo Input::get('kilometraza_do'); ?>" />
+                <input type="hidden" name="cena_od" value="<?php echo Input::get('cena_od'); ?>" />
+                <input type="hidden" name="cena_do" value="<?php echo Input::get('cena_do'); ?>" />
+                <input type="hidden" name="gorivo" value="<?php echo Input::get('gorivo'); ?>" />
+                <input type="hidden" name="pogon" value="<?php echo Input::get('pogon'); ?>" />
+                <input type="hidden" name="menjac" value="<?php echo Input::get('menjac'); ?>" />
+                <input type="hidden" name="kubikaza_od" value="<?php echo Input::get('kubikaza_od'); ?>" />
+                <input type="hidden" name="kubikaza_do" value="<?php echo Input::get('kubikaza_do'); ?>" />
+                <input type="hidden" name="snaga_od" value="<?php echo Input::get('snaga_od'); ?>" />
+                <input type="hidden" name="snaga_do" value="<?php echo Input::get('snaga_do'); ?>" />
+                <?php
+                if(Input::exists('get'))
+                 echo '<button type="submit" class="login-btn">Sacuvaj pretragu</button>';
+                ?>
+                </form>
                 </div>
-                <div class="swiper-slide popular__card">
-                    <a href="oglas.php">
-                        <div class=" shape shape__smaller">
-                        </div>
-                        <h1 class="popular__title">Honda</h1>
-                        <h3 class="popular__subtitle">Civic</h3>
-                        <img src="img/car1.jpg" class="popular__img">
-                        <div class="popular__data">
-                            <div class="popular__data-group">
-                                <i class="ri-dashboard-3-line"></i>3.7sec
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-funds-box-line"></i> 356 km/h
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-charging-pile-2-line"></i> Electric
-                            </div>
-                        </div>
-                        <h3 class="popular__price">2000€</h3>
-                        <button class="button popular__button">
-                            <i class="ri-shopping-bag-2-line"></i></button>
-                    </a>
+            </section>
+            <section class="car-ads">
+                <h1>Oglasi</h1>
+                <div class="car-ads-grid">
+                    <?php
+                    if (count($oglasi) > 0) {
+                        foreach ($oglasi as $oglas) {
+                            $korisnik = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))->first();
+                            $slika_id = $db->get('oglas_ima_sliku', array('oglas_id', '=', $oglas->oglas_id))->first()->slika_id;
+                            $slika_hash = $db->get('slika', array('slika_id', '=', $slika_id))->first()->hash;
+                            $link = "single-ad.php?id=" . strval($oglas->oglas_id);
+                            echo '<div class="car-ad">';
+                                echo '<a href="' . $link . '">';
+                                    echo '<img src="slike_oglasa/' . $slika_hash . '" alt="A car">';
+                                    echo '<div class="car-desc">';
+                                        echo '<div class="car-name-price">';
+                                            echo '<h2 class="car-name">' . $oglas->naslov . '</h2>';
+                                            echo '<p class="car-price">€' . $oglas->cena . '</p>';
+                                        echo '</div>';
+                                        echo '<p class="car-details">' . $oglas->gorivo . '(' . $oglas->godiste . ')</p>';
+                                    echo '</div>';
+                                echo '</a>';
+                            echo '</div>';
+                        }
+                    }
+                    else {
+                        echo "Nema oglasa";
+                    }
+                    ?>
                 </div>
-                <div class="swiper-slide popular__card">
-                    <a href="oglas.php">
-                        <div class=" shape shape__smaller">
-                        </div>
-                        <h1 class="popular__title">Honda</h1>
-                        <h3 class="popular__subtitle">Civic</h3>
-                        <img src="img/car1.jpg" class="popular__img">
-                        <div class="popular__data">
-                            <div class="popular__data-group">
-                                <i class="ri-dashboard-3-line"></i>3.7sec
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-funds-box-line"></i> 356 km/h
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-charging-pile-2-line"></i> Electric
-                            </div>
-                        </div>
-                        <h3 class="popular__price">2000€</h3>
-                        <button class="button popular__button">
-                            <i class="ri-shopping-bag-2-line"></i></button>
-                    </a>
+            </section>
+            <section class="guide">
+                <div class="guide-desc">
+                    <h1 class="guide-title">Kako izabrati najbolji automobil za Vas?</h1>
+                    <p>Na šta sve treba obratiti pažnju pri kupovini automobila, koji detalji su najvažniji? Pročitajte naš <a href="#">vodič</a> pre Vaše prve kupovine!</p>
                 </div>
-                <div class="swiper-slide popular__card">
-                    <a href="oglas.php">
-                        <div class="shape shape__smaller">
-                        </div>
-                        <h1 class="popular__title">Honda</h1>
-                        <h3 class="popular__subtitle">Civic</h3>
-                        <img src="img/car1.jpg" class="popular__img">
-                        <div class="popular__data">
-                            <div class="popular__data-group">
-                                <i class="ri-dashboard-3-line"></i>3.7sec
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-funds-box-line"></i> 356 km/h
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-charging-pile-2-line"></i> Electric
-                            </div>
-                        </div>
-                        <h3 class="popular__price">2000€</h3>
-                        <button class="button popular__button">
-                            <i class="ri-shopping-bag-2-line"></i></button>
-                    </a>
+                <img src="./images/icons/shopping_cart.png" alt="Shopping cart icon">
+            </section>
+        </main>
+        <footer>
+            <div class="logo">
+                <img src="./images/icons/car-icon.png" alt="Yellow car icon that is part of the logo">
+                <span class="yellow">Used</span>
+                <span class="white">Cars</span>
+            </div>
+            <div class="contact">
+                <div class="contact-info">
+                    <a href="#">Oglasi</a>
+                    <a href="#">Cene</a>
                 </div>
-                <div class="swiper-slide popular__card">
-                    <a href="oglas.php">
-                        <div class=" shape shape__smaller">
-                        </div>
-                        <h1 class="popular__title">Honda</h1>
-                        <h3 class="popular__subtitle">Civic</h3>
-                        <img src="img/car1.jpg" class="popular__img">
-                        <div class="popular__data">
-                            <div class="popular__data-group">
-                                <i class="ri-dashboard-3-line"></i>3.7sec
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-funds-box-line"></i> 356 km/h
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-charging-pile-2-line"></i> Electric
-                            </div>
-                        </div>
-                        <h3 class="popular__price">2000€</h3>
-                        <button class="button popular__button">
-                            <i class="ri-shopping-bag-2-line"></i></button>
-                    </a>
+                <div class="contact-sections">
+                    <div class="contact-section">
+                        <h2>Kompanija</h2>
+                        <a href="#">Iskustva korisnika</a>
+                        <a href="#">O nama</a>
+                        <a href="#">Kontakt</a>
+                    </div>
+                    <div class="contact-section">
+                        <h2>Pomoć</h2>
+                        <a href="#">Podrška</a>
+                        <a href="#">Blog</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="swiper-pagination"></div>
-        </div>
-    </section>
-    <section class="footer">
-        <div class="col-1">
-            <h3>Korisni linkovi</h3>
-            <a href="#home">Home</a>
-            <a href="#poslednje">Popularno</a>
-            <a href="registracija.php">Registracija</a>
-            <a href="prijava.php">Prijava</a>
-            <a href="#Kontakt">Kontakt</a>
-        </div>
-        <div class="col-2">
-            <h3>NEWSLETTER</h3>
-            <form>
-                <input class="email" type="text" placeholder="Unesite email" required>
-                <br></br>
-                <button class="footer__button" type="submit">PRETPLATITE SE</button>
-            </form>
-        </div>
-        <div class="col-3">
-            <h3>Kontakt</h3>
-            <p>Kralja Petra 45, VI sprat
-                11000 Beograd
-                Tel: 011/71-55-055
-                e-mail: info@laguna.rs</p>
-        </div>
-
-    </section>
-
-    <script>
-    var swiper = new Swiper(".popular__container", {
-      slidesPerView: 1,
-      spaceBetween: 10,
-      grabCursor:true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 4,
-          spaceBetween: 40,
-        },
-        1024: {
-          slidesPerView: 5,
-          spaceBetween: 50,
-        },
-      },
-    });
-  </script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
-</body>
-
+            <p>©2022 UsedCars.com, sva prava zadržana.</p>
+        </footer>
+    </body>
 </html>
