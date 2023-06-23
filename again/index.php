@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require_once 'core/init.php';
 $db = DB::getInstance();
+$user = new User();
 $marka = "%" . strtolower(Input::get('marka')) . "%";
 $model = "%" . strtolower(Input::get('model')) . "%";
 $pogon = "%" . strtolower(Input::get('pogon')) . "%";
@@ -70,6 +71,7 @@ $bindings[] = $snaga_do;
 
 // Execute the prepared SQL statement
 $oglasi = $db->query($sql, $bindings)->results();
+require_once 'navbar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,48 +85,6 @@ $oglasi = $db->query($sql, $bindings)->results();
         <script src="js/index.js" defer></script>
     </head>
     <body>
-        <header>
-            <div class="menu">
-                <div class="logo">
-                    <img src="./images/icons/car-icon.png" alt="Yellow car icon that is part of the logo">
-                    <span class="yellow">Used</span>
-                    <span class="white">Cars</span>
-                </div>
-                <img src="./images/icons/hamburger-icon.png" alt="Hamburger icon" id="hamburger">
-            </div>
-            <nav id="nav">
-                <ul>
-                    <li><a href="#">Početna</a></li>
-                    <li><a href="#">Pretraga</a></li>
-                    <li><a href="#">Vesti</a></li>
-                    <div class="buttons">
-                        <li><button class="modal-btn">Prijavi se</button></li>
-                        <li><a href="register.php" class="login-btn">Registruj se</a></li>
-                    </div>
-                </ul>
-            </nav>
-            <div id="overlay">
-                <form action="login.php" method="post" class="login-form" >
-                    <div class="login-data">
-                        <div class="login-item">
-                            <label for="email">E-mail</label>
-                            <input type="text" placeholder="E-mail" name="email" required>
-                        </div>
-                        <div class="login-item">
-                            <label for="password">Šifra</label>
-                            <input type="password" placeholder="Šifra" name="password" required>
-                        </div>
-                        <button type="submit" class="login-btn">Uloguj se</button>
-                        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
-                    </div>
-                    
-                    <div class="close-login">
-                        <button type="button" class="cancel-btn">Zatvori</button>
-                        <a href="register.php">Nemate svoj nalog? Napravite novi!</a>
-                    </div>
-                </form>
-            </div>
-        </header>
         <main>
             <section class="search">
                 <h1>Dobrodošli na UsedCars stranicu!</h1>
@@ -184,6 +144,28 @@ $oglasi = $db->query($sql, $bindings)->results();
                     <input type="text" placeholder="Snaga od" name="snaga_od" class="search-input" value="<?php echo Input::get('snaga_od', ''); ?>" />
                     <input type="text" placeholder="Snaga do" name="snaga_do" class="search-input" value="<?php echo Input::get('snaga_do', ''); ?>" />
                     <button type="submit" class="login-btn">Pretraži</button>
+                </form>
+                <form method="POST" action="save-search.php">
+                <input type="hidden" name="marka" value="<?php echo Input::get('marka', ''); ?>" />
+                <input type="hidden" name="model" value="<?php echo Input::get('model', ''); ?>" />
+                <input type="hidden" name="godiste_od" value="<?php echo Input::get('godiste_od', ''); ?>" />
+                <input type="hidden" name="godiste_do" value="<?php echo Input::get('godiste_do', ''); ?>" />
+                <input type="hidden" name="kilometraza_od" value="<?php echo Input::get('kilometraza_od', ''); ?>" />
+                <input type="hidden" name="kilometraza_do" value="<?php echo Input::get('kilometraza_do', ''); ?>" />
+                <input type="hidden" name="cena_od" value="<?php echo Input::get('cena_od', ''); ?>" />
+                <input type="hidden" name="cena_do" value="<?php echo Input::get('cena_do', ''); ?>" />
+                <input type="hidden" name="gorivo" value="<?php echo Input::get('gorivo', ''); ?>" />
+                <input type="hidden" name="pogon" value="<?php echo Input::get('pogon', ''); ?>" />
+                <input type="hidden" name="menjac" value="<?php echo Input::get('menjac', ''); ?>" />
+                <input type="hidden" name="kubikaza_od" value="<?php echo Input::get('kubikaza_od', ''); ?>" />
+                <input type="hidden" name="kubikaza_do" value="<?php echo Input::get('kubikaza_do', ''); ?>" />
+                <input type="hidden" name="snaga_od" value="<?php echo Input::get('snaga_od', ''); ?>" />
+                <input type="hidden" name="snaga_do" value="<?php echo Input::get('snaga_do', ''); ?>" />
+                <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
+                <?php 
+                if(Input::exists('get'))
+                 echo '<button type="submit" class="login-btn">Sacuvaj pretragu</button>';
+                ?>
                 </form>
                 </div>
             </section>

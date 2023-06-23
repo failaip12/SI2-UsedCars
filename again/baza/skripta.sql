@@ -141,6 +141,38 @@ CREATE TABLE IF NOT EXISTS `cars`.`oglas_ima_sliku` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `cars`.`pretraga`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cars`.`pretraga` (
+  `pretraga_id` INT NOT NULL AUTO_INCREMENT,
+  `marka` VARCHAR(45) NULL,
+  `model` VARCHAR(45) NULL,
+  `godiste_od` VARCHAR(45) NULL,
+  `godiste_do` VARCHAR(45) NULL,
+  `kilometraza_od` VARCHAR(45) NULL,
+  `kilometraza_do` VARCHAR(45) NULL,
+  `cena_od` VARCHAR(45) NULL,
+  `cena_do` VARCHAR(45) NULL,
+  `pogon` VARCHAR(45) NULL,
+  `menjac` VARCHAR(45) NULL,
+  `gorivo` VARCHAR(45) NULL,
+  `kubikaza_od` VARCHAR(45) NULL,
+  `kubikaza_do` VARCHAR(45) NULL,
+  `snaga_od` VARCHAR(45) NULL,
+  `snaga_do` VARCHAR(45) NULL,
+  `korisnik_id` INT NOT NULL,
+  PRIMARY KEY (`pretraga_id`),
+  UNIQUE INDEX `idOglas_UNIQUE` (`pretraga_id` ASC) VISIBLE,
+  INDEX `fk_Oglas_zaposleni1_idx` (`korisnik_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Oglas_zaposleni10`
+    FOREIGN KEY (`korisnik_id`)
+    REFERENCES `cars`.`korisnik` (`korisnik_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

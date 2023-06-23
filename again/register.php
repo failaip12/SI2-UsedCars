@@ -74,10 +74,8 @@ if (Input::exists()) {
         }
     }
 }
-
-
+require_once 'navbar.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -90,23 +88,6 @@ if (Input::exists()) {
         <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
     </head>
     <body>
-        <header>
-            <div class="menu">
-                <div class="logo">
-                    <img src="./images/icons/car-icon.png" alt="Yellow car icon that is part of the logo">
-                    <span class="yellow">Used</span>
-                    <span class="white">Cars</span>
-                </div>
-                <img src="./images/icons/hamburger-icon.png" alt="Hamburger icon" id="hamburger">
-            </div>
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.php">Početna</a></li>
-                    <li><a href="index.php">Pretraga</a></li>
-                    <li><a href="#">Vesti</a></li>
-                </ul>
-            </nav>
-        </header>
         <section class="sign-in">
             <h1>Popunite podatke za registraciju:</h1>
             <form action="" method="post" class="form">

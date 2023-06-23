@@ -16,6 +16,7 @@ if (!Input::exists('get')) {
 }
 $broj_oglasa = $oglasi_query->count();
 $oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NULL limit ? , ?', array(($trenutna_strana - 1) * 10, 10))->results();
+require_once 'navbar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,48 +39,6 @@ $oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NULL limit ? , ?', 
         </script>
     </head>
     <body>
-        <header>
-            <div class="menu">
-                <div class="logo">
-                    <!-- <img src="./images/icons/car-icon.png" alt="Yellow car icon that is part of the logo"> -->
-                    <span class="pink">Used</span>
-                    <span class="grey">Cars</span>
-                </div>
-                <img src="./images/icons/hamburger-icon.png" alt="Hamburger icon" id="hamburger">
-            </div>
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.php">Početna</a></li>
-                    <li><a href="index.php">Pretraga</a></li>
-                    <li><a href="#">Vesti</a></li>
-                    <div class="buttons">
-                        <li><button class="modal-btn">Prijavi se</button></li>
-                        <li><a href="register.php" class="login-btn">Registruj se</a></li>
-                    </div>
-                </ul>
-            </nav>
-            <div id="overlay">
-                <form action="login.php" method="post" class="login-form" >
-                    <div class="login-data">
-                        <div class="login-item">
-                            <label for="email">E-mail</label>
-                            <input type="text" placeholder="E-mail" name="email" required>
-                        </div>
-                        <div class="login-item">
-                            <label for="password">Šifra</label>
-                            <input type="password" placeholder="Šifra" name="password" required>
-                        </div>
-                        <button type="submit" class="login-btn">Uloguj se</button>
-                        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
-                    </div>
-                    
-                    <div class="close-login">
-                        <button type="button" class="cancel-btn">Zatvori</button>
-                        <a href="register.php">Nemate svoj nalog? Napravite novi!</a>
-                    </div>
-                </form>
-            </div>
-        </header>
         <main>
             <h1 id="oglasi">Oglasi na cekanju</h1>
             <table id="pending-oglasi">
