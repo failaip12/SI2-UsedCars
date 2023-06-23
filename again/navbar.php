@@ -48,7 +48,7 @@ require_once 'core/init.php';
                             <input type="password" placeholder="Šifra" name="password" required>
                         </div>
                         <button type="submit" class="login-btn">Uloguj se</button>
-                        <input type="hidden" name="token" value="' . Token::generate() .'" />
+                        <input type="hidden" name="token" value="'. Token::generate() .'" />
                     </div>
                     
                     <div class="close-login">

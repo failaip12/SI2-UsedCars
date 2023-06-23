@@ -29,12 +29,6 @@ require_once 'navbar.php';
         <main>
         <section class="ad">
         <h1><?php echo escape($oglas->naslov) ?></h1>
-        <div class="ad-image-toggler">
-            <div class="num-of-photo"></div>
-            <div class="toggler toggler-one"> < </div>
-            <img src="./images/car_images/car1.jpg" alt="Advertised car image" class="ad-image">
-            <div class="toggler toggler-two"> > </div>
-        </div>
         
         <div class="swiper-container">
           <div class="swiper image-swiper">

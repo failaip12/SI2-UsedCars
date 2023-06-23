@@ -161,7 +161,6 @@ require_once 'navbar.php';
                 <input type="hidden" name="kubikaza_do" value="<?php echo Input::get('kubikaza_do'); ?>" />
                 <input type="hidden" name="snaga_od" value="<?php echo Input::get('snaga_od'); ?>" />
                 <input type="hidden" name="snaga_do" value="<?php echo Input::get('snaga_do'); ?>" />
-                <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
                 <?php
                 if(Input::exists('get'))
                  echo '<button type="submit" class="login-btn">Sacuvaj pretragu</button>';
