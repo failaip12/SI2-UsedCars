@@ -129,7 +129,10 @@ class DB
     public function first()
     {
         $data = $this->results();
-        return $data[0];
+        if ($data)
+            return $data[0];
+        else
+            return null;
     }
 
     public function error()

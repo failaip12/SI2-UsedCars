@@ -63,6 +63,7 @@ require_once 'core/init.php';
                     <li><a href="index.php">Početna</a></li>
                     <li><a href="adding-ad.php">Dodaj oglas</a></li>
                     <li><a href="profile.php">Moj profil</a></li>
+                    <li><a href="oglasi-korisnika.php">Moj oglasi</a></li>
                     <li><a href="saved-search.php">Sacuvane pretrage</a></li>
                     <li><a href="change-password.php">Promeni sifru</a></li>
                     <div class="buttons">

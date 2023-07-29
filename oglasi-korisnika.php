@@ -3,18 +3,17 @@ declare(strict_types=1);
 require_once 'core/init.php';
 
 $user = new User();
-if ($user->permissionLevel()!=2) {
+if ($user->permissionLevel()!=1) {
     Redirect::to('index.php');
 }
 
 $db = DB::getInstance();
-$oglasi_query = $db->query("SELECT * FROM `oglasi` WHERE admin_id is NULL");
 if (!Input::exists('get')) {
     $trenutna_strana = 1;
 } else {
     $trenutna_strana = (int) Input::get('strana');
 }
-$oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NULL limit ? , ?', array(($trenutna_strana - 1) * 10, 10))->results();
+$oglasi = $db->query('SELECT * FROM oglasi WHERE korisnik_id = ? limit ? , ?', array($user->data()->korisnik_id, ($trenutna_strana - 1) * 10, 10))->results();
 require_once 'navbar.php';
 ?>
 <!DOCTYPE html>
@@ -29,10 +28,10 @@ require_once 'navbar.php';
         <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
         <script src="js/index.js" defer></script>
         <script>
-        function odobriOglas(id){
-        var odgovor=confirm("Odobravanje oglasa: Da li ste sigurni?");
+        function obrisiOglas(id){
+        var odgovor=confirm("Brisanje oglasa: Da li ste sigurni?");
         if (odgovor)
-        window.location = "odobri_oglas.php?id="+id;
+        window.location = "obrisi_oglas.php?id="+id;
         return false;
         }
         </script>
@@ -42,23 +41,30 @@ require_once 'navbar.php';
             <h1 id="oglasi">Oglasi na cekanju</h1>
             <table id="pending-oglasi">
                 <tr>
+                  <th data-column-name="#">#</th>
                   <th data-column-name="Marka">Marka</th>
                   <th data-column-name="Model">Model</th>
                   <th data-column-name="Godiste">Godiste</th>
                   <th data-column-name="Korisnik">Korisnik</th>
-                  <th data-column-name="Potvrdi">Potvrdi</th>
+                  <th data-column-name="Potvrdjen">Potvrdjen</th>
+                  <th data-column-name="Obrisi">Obrisi</th>
                 </tr>
                 <?php
                 if (count($oglasi) > 0) {
-                    foreach ($oglasi as $oglas) {
+                    foreach ($oglasi as $index=>$oglas) {
                         $korisnik = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))->first();
-                        $link = "oglas.php?id=" . strval($oglas->oglas_id);
+                        $link = "single-ad.php?id=" . strval($oglas->oglas_id);
                         echo '<tr>';
+                        echo '<td data-column-name="#"> <a href="' . $link . '">' . ($index + 1) . '</a></td>';
                         echo '<td data-column-name="Marka">' . $oglas->marka . "</td>";
                         echo '<td data-column-name="Model">' . $oglas->marka . "</td>";
                         echo '<td data-column-name="Godiste">' . $oglas->godiste . "</td>";
                         echo '<td data-column-name="Korisnik">' . $korisnik->ime. ' ' . $korisnik->prezime . "</td>";
-                        echo "<td data-column-name=\"Potvrdi\"> <button class=\"login-btn\" onclick='return odobriOglas($oglas->oglas_id)'> Potvrdi </button></td>";
+                        if ($oglas->admin_id)
+                            echo '<td data-column-name="Potvrdjen">DA</td>';
+                        else
+                            echo '<td data-column-name="Potvrdjen">NE</td>';
+                        echo "<td data-column-name=\"Obrisi\"> <button class=\"login-btn\" onclick='return obrisiOglas($oglas->oglas_id)'> Obrisi </button></td>";
                         echo '</tr>';
                     }
                 }
