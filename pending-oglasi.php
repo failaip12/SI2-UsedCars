@@ -28,37 +28,34 @@ require_once 'navbar.php';
         <title>UsedCars | Oglas</title>
         <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
         <script src="js/index.js" defer></script>
-        <script>
-        function odobriOglas(id){
-        var odgovor=confirm("Odobravanje oglasa: Da li ste sigurni?");
-        if (odgovor)
-        window.location = "odobri_oglas.php?id="+id;
-        return false;
-        }
-        </script>
+        <script src = "js/utils.js"></script>
     </head>
     <body>
         <main>
             <h1 id="oglasi">Oglasi na cekanju</h1>
             <table id="pending-oglasi">
                 <tr>
+                  <th data-column-name="#">#</th>
                   <th data-column-name="Marka">Marka</th>
                   <th data-column-name="Model">Model</th>
                   <th data-column-name="Godiste">Godiste</th>
                   <th data-column-name="Korisnik">Korisnik</th>
                   <th data-column-name="Potvrdi">Potvrdi</th>
+                  <th data-column-name="Obrisi">Obrisi</th>
                 </tr>
                 <?php
                 if (count($oglasi) > 0) {
-                    foreach ($oglasi as $oglas) {
+                    foreach ($oglasi as $index=>$oglas) {
                         $korisnik = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))->first();
-                        $link = "oglas.php?id=" . strval($oglas->oglas_id);
+                        $link = "single-ad.php?id=" . strval($oglas->oglas_id);
                         echo '<tr>';
+                        echo '<td data-column-name="#"> <a href="' . $link . '">' . ($index + 1) . '</a></td>';
                         echo '<td data-column-name="Marka">' . $oglas->marka . "</td>";
                         echo '<td data-column-name="Model">' . $oglas->marka . "</td>";
                         echo '<td data-column-name="Godiste">' . $oglas->godiste . "</td>";
                         echo '<td data-column-name="Korisnik">' . $korisnik->ime. ' ' . $korisnik->prezime . "</td>";
                         echo "<td data-column-name=\"Potvrdi\"> <button class=\"login-btn\" onclick='return odobriOglas($oglas->oglas_id)'> Potvrdi </button></td>";
+                        echo "<td data-column-name=\"Obrisi\"> <button class=\"login-btn\" onclick='return obrisiOglas($oglas->oglas_id)'> Obrisi </button></td>";
                         echo '</tr>';
                     }
                 }

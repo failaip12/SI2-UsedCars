@@ -75,6 +75,7 @@ require_once 'core/init.php';
                     echo'
                     <li><a href="index.php">Početna</a></li>
                     <li><a href="pending-oglasi.php">Oglasi na cekanju</a></li>
+                    <li><a href="odobreni_oglasi.php">Odobreni oglasi</a></li>
                     <li><a href="change-password.php">Promeni sifru</a></li>
                     <div class="buttons">
                         <li><a href="logout.php" class="login-btn">Odjavi se</a></li>
