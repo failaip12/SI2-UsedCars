@@ -64,23 +64,23 @@ require_once 'navbar.php';
             <section class="profilepage">
                 
                 <div class="info">
-                    <h2>Promena sifre</h2>
+                    <h2>Promena šifre</h2>
                     <form action="change-password.php" method="post">
                         <ul>
                             <li>
-                                <label for="old_password">Stara sifra:</label>
+                                <label for="old_password">Stara šifra:</label>
                                 <input type="password" id="old_password" name="old_password">
                             </li>
                             <li>
-                                <label for="new_password">Nova sifra:</label>
+                                <label for="new_password">Nova šifra:</label>
                                 <input type="password" id="new_password" name="new_password">
                             </li>
                             <li>
-                                <label for="new_password_again">Nova sifra ponovo:</label>
+                                <label for="new_password_again">Nova šifra, ponovo:</label>
                                 <input type="password" id="new_password_again" name="new_password_again">
                             </li>
                             <li>
-                                <input type="submit" value="Change">
+                                <input type="submit" class="login-btn" value="Izmeni">
                             </li>
                         </ul>
                     </form>

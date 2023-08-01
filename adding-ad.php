@@ -208,92 +208,94 @@ require_once 'navbar.php';
             </div>
                 <h1>Unesite karakteristike automobila:</h1>
                 <div class="ad-parts">
-                    <div class="ad-part">
-                        <label for="naslov">Naslov oglasa:</label>
-                        <input type="text" id="naslov" name="naslov">
+                    <div>
+                        <div class="ad-part">
+                            <label for="naslov">Naslov oglasa:</label>
+                            <input type="text" id="naslov" name="naslov">
+                        </div>
+                        <div class="ad-part">
+                            <label for="marka">Marka:</label>
+                            <input type="text" id="marka" name="marka">
+                        </div>
+                        <div class="ad-part">
+                            <label for="model">Model:</label>
+                            <input type="text" id="model" name="model">
+                        </div>
+                        <div class="ad-part">
+                            <label for="godiste">Godište:</label>
+                            <input type="text" id="godiste" name="godiste">
+                        </div>
+                        <div class="ad-part">
+                            <label for="kilometraza">Kilometraža:</label>
+                            <input type="text" id="kilometraza" name="kilometraza">
+                        </div>
+                        <div class="ad-part">
+                            <label for="cena">Cena:</label>
+                            <input type="text" id="cena" name="cena">
+                        </div>
+                        <div class="ad-part">
+                            <label for="gorivo">Gorivo:</label>
+                            <select id="gorivo" name="gorivo">
+                                <option value="Dizel">Dizel</option>
+                                <option value="Benzin">Benzin</option>
+                                <option value="Benzin + Gas (TNG)">Benzin + Gas (TNG)</option>
+                                <option value="Benzin + Metan (CNG)">Benzin + Metan (CNG)</option>
+                                <option value="Električni pogon">Električni pogon</option>
+                                <option value="Hibridni pogon">Hibridni pogon</option>
+                            </select>
+                        </div>
+                        <div class="ad-part">
+                            <label for="kubikaza">Kubikaža:</label>
+                            <input type="text" id="kubikaza" name="kubikaza">
+                        </div>
+                        <div class="ad-part">
+                            <label for="snaga">Snaga motora:</label>
+                            <input type="text" id="snaga" name="snaga">
+                        </div>
+                        <div class="ad-part">
+                            <label for="pogon">Vrsta pogona:</label>
+                            <select id="pogon" name="pogon">
+                                <option value="Prednji">Prednji</option>
+                                <option value="Zadnji">Zadnji</option>
+                                <option value="4x4">4x4</option>
+                            </select>
+                        </div>
+                        <div class="ad-part">
+                            <label for="menjac">Menjač:</label>
+                            <select id="menjac" name="menjac">
+                                <optgroup label="Manuelni menjač">
+                                    <option value="Manuelni 1 brzina">1 brzina</option>
+                                    <option value="Manuelni 2 brzina">2 brzine</option>
+                                    <option value="Manuelni 3 brzina">3 brzine</option>
+                                    <option value="Manuelni 4 brzina">4 brzina</option>
+                                    <option value="Manuelni 5 brzina">5 brzina</option>
+                                    <option value="Manuelni 6 brzina">6 brzina</option>
+                                </optgroup>
+                                <optgroup label="Automatski menjač">
+                                    <option value="Automatski 1 brzina">1 brzina</option>
+                                    <option value="Automatski 2 brzina">2 brzine</option>
+                                    <option value="Automatski 3 brzina">3 brzine</option>
+                                    <option value="Automatski 4 brzina">4 brzina</option>
+                                    <option value="Automatski 5 brzina">5 brzina</option>
+                                    <option value="Automatski 6 brzina">6 brzina</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="ad-part">
+                            <label for="broj_vrata">Broj vrata:</label>
+                            <select id="broj_vrata" name="broj_vrata">
+                                <option value="2/3">2/3</option>
+                                <option value="4/5">4/5</option>
+                            </select>
+                        </div>
+                        <div class="ad-part">
+                            <label for="broj_sedista">Broj sedista:</label>
+                            <input type="text" id="broj_sedista", name="broj_sedista"></input>
+                        </div>
                     </div>
-                    <div class="ad-part">
-                        <label for="marka">Marka:</label>
-                        <input type="text" id="marka" name="marka">
-                    </div>
-                    <div class="ad-part">
-                        <label for="model">Model:</label>
-                        <input type="text" id="model" name="model">
-                    </div>
-                    <div class="ad-part">
-                        <label for="godiste">Godište:</label>
-                        <input type="text" id="godiste" name="godiste">
-                    </div>
-                    <div class="ad-part">
-                        <label for="kilometraza">Kilometraža:</label>
-                        <input type="text" id="kilometraza" name="kilometraza">
-                    </div>
-                    <div class="ad-part">
-                        <label for="cena">Cena:</label>
-                        <input type="text" id="cena" name="cena">
-                    </div>
-                    <div class="ad-part">
-                        <label for="gorivo">Gorivo:</label>
-                        <select id="gorivo" name="gorivo">
-                            <option value="Dizel">Dizel</option>
-                            <option value="Benzin">Benzin</option>
-                            <option value="Benzin + Gas (TNG)">Benzin + Gas (TNG)</option>
-                            <option value="Benzin + Metan (CNG)">Benzin + Metan (CNG)</option>
-                            <option value="Električni pogon">Električni pogon</option>
-                            <option value="Hibridni pogon">Hibridni pogon</option>
-                        </select>
-                    </div>
-                    <div class="ad-part">
-                        <label for="kubikaza">Kubikaža:</label>
-                        <input type="text" id="kubikaza" name="kubikaza">
-                    </div>
-                    <div class="ad-part">
-                        <label for="snaga">Snaga motora:</label>
-                        <input type="text" id="snaga" name="snaga">
-                    </div>
-                    <div class="ad-part">
-                        <label for="pogon">Vrsta pogona:</label>
-                        <select id="pogon" name="pogon">
-                            <option value="Prednji">Prednji</option>
-                            <option value="Zadnji">Zadnji</option>
-                            <option value="4x4">4x4</option>
-                        </select>
-                    </div>
-                    <div class="ad-part">
-                        <label for="menjac">Menjač:</label>
-                        <select id="menjac" name="menjac">
-                            <optgroup label="Manuelni menjač">
-                                <option value="Manuelni 1 brzina">1 brzina</option>
-                                <option value="Manuelni 2 brzina">2 brzine</option>
-                                <option value="Manuelni 3 brzina">3 brzine</option>
-                                <option value="Manuelni 4 brzina">4 brzina</option>
-                                <option value="Manuelni 5 brzina">5 brzina</option>
-                                <option value="Manuelni 6 brzina">6 brzina</option>
-                            </optgroup>
-                            <optgroup label="Automatski menjač">
-                                <option value="Automatski 1 brzina">1 brzina</option>
-                                <option value="Automatski 2 brzina">2 brzine</option>
-                                <option value="Automatski 3 brzina">3 brzine</option>
-                                <option value="Automatski 4 brzina">4 brzina</option>
-                                <option value="Automatski 5 brzina">5 brzina</option>
-                                <option value="Automatski 6 brzina">6 brzina</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="ad-part">
-                        <label for="broj_vrata">Broj vrata:</label>
-                        <select id="broj_vrata" name="broj_vrata">
-                            <option value="2/3">2/3</option>
-                            <option value="4/5">4/5</option>
-                        </select>
-                    </div>
-                    <div class="ad-part">
-                        <label for="broj_sedista">Broj sedista:</label>
-                        <input type="text" id="broj_sedista", name="broj_sedista"></input>
-                    </div>
-                    <div class="ad-part">
+                    <div class="ad-part textarea">
                         <label for="opis_oglasa">Opis oglasa:</label>
-                        <textarea cols="100" rows="10" id="opis_oglasa", name="opis_oglasa"></textarea>
+                        <textarea cols="50" rows="8" id="opis_oglasa", name="opis_oglasa"></textarea>
                     </div>
                 </div>
                 <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">

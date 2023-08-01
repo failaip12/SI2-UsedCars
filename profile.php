@@ -53,7 +53,7 @@ require_once 'navbar.php';
                                 <input type="text" id="datum_rodjenja" name="datum_rodjenja" value="<?php if($user->data()->datum_rodjenja !== null) echo escape($user->data()->datum_rodjenja); ?>">
                             </li>
                             <li>
-                                <input type="submit" value="Update">
+                                <input type="submit" class="update-profile-btn" value="Ažuriraj">
                             </li>
                         </ul>
                     </form>

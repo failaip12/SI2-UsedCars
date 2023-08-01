@@ -1,444 +1,516 @@
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300;400;500;700;900&display=swap");
 
 :root {
-    --font-family: 'Encode Sans Expanded', sans-serif;
+  --font-family: "Encode Sans Expanded", sans-serif;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--font-family);
-    background-color: #c9c8c3;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: #c9c8c3;
 }
 
 /* Header section */
 header {
-    background-color: black;
-    padding: 1rem 1.5rem;
-    display: flex;
-    flex-direction: column;
+  background-color: black;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 #hamburger {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 menu {
-    width: 100%;
+  width: 100%;
 }
 
 .logo,
 .menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 nav ul {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 nav ul li {
-    list-style-type: none;
-    margin: .5rem 0;
-    font-size: x-large;
+  list-style-type: none;
+  margin: 0.5rem 0;
+  font-size: x-large;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: whitesmoke;
+  text-decoration: none;
+  color: whitesmoke;
 }
 
 .buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-btn,
 .modal-btn,
 .cancel-btn {
-    cursor: pointer;
-    border-radius: .25em;
-    font-family: var(--font-family);
-    font-weight: bold;
-    padding: .5em 1.25em;
-    font-size: medium;
+  cursor: pointer;
+  border-radius: 0.25em;
+  font-family: var(--font-family);
+  font-weight: bold;
+  padding: 0.5em 1.25em;
+  font-size: medium;
 }
 
 .login-btn {
-    background-color: pink;
-    color: black;
-    border: .5px solid black;
-    justify-content: center;
+  background-color: pink;
+  color: black;
+  border: 0.5px solid black;
+  justify-content: center;
 }
 
 .buttons {
-    border-color: pink;
+  border-color: pink;
 }
 
 .modal-btn,
 .cancel-btn {
-    margin-top: .25rem;
-    background-color: black;
-    color: grey;
-    border: .5px solid #c9c8c3;
+  margin-top: 0.25rem;
+  background-color: black;
+  color: grey;
+  border: 0.5px solid #c9c8c3;
 }
 
 .logo img {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 .pink {
-    color: pink;
+  color: pink;
 }
 
 .grey {
-    color: grey;
+  color: grey;
 }
 
 #overlay {
-    display: none;
-    position: absolute;
-    width: 100vw;
-    height: 200vh;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 200vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .login-form {
-    margin: 30% auto;
-    padding: 1em 2em;
-    width: 80%;
-    max-width: 500px;
-    height: 350px;
-    background-color: grey;
-    border-radius: .5em;
+  margin: 30% auto;
+  padding: 1em 2em;
+  width: 80%;
+  max-width: 500px;
+  height: 350px;
+  background-color: grey;
+  border-radius: 0.5em;
 }
 
 .login-item {
-    margin: .75rem 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+  margin: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .login-item label {
-    width: 100%;
-    display: block;
-    text-align: left;
-    font-weight: bold;
+  width: 100%;
+  display: block;
+  text-align: left;
+  font-weight: bold;
 }
 
 .login-form .login-btn,
 .cancel-btn {
-    margin-top: .25rem;
-    font-size: small;
+  margin-top: 0.25rem;
+  font-size: small;
 }
 
 .close-login {
-    margin-top: 3rem;
+  margin-top: 3rem;
 }
 
 .close-login a {
-    margin-top: .5rem;
-    display: block;
-    font-size: small;
+  margin-top: 0.5rem;
+  display: block;
+  font-size: small;
 }
 
 /* Search section */
 .search,
 .car-ads {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem 1rem;
 }
 
 .search h1,
 .car-ads h1 {
-    text-align: center;
-    font-size: xx-large;
+  text-align: center;
+  font-size: xx-large;
 }
 
 label,
 select {
-    margin: 0 auto .5em;
-    text-align: center;
+  margin: 0 auto 0.5em;
+  text-align: center;
 }
 
 .search-text {
-    margin: 2em auto 0;
-    width: 100%;
-    /* display: flex; */
-    /* justify-content: space-between; */
+  margin: 2em auto 0;
+  width: 100%;
+  /* display: flex; */
+  /* justify-content: space-between; */
 }
 
 .search-input {
-    /* display: inline-flex; */
-    /* text-justify: center; */
-    /* margin-right: .5em; */
-    width: 100%; 
-    border: 1px solid black;
-    border-radius: .2em;
+  /* display: inline-flex; */
+  /* text-justify: center; */
+  /* margin-right: .5em; */
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  padding: 0.2em;
+  margin: 0.2rem 0;
+}
+
+.search .login-btn {
+  margin: 0.3rem auto 0;
+  display: block;
 }
 
 /* Ads section */
 .car-ads-grid {
-    display: grid;
-    grid-gap: 2em;
-    grid-template-columns: repeat(auto-fit, 350px);
-    justify-content: center;
+  display: grid;
+  grid-gap: 2em;
+  grid-template-columns: repeat(auto-fit, 350px);
+  justify-content: center;
 }
 
 .car-ad {
-    margin: .5rem auto 1rem;
-    width: 350px;
-    border: .5px solid black;
+  margin: 0.5rem auto 1rem;
+  width: 350px;
+  border: 0.5px solid black;
 }
 
 .car-desc {
-    background-color: grey;
-    padding: .5em;
+  background-color: grey;
+  padding: 0.5em;
 }
 
 .car-ad img {
-    display: block;
-    max-width: 100%;
-    width: 350px;
-    height: 200px;
+  display: block;
+  max-width: 100%;
+  width: 350px;
+  height: 200px;
 }
 
 .car-name-price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .car-name,
 .car-price {
-    margin: .25em 0;
+  margin: 0.25em 0;
 }
 
 .car-name {
-    font-size: medium;
+  font-size: medium;
 }
 
 .car-price,
 .car-details {
-    font-size: small;
+  font-size: small;
 }
 
 .car-details {
-    text-align: right;
+  text-align: right;
 }
 
 /* Guide section */
 .guide {
-    background-color: grey;
-    display: flex;
-    align-items: center;
-    padding: 2rem 1rem;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  padding: 2rem 1rem;
 }
 
 .guide img {
-    width: 80px;
-    height: 80px;
+  width: 80px;
+  height: 80px;
 }
 
 /* Footer section */
 footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2em;
-    background-color: black;
-    color: grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  background-color: black;
+  color: grey;
 }
 
 footer .logo {
-    justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .contact,
 .contact-section,
 .contact-info {
-    margin-top: .75em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  margin-top: 0.75em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .contact a {
-    margin: .75em 0;
-    text-decoration: none;
-    color: grey;
+  margin: 0.75em 0;
+  text-decoration: none;
+  color: grey;
 }
 
 .contact .login-btn {
-    color: black;
+  color: black;
 }
 
 footer p {
-    margin-top: 2em;
-    text-align: center;
+  margin-top: 2em;
+  text-align: center;
+}
+
+/* Profile section */
+.info {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.info ul li {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.info ul li input {
+  width: 250px;
+}
+
+.info label {
+  margin: 0 2.5rem;
+  width: 150px;
+}
+
+.info .update-profile-btn {
+  width: 100px;
+  background-color: pink;
+  color: black;
+  border: 0.5px solid black;
+  cursor: pointer;
+  border-radius: 0.25em;
+  font-family: var(--font-family);
+  font-weight: bold;
+  padding: 0.5em;
+  font-size: medium;
+  margin-top: 1.5rem;
 }
 
 @media screen and (min-width: 550px) {
-    .guide {
-        justify-content: space-between;
-        padding: 2em 2.5em;
-    }
+  .guide {
+    justify-content: space-between;
+    padding: 2em 2.5em;
+  }
 
-    .guide-desc {
-        width: 70%;
-    }
+  .guide-desc {
+    width: 70%;
+  }
 }
 
 @media screen and (min-width: 700px) {
-    .search-text {
-        width: 60%;
-    }
+  .search-text {
+    width: 60%;
+  }
 
-    .guide {
-        padding: 2.5em 3.5em;
-    }
+  .guide {
+    padding: 2.5em 3.5em;
+  }
 
-    .contact-sections {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
+  .contact-sections {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 
-    .contact p {
-        margin-top: 2em;
-    }
+  .contact p {
+    margin-top: 2em;
+  }
 
-    #hamburger {
-        display: none;
-    }
+  #hamburger {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 800px) {
-    header,
-    nav ul {
-        flex-direction: row;
-        justify-content: space-between;
-    }
+  header,
+  nav ul {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-    header {
-        padding: 2rem 2.5rem;
-        justify-content: space-between;
-    }
+  header {
+    padding: 2rem 2.5rem;
+    justify-content: space-between;
+  }
 
-    nav ul li {
-        font-size: large;
-    }
+  nav ul li {
+    font-size: medium;
+  }
 
-    menu {
-        width: 35%;
-    }
-    nav {
-        width: 65%;
-    }
+  menu {
+    width: 35%;
+  }
+  nav {
+    width: 80%;
+  }
+
+  nav .not-logged {
+    width: 70%;
+    margin-left: auto;
+    justify-content: space-around;
+  }
+
+  nav .user-logged li a {
+    font-size: 12px;
+  }
 }
 
 @media screen and (min-width: 1000px) {
-    .login-form {
-        margin: 200px auto;
-    }
+  .login-form {
+    margin: 200px auto;
+  }
 
-    #overlay {
-        background-color: rgba(0, 0, 0, 0.6);
-    }
+  #overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 
-    .guide {
-        padding: 2em 4.5em;
-    }
+  .guide {
+    padding: 2em 4.5em;
+  }
 
-    .contact {
-        width: 100%;
-    }
+  .contact {
+    width: 100%;
+  }
 
-    .contact,
-    .contact-sections {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
+  .contact,
+  .contact-sections {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-    .contact-info {
-        width: 30%;
-    }
+  .contact-info {
+    width: 30%;
+  }
 
-    .contact-sections {
-        width: 67.5%;
-        justify-content: space-around;
-    }
+  .contact-sections {
+    width: 67.5%;
+    justify-content: space-around;
+  }
 
-    nav {
-        width: 50%;
-    }
+  nav {
+    width: 80%;
+  }
+
+  nav .not-logged {
+    width: 65%;
+  }
+
+  nav .user-logged li a {
+    font-size: 14px;
+  }
+
+  .buttons {
+    width: 150px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
-    header {
-        padding: 1em 4em;
-    }
+  header {
+    padding: 1em 4em;
+  }
 
-    .search-text {
-        width: 30%;
-    }
+  .search-text {
+    width: 30%;
+  }
 
-    nav {
-        width: 60%;
-    }
+  nav {
+    width: 65%;
+  }
 
-    .buttons {
-        width: 45%;
-        flex-direction: row;
-        justify-content: space-between;
-    }
+  nav .not-logged {
+    width: 70%;
+  }
 
-    .guide {
-        justify-content: space-around;
-        padding: 3em 6em;
-    }
+  .buttons {
+    width: 180px;
+  }
 
-    .guide-desc {
-        width: 50%;
-    }
+  .guide {
+    justify-content: space-around;
+    padding: 3em 6em;
+  }
 
-    .contact {
-        width: 60%;
-    }
+  .guide-desc {
+    width: 50%;
+  }
+
+  .contact {
+    width: 60%;
+  }
 }
 
 @media screen and (min-width: 1400px) {
-    nav {
-        width: 50%;
-    }
+  nav {
+    width: 60%;
+  }
 
-    .buttons {
-        justify-content: space-around;
-    }
+  nav .not-logged {
+    width: 50%;
+  }
+
+  .buttons {
+    width: 200px;
+  }
 }

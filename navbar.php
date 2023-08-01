@@ -24,16 +24,14 @@ require_once 'core/init.php';
                 <img src="./images/icons/hamburger-icon.png" alt="Hamburger icon" id="hamburger">
             </div>
             <nav id="nav">
-                <ul>
+                <ul <?php if(!$user->isLoggedIn()) { echo 'class="not-logged"'; } ?> <?php if($user->isLoggedIn() && $user->permissionLevel()==1) { echo 'class="user-logged"'; } ?>>
                     
                 <?php
                 if(!$user->isLoggedIn()) {
                     echo'
                     <li><a href="index.php">Početna</a></li>
-                    <div class="buttons">
-                        <li><button class="modal-btn">Prijavi se</button></li>
-                        <li><a href="register.php" class="login-btn">Registruj se</a></li>
-                    </div>
+                    <li><button class="modal-btn">Prijavi se</button></li>
+                    <li><a href="register.php" class="login-btn">Registruj se</a></li>
                 </ul>
             </nav>
             <div id="overlay">
@@ -63,9 +61,9 @@ require_once 'core/init.php';
                     <li><a href="index.php">Početna</a></li>
                     <li><a href="adding-ad.php">Dodaj oglas</a></li>
                     <li><a href="profile.php">Moj profil</a></li>
-                    <li><a href="oglasi-korisnika.php">Moj oglasi</a></li>
-                    <li><a href="saved-search.php">Sacuvane pretrage</a></li>
-                    <li><a href="change-password.php">Promeni sifru</a></li>
+                    <li><a href="oglasi-korisnika.php">Moji oglasi</a></li>
+                    <li><a href="saved-search.php">Sačuvane pretrage</a></li>
+                    <li><a href="change-password.php">Promeni šifru</a></li>
                     <div class="buttons">
                         <li><a href="logout.php" class="login-btn">Odjavi se</a></li>
                     </div>
