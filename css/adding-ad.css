@@ -47,7 +47,7 @@
 .submit-btn,
 .file-upload-label {
   display: inline-block;
-  margin: 1rem 0;
+  margin: 1rem auto;
   background-color: pink;
   color: black;
   border: 0.5px solid black;
@@ -57,6 +57,11 @@
   font-weight: bold;
   padding: 0.5em 1.25em;
   font-size: medium;
+}
+
+#file-upload-btn {
+  display: block;
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 500px) {

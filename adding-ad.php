@@ -200,12 +200,6 @@ require_once 'navbar.php';
         <main>
             <section class="new-ad">
             <form action="" method="post" enctype="multipart/form-data">
-            <div class="file-upload-container">
-                <div class="section-label" style="margin-bottom:20px;">Slike oglasa</div>
-                <input class="form-control" type="file" id="fileToUpload" name="fileToUpload[]" style='border:1px solid black;max-width:40%;border-left:0' hidden multiple onchange="handleFileSelection(event)">
-                <label for="fileToUpload" class="file-upload-label">Izaberi slike oglasa</label>
-                <span id="file-chosen"></span>
-            </div>
                 <h1>Unesite karakteristike automobila:</h1>
                 <div class="ad-parts">
                     <div>
@@ -300,6 +294,11 @@ require_once 'navbar.php';
                 </div>
                 <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
                 <button class="submit-btn">Pošalji oglas</button>
+                <div class="file-upload-container">
+                    <input class="form-control" type="file" id="fileToUpload" name="fileToUpload[]" style='border:1px solid black;max-width:40%;border-left:0' hidden multiple onchange="handleFileSelection(event)">
+                    <label for="fileToUpload" class="file-upload-label" id="file-upload-btn">Izaberi slike oglasa</label>
+                <span id="file-chosen"></span>
+            </div>
             </form>
             </section>
             <section class="guide">
