@@ -8,8 +8,28 @@ $user = new User();
 $oglas_id = Input::get('id');
 $db = DB::getInstance();
 $oglas = $db->query('SELECT * FROM oglasi WHERE oglas_id = ?', array($oglas_id))->first();
-if (!$oglas->admin_id && ($oglas->korisnik_id != $user->data()->korisnik_id))
-    Redirect::to(404);
+if (!$oglas->admin_id)
+{
+    if (!$user->isLoggedIn())
+    {
+        Redirect::to(404);
+    }
+    else
+    {
+        if ($user->permissionLevel() == 1)
+        {
+            if ($oglas->korisnik_id != $user->data()->korisnik_id)
+            {
+                Redirect::to(404);
+            }
+        }
+        elseif ($user->permissionLevel() != 2)
+        {
+            Redirect::to(404);
+        }
+    }
+}
+
 $slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slika_id=s.slika_id JOIN oglasi o ON o.oglas_id = os.oglas_id WHERE o.oglas_id = ?', array($oglas_id))->results();
 $prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))->first();
 require_once 'navbar.php';
