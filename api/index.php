@@ -9,63 +9,63 @@ $pogon = "%" . strtolower(Input::get('pogon')) . "%";
 $menjac = "%" . strtolower(Input::get('menjac')) . "%";
 $gorivo = "%" . strtolower(Input::get('gorivo')) . "%";
 
-$godiste_od = !empty(Input::get('godiste_od')) ? Input::get('godiste_od') : PHP_INT_MIN;
-$godiste_do = !empty(Input::get('godiste_do')) ? Input::get('godiste_do') : PHP_INT_MAX;
-$kilometraza_od = !empty(Input::get('kilometraza_od')) ? Input::get('kilometraza_od') : PHP_INT_MIN;
-$kilometraza_do = !empty(Input::get('kilometraza_do')) ? Input::get('kilometraza_do') : PHP_INT_MAX;
-$cena_od = !empty(Input::get('cena_od')) ? Input::get('cena_od') : PHP_INT_MIN;
-$cena_do = !empty(Input::get('cena_do')) ? Input::get('cena_do') : PHP_INT_MAX;
-$kubikaza_od = !empty(Input::get('kubikaza_od')) ? Input::get('kubikaza_od') : PHP_INT_MIN;
-$kubikaza_do = !empty(Input::get('kubikaza_do')) ? Input::get('kubikaza_do') : PHP_INT_MAX;
-$snaga_od = !empty(Input::get('snaga_od')) ? Input::get('snaga_od') : PHP_INT_MIN;
-$snaga_do = !empty(Input::get('snaga_do')) ? Input::get('snaga_do') : PHP_INT_MAX;
+$godiste_od = !empty(Input::get('godiste_od')) ? Input::get('godiste_od') : 1900;
+$godiste_do = !empty(Input::get('godiste_do')) ? Input::get('godiste_do') : 2100;
+$kilometraza_od = !empty(Input::get('kilometraza_od')) ? Input::get('kilometraza_od') : 0;
+$kilometraza_do = !empty(Input::get('kilometraza_do')) ? Input::get('kilometraza_do') : 1000000;
+$cena_od = !empty(Input::get('cena_od')) ? Input::get('cena_od') : 0;
+$cena_do = !empty(Input::get('cena_do')) ? Input::get('cena_do') : 1000000;
+$kubikaza_od = !empty(Input::get('kubikaza_od')) ? Input::get('kubikaza_od') : 0;
+$kubikaza_do = !empty(Input::get('kubikaza_do')) ? Input::get('kubikaza_do') : 10000;
+$snaga_od = !empty(Input::get('snaga_od')) ? Input::get('snaga_od') : 0;
+$snaga_do = !empty(Input::get('snaga_do')) ? Input::get('snaga_do') : 1000;
 
-$sql = "SELECT * FROM oglasi WHERE admin_id is NOT NULL";
+$sql = 'SELECT * FROM cars.oglasi WHERE admin_id is NOT NULL';
 
 $bindings = [];
 
 if (!empty($marka)) {
-  $sql .= " AND LOWER(marka) LIKE ?";
+  $sql .= ' AND marka ILIKE ?';
   $bindings[] = $marka;
 }
 
 if (!empty($model)) {
-  $sql .= " AND LOWER(model) LIKE ?";
+  $sql .= ' AND model ILIKE ?';
   $bindings[] = $model;
 }
 
-$sql .= " AND godiste BETWEEN ? AND ?";
+$sql .= ' AND godiste BETWEEN ? AND ?';
 $bindings[] = $godiste_od;
 $bindings[] = $godiste_do;
 
-$sql .= " AND kilometraza BETWEEN ? AND ?";
+$sql .= ' AND kilometraza BETWEEN ? AND ?';
 $bindings[] = $kilometraza_od;
 $bindings[] = $kilometraza_do;
 
-$sql .= " AND cena BETWEEN ? AND ?";
+$sql .= ' AND cena BETWEEN ? AND ?';
 $bindings[] = $cena_od;
 $bindings[] = $cena_do;
 
 if (!empty($pogon)) {
-  $sql .= " AND LOWER(pogon) LIKE ?";
+  $sql .= ' AND pogon ILIKE ?';
   $bindings[] = $pogon;
 }
 
 if (!empty($menjac)) {
-  $sql .= " AND LOWER(menjac) LIKE ?";
+  $sql .= ' AND menjac ILIKE ?';
   $bindings[] = $menjac;
 }
 
 if (!empty($gorivo)) {
-  $sql .= " AND LOWER(gorivo) LIKE ?";
+  $sql .= ' AND gorivo ILIKE ?';
   $bindings[] = $gorivo;
 }
 
-$sql .= " AND kubikaza BETWEEN ? AND ?";
+$sql .= ' AND kubikaza BETWEEN ? AND ?';
 $bindings[] = $kubikaza_od;
 $bindings[] = $kubikaza_do;
 
-$sql .= " AND snaga BETWEEN ? AND ?";
+$sql .= ' AND snaga BETWEEN ? AND ?';
 $bindings[] = $snaga_od;
 $bindings[] = $snaga_do;
 

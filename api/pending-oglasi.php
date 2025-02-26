@@ -8,13 +8,18 @@ if ($user->permissionLevel()!=2) {
 }
 
 $db = DB::getInstance();
-$oglasi_query = $db->query("SELECT * FROM `oglasi` WHERE admin_id is NULL");
+$oglasi_query = $db->query('SELECT * FROM oglasi WHERE admin_id is NULL')->count();
 if (!Input::exists('get')) {
     $trenutna_strana = 1;
 } else {
     $trenutna_strana = (int) Input::get('strana');
 }
-$oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NULL limit ? , ?', array(($trenutna_strana - 1) * 10, 10))->results();
+
+// Update pagination to use PostgreSQL syntax
+$offset = ($trenutna_strana - 1) * 10;
+$oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NULL LIMIT 10 OFFSET ?',
+    array($offset))->results();
+
 require_once 'navbar.php';
 ?>
 <!DOCTYPE html>

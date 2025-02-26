@@ -13,7 +13,12 @@ if (!Input::exists('get')) {
 } else {
     $trenutna_strana = (int) Input::get('strana');
 }
-$oglasi = $db->query('SELECT * FROM oglasi WHERE korisnik_id = ? limit ? , ?', array($user->data()->korisnik_id, ($trenutna_strana - 1) * 10, 10))->results();
+
+// Update the LIMIT/OFFSET syntax for PostgreSQL
+$offset = ($trenutna_strana - 1) * 10;
+$oglasi = $db->query('SELECT * FROM oglasi WHERE korisnik_id = ? LIMIT 10 OFFSET ?',
+    array($user->data()->korisnik_id, $offset))->results();
+
 require_once 'navbar.php';
 ?>
 <!DOCTYPE html>

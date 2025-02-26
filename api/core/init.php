@@ -18,10 +18,10 @@ if (file_exists(__DIR__ . '/../.env')) {
 }
 
 $GLOBALS['config'] = array(
-    'mysql' => array(
+    'postgres' => array(
         'host' => $_ENV['DB_HOST'] ?? 'localhost',
-        'port' => $_ENV['DB_PORT'] ?? '3306',
-        'username' => $_ENV['DB_USERNAME'] ?? 'root',
+        'port' => $_ENV['DB_PORT'] ?? '5432',
+        'username' => $_ENV['DB_USERNAME'] ?? 'postgres',
         'password' => $_ENV['DB_PASSWORD'] ?? '',
         'db' => $_ENV['DB_NAME'] ?? 'cars'
     ),
@@ -33,7 +33,7 @@ $GLOBALS['config'] = array(
 
 spl_autoload_register(
     function ($class) {
-        include_once __DIR__ . '/classes/' . $class . '.php';
+        include_once __DIR__ . '/../classes/' . $class . '.php';
     }
 );
 require_once __DIR__ . '/../functions/sanitize.php';

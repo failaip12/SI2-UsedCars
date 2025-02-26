@@ -8,5 +8,6 @@ if ($user->permissionLevel()!=1) {
 }
 $korisnik_id = $user->data()->korisnik_id;
 $db = DB::getInstance();
-$db->query("UPDATE `korisnik` SET `ime` = ?, prezime = ?, email = ?, mobilni = ?, grad = ?, datum_rodjenja = ? WHERE `korisnik`.`korisnik_id` = ?", array(Input::get('ime'), Input::get('prezime'), Input::get('email'), Input::get('mobilni'), Input::get('grad'), Input::get('datum_rodjenja'), $korisnik_id));
+$db->query('UPDATE cars.korisnik SET ime = ?, prezime = ?, email = ?, mobilni = ?, grad = ?, datum_rodjenja = ? WHERE korisnik_id = ?', 
+    array(Input::get('ime'), Input::get('prezime'), Input::get('email'), Input::get('mobilni'), Input::get('grad'), Input::get('datum_rodjenja'), $korisnik_id));
 Redirect::to('profile.php');
