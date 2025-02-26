@@ -7,5 +7,5 @@ if ($user->permissionLevel()!=1) {
     Redirect::to('index.php');
 }
 $db = DB::getInstance();
-$db->query("DELETE FROM `pretraga` WHERE `pretraga`.`pretraga_id` = ?", array(Input::get('id')));
+$db->query('DELETE FROM cars.pretraga WHERE pretraga_id = ?', array(Input::get('id')));
 Redirect::to('saved-search.php');

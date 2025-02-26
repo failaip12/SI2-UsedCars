@@ -3,17 +3,23 @@ declare(strict_types=1);
 require_once 'core/init.php';
 
 $user = new User();
-if ($user->permissionLevel()!=1) {
+if ($user->permissionLevel()!=2) {
     Redirect::to('index.php');
 }
 
 $db = DB::getInstance();
+$oglasi_query = $db->query('SELECT * FROM oglasi WHERE admin_id is NULL')->count();
 if (!Input::exists('get')) {
     $trenutna_strana = 1;
 } else {
     $trenutna_strana = (int) Input::get('strana');
 }
-$oglasi = $db->query('SELECT * FROM oglasi WHERE korisnik_id = ? limit ? , ?', array($user->data()->korisnik_id, ($trenutna_strana - 1) * 10, 10))->results();
+
+// Update pagination to use PostgreSQL syntax
+$offset = ($trenutna_strana - 1) * 10;
+$oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NULL LIMIT 10 OFFSET ?',
+    array($offset))->results();
+
 require_once 'navbar.php';
 ?>
 <!DOCTYPE html>
@@ -31,7 +37,7 @@ require_once 'navbar.php';
     </head>
     <body>
         <main>
-            <h1 id="oglasi">Vasi oglasi</h1>
+            <h1 id="oglasi">Oglasi na cekanju</h1>
             <table id="pending-oglasi">
                 <tr>
                   <th data-column-name="#">#</th>
@@ -39,7 +45,7 @@ require_once 'navbar.php';
                   <th data-column-name="Model">Model</th>
                   <th data-column-name="Godiste">Godiste</th>
                   <th data-column-name="Korisnik">Korisnik</th>
-                  <th data-column-name="Potvrdjen">Potvrdjen</th>
+                  <th data-column-name="Potvrdi">Potvrdi</th>
                   <th data-column-name="Obrisi">Obrisi</th>
                 </tr>
                 <?php
@@ -53,10 +59,7 @@ require_once 'navbar.php';
                         echo '<td data-column-name="Model">' . $oglas->marka . "</td>";
                         echo '<td data-column-name="Godiste">' . $oglas->godiste . "</td>";
                         echo '<td data-column-name="Korisnik">' . $korisnik->ime. ' ' . $korisnik->prezime . "</td>";
-                        if ($oglas->admin_id)
-                            echo '<td data-column-name="Potvrdjen">DA</td>';
-                        else
-                            echo '<td data-column-name="Potvrdjen">NE</td>';
+                        echo "<td data-column-name=\"Potvrdi\"> <button class=\"login-btn\" onclick='return odobriOglas($oglas->oglas_id)'> Potvrdi </button></td>";
                         echo "<td data-column-name=\"Obrisi\"> <button class=\"login-btn\" onclick='return obrisiOglas($oglas->oglas_id)'> Obrisi </button></td>";
                         echo '</tr>';
                     }

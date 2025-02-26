@@ -8,13 +8,18 @@ if ($user->permissionLevel()!=2) {
 }
 
 $db = DB::getInstance();
-$oglasi_query = $db->query("SELECT * FROM `oglasi` WHERE admin_id is NOT NULL")->count();
+$oglasi_query = $db->query('SELECT * FROM oglasi WHERE admin_id is NOT NULL')->count();
 if (!Input::exists('get')) {
     $trenutna_strana = 1;
 } else {
     $trenutna_strana = (int) Input::get('strana');
 }
-$oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NOT NULL limit ? , ?', array(($trenutna_strana - 1) * 10, 10))->results();
+
+// Update pagination to use PostgreSQL syntax
+$offset = ($trenutna_strana - 1) * 10;
+$oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NOT NULL LIMIT 10 OFFSET ?',
+    array($offset))->results();
+
 require_once 'navbar.php';
 ?>
 <!DOCTYPE html>
@@ -40,7 +45,6 @@ require_once 'navbar.php';
                   <th data-column-name="Model">Model</th>
                   <th data-column-name="Godiste">Godiste</th>
                   <th data-column-name="Korisnik">Korisnik</th>
-                  <th data-column-name="Potvrdi">Potvrdi</th>
                   <th data-column-name="Obrisi">Obrisi</th>
                 </tr>
                 <?php
@@ -54,7 +58,6 @@ require_once 'navbar.php';
                         echo '<td data-column-name="Model">' . $oglas->marka . "</td>";
                         echo '<td data-column-name="Godiste">' . $oglas->godiste . "</td>";
                         echo '<td data-column-name="Korisnik">' . $korisnik->ime. ' ' . $korisnik->prezime . "</td>";
-                        echo "<td data-column-name=\"Potvrdi\"> <button class=\"login-btn\" onclick='return odobriOglas($oglas->oglas_id)'> Potvrdi </button></td>";
                         echo "<td data-column-name=\"Obrisi\"> <button class=\"login-btn\" onclick='return obrisiOglas($oglas->oglas_id)'> Obrisi </button></td>";
                         echo '</tr>';
                     }
