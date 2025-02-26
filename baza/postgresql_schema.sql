@@ -151,4 +151,4 @@ CREATE INDEX idx_pretraga_korisnik_id ON cars.pretraga(korisnik_id);
 -- -----------------------------------------------------
 INSERT INTO cars.nalozi (nalog_id, tip) VALUES (1, 2);
 INSERT INTO cars.admin (email, password, nalog_id) 
-VALUES ('admin@1.1', '$2y$10$17hZo8MY8Bh6gNeU4WmV1uILiRLJceY1eepkomnh9xeG6REj2A8ti', 1); 
+VALUES ('admin@1.1', '$2a$10$CxpezRSh47hBSR41eUFxEunb1KSCBg3qOEID6PfCx31wlAuDkrKhi', 1); 

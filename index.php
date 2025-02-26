@@ -1,7 +1,5 @@
 <?php
 declare(strict_types=1);
-phpinfo();
-die('rewrew');
 require_once 'core/init.php';
 $db = DB::getInstance();
 $user = new User();

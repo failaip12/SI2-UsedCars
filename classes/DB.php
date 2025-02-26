@@ -13,17 +13,31 @@ class DB
     public function __construct()
     {
         try {
-            $this->_pdo = new PDO(
-                'pgsql:host=' . Config::get('postgres/host') . 
-                ';dbname=' . Config::get('postgres/db') . 
-                ';port=' . Config::get('postgres/port'),
-                Config::get('postgres/username'), 
-                Config::get('postgres/password')
+            // Get database URL from environment variable
+            $database_url = getenv('DATABASE_URL');
+            if (!$database_url) {
+                throw new Exception('Database URL not found in environment variables');
+            }
+
+            // Parse connection string components
+            $db_params = parse_url($database_url);
+            
+            // Construct DSN for Supabase
+            $dsn = sprintf(
+                "pgsql:host=%s;port=%s;dbname=%s;user=%s;password=%s;sslmode=require",
+                $db_params['host'],
+                $db_params['port'] ?? '5432',
+                ltrim($db_params['path'], '/'),
+                $db_params['user'],
+                $db_params['pass']
             );
+
+            $this->_pdo = new PDO($dsn);
             $this->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            // Set the search path to include our schema
+            // Set the search path to include your schema
+            // Note: You might need to create this schema in Supabase first
             $this->_pdo->exec('SET search_path TO cars, public');
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -54,9 +68,6 @@ class DB
 
     public function action($action, $table, $where = array())
     {
-        // Remove schema prefix if it exists in the table name
-        $table = str_replace('cars.', '', $table);
-        
         if (count($where) === 3) {
             $operators = array('=', '>', '<', '>=', '<=');
 
@@ -65,13 +76,14 @@ class DB
             $value      = $where[2];
 
             if (in_array($operator, $operators)) {
-                $sql = "{$action} FROM \"{$table}\" WHERE {$field} {$operator} ?";
+                // Updated to use proper PostgreSQL identifier quoting
+                $sql = "{$action} FROM {$table} WHERE \"{$field}\" {$operator} ?";
                 if (!$this->query($sql, array($value))->error()) {
                     return $this;
                 }
             }
         } else {
-            $sql = "{$action} FROM \"{$table}\"";
+            $sql = "{$action} FROM {$table}";
             if (!$this->query($sql)->error()) {
                 return $this;
             }
@@ -91,9 +103,6 @@ class DB
 
     public function insert($table, $fields = array())
     {
-        // Remove schema prefix if it exists in the table name
-        $table = str_replace('cars.', '', $table);
-        
         if (count($fields)) {
             $keys = array_keys($fields);
             $values = '';
@@ -107,7 +116,8 @@ class DB
                 $x++;
             }
 
-            $sql = "INSERT INTO \"{$table}\" (\"" . implode('", "', $keys) . "\") VALUES ({$values})";
+            // Updated to use proper PostgreSQL identifier quoting
+            $sql = "INSERT INTO {$table} (\"" . implode('", "', $keys) . "\") VALUES ({$values}) RETURNING *";
 
             if (!$this->query($sql, array_values($fields))->error()) {
                 return true;
