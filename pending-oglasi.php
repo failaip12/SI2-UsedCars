@@ -15,7 +15,6 @@ if (!Input::exists('get')) {
     $trenutna_strana = (int) Input::get('strana');
 }
 
-// Update pagination to use PostgreSQL syntax
 $offset = ($trenutna_strana - 1) * 10;
 $oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NULL LIMIT 10 OFFSET ?',
     array($offset))->results();

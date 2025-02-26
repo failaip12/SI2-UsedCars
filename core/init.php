@@ -37,4 +37,3 @@ spl_autoload_register(
     }
 );
 require_once __DIR__ . '/../functions/sanitize.php';
-require_once __DIR__ . '/../functions/user_type.php';

@@ -63,6 +63,7 @@ nav ul li a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-color: pink;
 }
 
 .login-btn,
@@ -82,11 +83,6 @@ nav ul li a {
   border: 0.5px solid black;
   justify-content: center;
 }
-
-.buttons {
-  border-color: pink;
-}
-
 .modal-btn,
 .cancel-btn {
   margin-top: 0.25rem;

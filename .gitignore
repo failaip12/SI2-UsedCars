@@ -1,3 +1,4 @@
 slike_oglasa/
 .vercel
 .env
+.env*.local

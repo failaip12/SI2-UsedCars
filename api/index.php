@@ -12,10 +12,10 @@ $script_name = basename($request_uri);
 if (preg_match('/\.php$/', $script_name)) {
     $file_path = __DIR__ . '/../' . $script_name;
     if (file_exists($file_path)) {
-        require $file_path;
+        require_once $file_path;
         exit;
     }
 }
 
 // Default to index.php if no specific file is found
-require __DIR__.'/../index.php';
+require_once __DIR__.'/../index.php';
