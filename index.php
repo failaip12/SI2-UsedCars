@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require_once 'core/init.php';
+require_once __DIR__ . '/core/init.php';
 $db = DB::getInstance();
 $user = new User();
 $marka = "%" . strtolower(Input::get('marka')) . "%";
@@ -71,7 +71,7 @@ $bindings[] = $snaga_do;
 
 // Execute the prepared SQL statement
 $oglasi = $db->query($sql, $bindings)->results();
-require_once 'navbar.php';
+require_once __DIR__ . '/navbar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

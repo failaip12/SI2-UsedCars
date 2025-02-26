@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require_once 'core/init.php';
+require_once __DIR__ . '/core/init.php';
 $user = new User();
 if (!$user->isLoggedIn() || $user->permissionLevel()==2) {
     Redirect::to('index.php');

@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require_once 'core/init.php';
+require_once __DIR__ . '/core/init.php';
 
 $user = new User();
 if ($user->permissionLevel()!=1) {
@@ -19,7 +19,7 @@ $offset = ($trenutna_strana - 1) * 10;
 $oglasi = $db->query('SELECT * FROM oglasi WHERE korisnik_id = ? LIMIT 10 OFFSET ?',
     array($user->data()->korisnik_id, $offset))->results();
 
-require_once 'navbar.php';
+require_once __DIR__ . '/navbar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require_once 'core/init.php';
+require_once __DIR__ . '/../core/init.php';
 function calculate_price_of_reservation($lista_kreveta, $lista_tipova, $clan_odr, $clan_deca, $broj_soba)
 {
     $db = DB::getInstance();

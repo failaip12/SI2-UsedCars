@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require_once 'core/init.php';
+require_once __DIR__ . '/core/init.php';
 if (!Input::exists('get')) {
     Redirect::to('index.php');
 }
@@ -32,7 +32,7 @@ if (!$oglas->admin_id)
 
 $slike = $db->query('SELECT hash FROM slika s JOIN oglas_ima_sliku os ON os.slika_id=s.slika_id JOIN oglasi o ON o.oglas_id = os.oglas_id WHERE o.oglas_id = ?', array($oglas_id))->results();
 $prodavac = $db->get('korisnik', array('korisnik_id', '=', $oglas->korisnik_id))->first();
-require_once 'navbar.php';
+require_once __DIR__ . '/navbar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

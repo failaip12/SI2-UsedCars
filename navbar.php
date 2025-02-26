@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 $user = new User();
-require_once 'core/init.php';
+require_once __DIR__ . '/core/init.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

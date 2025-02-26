@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require_once 'core/init.php';
+require_once __DIR__ . '/core/init.php';
 
 $user = new User();
 if ($user->permissionLevel()!=2) {
@@ -20,7 +20,7 @@ $offset = ($trenutna_strana - 1) * 10;
 $oglasi = $db->query('SELECT * FROM oglasi WHERE admin_id is NOT NULL LIMIT 10 OFFSET ?',
     array($offset))->results();
 
-require_once 'navbar.php';
+require_once __DIR__ . '/navbar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

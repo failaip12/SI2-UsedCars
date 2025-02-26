@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require_once 'core/init.php';
+require_once __DIR__ . '/core/init.php';
 
 $user = new User();
 if (!$user->isLoggedIn()) {
@@ -182,7 +182,7 @@ if (Input::exists()) {
         }
     }
 }
-require_once 'navbar.php';
+require_once __DIR__ . '/navbar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

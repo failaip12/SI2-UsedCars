@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require_once 'functions/random_bytes_fix.php';
+require_once __DIR__ . '/../functions/random_bytes_fix.php';
 class Token
 {
     public static function generate()

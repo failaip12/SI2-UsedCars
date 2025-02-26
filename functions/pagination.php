@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require_once 'core/init.php';
+require_once __DIR__ . '/../core/init.php';
 function pagination($broj_stvari, $trenutna_strana, $link)
 {
     $return_value = '';
